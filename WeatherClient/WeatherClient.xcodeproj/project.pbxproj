@@ -63,7 +63,7 @@
 		A8A265652BEB9CC40030D119 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A8A265672BEB9CFA0030D119 /* Screen */,
+				A8A265672BEB9CFA0030D119 /* Screens */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -78,13 +78,13 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		A8A265672BEB9CFA0030D119 /* Screen */ = {
+		A8A265672BEB9CFA0030D119 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				A8A2656A2BEB9D290030D119 /* App */,
 				A8A265682BEB9D040030D119 /* Main */,
 			);
-			path = Screen;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		A8A265682BEB9D040030D119 /* Main */ = {
