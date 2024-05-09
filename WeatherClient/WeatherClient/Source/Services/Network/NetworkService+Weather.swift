@@ -8,12 +8,21 @@
 import Foundation
 
 typealias WeatherInfoCompletion = ((DMWeatherInfo?, Error?) -> ())
+typealias WeatherInfoListCompletion = (DMWeatherInfoList?, Error?) -> ()
 typealias GeocoderCompletion = (([DMGeocoder]?, Error?) -> ())
 
 protocol NetworkServiceWeather {
     
+    //current weater for coordinates or city
     func loadCoordWrather(for location: Location, completion: @escaping WeatherInfoCompletion)
     func loadCityWrather(for city: String, completion: @escaping WeatherInfoCompletion)
+    
+    //forecast for coordinates or city
+    func loadCoordWratherForecast(for location: Location, completion: @escaping WeatherInfoListCompletion)
+    func loadCityWratherForecast(for city: String, completion: @escaping WeatherInfoListCompletion)
+    
+    //geocoder or reverseGeocoder
+    func loadCoord(for city: String, completion: @escaping GeocoderCompletion)
     func loadCity(for location: Location, completion: @escaping GeocoderCompletion)
 }
 
@@ -24,58 +33,51 @@ extension NetworkService: NetworkServiceWeather {
         
         let urlString = "\(APIConstant.weatherUrl())?lat=\(location.latitude)&lon=\(location.longitude)&appid=\(APIConstant.appId)"
         
-        let url = URL(string: urlString)!
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        
-        request(urlRequest: urlRequest) { (result: Result<DMWeatherInfo,Error>) in
-            
-            switch result {
-            case .success(let value):
-                completion(value, nil)
-                
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        loadData(for: urlString, completion: completion)
     }
     
     func loadCityWrather(for city: String, completion: @escaping (DMWeatherInfo?, Error?) -> ()) {
         
         let urlString = "\(APIConstant.weatherUrl())?q=\(city)&appid=\(APIConstant.appId)"
         
-        let url = URL(string: urlString)!
+        loadData(for: urlString, completion: completion)
+    }
+    
+    func loadCoordWratherForecast(for location: Location, completion: @escaping (DMWeatherInfoList?, Error?) -> ()) {
         
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
+        let urlString = "\(APIConstant.forecastUrl())?lat=\(location.latitude)&lon=\(location.longitude)&appid=\(APIConstant.appId)"
         
-        request(urlRequest: urlRequest) { (result: Result<DMWeatherInfo,Error>) in
-            
-            switch result {
-            case .success(let value):
-                completion(value, nil)
-                
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        loadData(for: urlString, completion: completion)
+    }
+    
+    func loadCityWratherForecast(for city: String, completion: @escaping (DMWeatherInfoList?, Error?) -> ()) {
+        
+        let urlString = "\(APIConstant.forecastUrl())?q=\(city)&appid=\(APIConstant.appId)"
+        
+        loadData(for: urlString, completion: completion)
     }
     
     func loadCity(for location: Location, completion: @escaping ([DMGeocoder]?, Error?) -> ()) {
         
         let urlString = "\(APIConstant.reverseGeocoderUrl())?lat=\(location.latitude)&lon=\(location.longitude)&appid=\(APIConstant.appId)"
         
-        loadGeocoder(for: urlString, completion: completion)
+        loadData(for: urlString, completion: completion)
     }
     
-    private func loadGeocoder(for urlString: String, completion: @escaping ([DMGeocoder]?, Error?) -> ()) {
+    func loadCoord(for city: String, completion: @escaping ([DMGeocoder]?, Error?) -> ()) {
+        
+        let urlString = "\(APIConstant.geocoderUrl())?q=\(city)&appid=\(APIConstant.appId)&limit=0"
+        
+        loadData(for: urlString, completion: completion)
+    }
+    
+    private func loadData<T: Decodable>(for urlString: String, completion: @escaping (T?, Error?) -> ()) {
         let url = URL(string: urlString)!
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         
-        request(urlRequest: urlRequest) { (result: Result<[DMGeocoder], Error>) in
+        request(urlRequest: urlRequest) { (result: Result<T, Error>) in
             
             switch result {
             case .success(let value):

@@ -40,49 +40,14 @@ class MainViewController: UIViewController {
         
         view.addSubview(mainLabel)
         
-        //test
-        /*
-        DispatchQueue.global(qos: .default).async { [weak self] in
-            
-            let location = Location(latitude: 49.989619, longitude: 36.241182)
-            
-            self?.networkService.loadWrather(for: location) { weatherInfo, error in
-                
-                DispatchQueue.main.async { [weak self] in
-                    if let weather = weatherInfo {
-                        debugPrint("\(weather.main.temp)")
-                        self?.mainLabel.text = "\(weather.main.temp)"
-                    }
-                }
-            }
-        }
-         */
+        //API tests
+        APITests().testloadCityForLocation()
+        APITests().testloadLocationForCity()
         
-        //test
-        /*
-        let location = Location(latitude: 49.989619, longitude: 36.241182)
-        networkService.loadCoordWrather(for: location) { [weak self] weatherInfo, error in
-        //networkService.loadCityWrather(for: "Dnipro") { [weak self] weatherInfo, error in
-            if let weather = weatherInfo {
-                debugPrint("\(weather.main.temp)")
-                self?.mainLabel.text = "\(weather.main.temp)"
-            }
-        }
-         */
-                
-        let location = Location(latitude: 49.989619, longitude: 36.241182)
-        networkService.loadCity(for: location) { [weak self] geoInfo, error in
-            
-            if let err = error {
-                debugPrint("\(err.localizedDescription)")
-            }
-            
-            if let geo = geoInfo {
-                debugPrint("\(geo[0].name)")
-                self?.mainLabel.text = "\(geo[0].name)"
-            }
-        }
-            
+        APITests().testLoadCurrentWeatherForLocation()
+        APITests().testLoadCurrentWeatherForCity()
         
+        APITests().testLoadForecastForLocation()
+        APITests().testLoadForecastForCity()
     }
 }

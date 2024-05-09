@@ -20,6 +20,8 @@
 		A8A2657C2BEBA3750030D119 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2657B2BEBA3750030D119 /* Location.swift */; };
 		A8A2657E2BEBA4700030D119 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2657D2BEBA4700030D119 /* ServiceProvider.swift */; };
 		A8A265802BEBC6370030D119 /* DMGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2657F2BEBC6370030D119 /* DMGeocoder.swift */; };
+		A8A265822BED3F1E0030D119 /* DMWeatherInfoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A265812BED3F1E0030D119 /* DMWeatherInfoList.swift */; };
+		A8A265842BED533B0030D119 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A265832BED533B0030D119 /* APITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		A8A2657B2BEBA3750030D119 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A8A2657D2BEBA4700030D119 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		A8A2657F2BEBC6370030D119 /* DMGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMGeocoder.swift; sourceTree = "<group>"; };
+		A8A265812BED3F1E0030D119 /* DMWeatherInfoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMWeatherInfoList.swift; sourceTree = "<group>"; };
+		A8A265832BED533B0030D119 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,7 @@
 				A8A265712BEBA2760030D119 /* NetworkServiceProtocol.swift */,
 				A8A265732BEBA29B0030D119 /* NetworkService+Weather.swift */,
 				A8A265752BEBA2AD0030D119 /* APIConstant.swift */,
+				A8A265832BED533B0030D119 /* APITests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				A8A265792BEBA3190030D119 /* DMWeatherInfo.swift */,
+				A8A265812BED3F1E0030D119 /* DMWeatherInfoList.swift */,
 				A8A2657F2BEBC6370030D119 /* DMGeocoder.swift */,
 			);
 			path = API;
@@ -239,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8A2656C2BEB9D430030D119 /* MainViewController.swift in Sources */,
+				A8A265842BED533B0030D119 /* APITests.swift in Sources */,
 				A8A265742BEBA29B0030D119 /* NetworkService+Weather.swift in Sources */,
 				A8A265522BEB9A7D0030D119 /* AppDelegate.swift in Sources */,
 				A8A2657A2BEBA3190030D119 /* DMWeatherInfo.swift in Sources */,
@@ -249,6 +256,7 @@
 				A8A265762BEBA2AD0030D119 /* APIConstant.swift in Sources */,
 				A8A265722BEBA2760030D119 /* NetworkServiceProtocol.swift in Sources */,
 				A8A265802BEBC6370030D119 /* DMGeocoder.swift in Sources */,
+				A8A265822BED3F1E0030D119 /* DMWeatherInfoList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

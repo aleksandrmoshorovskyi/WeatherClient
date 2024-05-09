@@ -10,7 +10,7 @@ import Foundation
 struct DMGeocoder: Decodable {
     
     let name: String
-    let localNames: LocalNames
+    let localNames: LocalNames?
     let lat: Float
     let lon: Float
     let country: String
@@ -27,8 +27,8 @@ struct DMGeocoder: Decodable {
     
     struct LocalNames: Decodable {
         
-        let uk: String
-        let en: String
+        let uk: String?
+        let en: String?
     }
 }
 
@@ -36,38 +36,9 @@ struct DMGeocoder: Decodable {
  [
      {
          "name": "Dnipro",
-         "local_names": {
-             "hr": "Dnjipro",
-             "pl": "Dniepr",
-             "io": "Dnipro",
-             "nl": "Dnipro",
-             "et": "Dnipro",
-             "eo": "Dnipro",
-             "sl": "Dnipro",
-             "uk": "Дніпро",
-             "de": "Dnipro",
-             "he": "דניפרו",
-             "oc": "Dnipro",
-             "ml": "ഡിനിപ്രോ",
-             "be": "Дніпро",
-             "fr": "Dnipro",
-             "es": "Dnipró",
-             "ar": "دنيبرو",
-             "fi": "Dnipro",
-             "ja": "ドニプロ",
-             "ur": "دنیپرو",
-             "el": "Ντνίπρο",
-             "tr": "Dinipro",
-             "cs": "Dnipro",
-             "ru": "Днепр",
-             "zh": "第聂伯罗",
-             "en": "Dnipro",
-             "ko": "드니프로",
-             "hi": "दनीप्रो",
-             "hu": "Dnyipro",
-             "sk": "Dnipro",
-             "it": "Dnipro",
-             "sr": "Дњепро"
+         "local_names": {       //?
+             "uk": "Дніпро",    //?
+             "en": "Dnipro"     //?
          },
          "lat": 48.4680221,
          "lon": 35.0417711,

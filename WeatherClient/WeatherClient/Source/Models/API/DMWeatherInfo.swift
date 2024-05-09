@@ -10,17 +10,25 @@ import Foundation
 /// DM - Domain Model
 struct DMWeatherInfo: Decodable {
     
-    let id: Int
-    let name: String
+    let coord: Coord
     let weather: [Weather]
+    let base: String
     let main: Main
-    let visibility: Double
+    let visibility: Float
     let wind: Wind
     let clouds: Clouds
     let dt: Int
-    let sys: SysStruct
+    let sys: Sys
     let timezone: Int
+    let id: Int
+    let name: String
     let cod: Int
+    
+    struct Coord: Decodable {
+        
+        let lat: Float
+        let lon: Float
+    }
     
     struct Weather: Decodable {
         
@@ -32,14 +40,14 @@ struct DMWeatherInfo: Decodable {
     
     struct Main: Decodable {
         
-        let temp: Double
-        let feelsLike: Double
-        let tempMin: Double
-        let tempMax: Double
-        let pressure: Double
-        let humidity: Double
-        let seaLevel: Double
-        let grndLevel: Double
+        let temp: Float
+        let feelsLike: Float
+        let tempMin: Float
+        let tempMax: Float
+        let pressure: Float
+        let humidity: Float
+        let seaLevel: Float
+        let grndLevel: Float
         
         enum CodingKeys: String, CodingKey {
             case temp
@@ -55,9 +63,9 @@ struct DMWeatherInfo: Decodable {
     
     struct Wind: Decodable {
         
-        let speed: Double
-        let deg: Double
-        let gust: Double
+        let speed: Float
+        let deg: Float
+        let gust: Float
     }
     
     struct Clouds: Decodable {
@@ -65,7 +73,7 @@ struct DMWeatherInfo: Decodable {
         let all: Double
     }
     
-    struct SysStruct: Decodable {
+    struct Sys: Decodable {
         
         let country: String
         let sunrise: Int

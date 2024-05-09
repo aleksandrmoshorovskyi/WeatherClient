@@ -29,7 +29,8 @@ struct APIConstant {
     }
     
     static func forecastUrl() -> String {
-        return ""//baseUrl + dataPath + "/" + apiVersion + weatherPath
+        //https://api.openweathermap.org/data/2.5/forecast?lat=48.4680221&lon=35.0417711&appid=3256cb7f2fb7edca2796fc3eab482a46
+        return baseUrl + dataPath + "/" + apiVersion + forecastPath
     }
     
     static func geocoderUrl() -> String {
