@@ -9,49 +9,30 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    var mainLabel: UILabel!
-    
-    let networkService = ServiceProvider.networkService()
+    var model: MainModelProtocol!
+    var contentView: MainViewProtocol!
     
     override func loadView() {
         
-        print("loadView")
-        
-        let mainView = UIView()
+        let mainView = MainView()
         mainView.backgroundColor = .red
+        mainView.delegate = self
+        
+        contentView = mainView
         
         view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupInitialState()
+        model.loadData()
+    }
+    
+    private func setupInitialState() {
         
-        print("viewDidLoad")
-        
-        //test
-        mainLabel = UILabel(frame: CGRect(
-            x: 150.0,
-            y: 250.0,
-            width: 100.0,
-            height: 100.0
-        ))
-        
-        mainLabel.textColor = .white
-        
-        view.addSubview(mainLabel)
-        
-        //API tests
-        APITests().testloadCityForLocation()
-        APITests().testloadLocationForCity()
-        
-        APITests().testLoadCurrentWeatherForLocation()
-        APITests().testLoadCurrentWeatherForLocationWithParams()
-        APITests().testLoadCurrentWeatherForCity()
-        APITests().testLoadCurrentWeatherForCityWithParams()
-        
-        APITests().testLoadForecastForLocation()
-        APITests().testLoadForecastForLocationWithParams()
-        APITests().testLoadForecastForCity()
-        APITests().testLoadForecastForCityWithParams()
+        let mainModel = MainModel(delegate: self)
+        model = mainModel
     }
 }
