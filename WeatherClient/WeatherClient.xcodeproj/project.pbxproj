@@ -22,6 +22,7 @@
 		A8A265802BEBC6370030D119 /* DMGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2657F2BEBC6370030D119 /* DMGeocoder.swift */; };
 		A8A265822BED3F1E0030D119 /* DMWeatherInfoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A265812BED3F1E0030D119 /* DMWeatherInfoList.swift */; };
 		A8A265842BED533B0030D119 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A265832BED533B0030D119 /* APITests.swift */; };
+		A8A265862BEE35870030D119 /* APIParametrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A265852BEE35870030D119 /* APIParametrs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A8A2657F2BEBC6370030D119 /* DMGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMGeocoder.swift; sourceTree = "<group>"; };
 		A8A265812BED3F1E0030D119 /* DMWeatherInfoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMWeatherInfoList.swift; sourceTree = "<group>"; };
 		A8A265832BED533B0030D119 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
+		A8A265852BEE35870030D119 /* APIParametrs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIParametrs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				A8A265782BEBA30C0030D119 /* API */,
 				A8A2657B2BEBA3750030D119 /* Location.swift */,
+				A8A265852BEE35870030D119 /* APIParametrs.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				A8A265522BEB9A7D0030D119 /* AppDelegate.swift in Sources */,
 				A8A2657A2BEBA3190030D119 /* DMWeatherInfo.swift in Sources */,
 				A8A2657C2BEBA3750030D119 /* Location.swift in Sources */,
+				A8A265862BEE35870030D119 /* APIParametrs.swift in Sources */,
 				A8A265702BEBA2550030D119 /* NetworkService.swift in Sources */,
 				A8A2657E2BEBA4700030D119 /* ServiceProvider.swift in Sources */,
 				A8A265542BEB9A7D0030D119 /* SceneDelegate.swift in Sources */,

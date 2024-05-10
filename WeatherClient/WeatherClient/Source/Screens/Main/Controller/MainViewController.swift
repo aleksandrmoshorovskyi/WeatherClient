@@ -45,9 +45,13 @@ class MainViewController: UIViewController {
         APITests().testloadLocationForCity()
         
         APITests().testLoadCurrentWeatherForLocation()
+        APITests().testLoadCurrentWeatherForLocationWithParams()
         APITests().testLoadCurrentWeatherForCity()
+        APITests().testLoadCurrentWeatherForCityWithParams()
         
         APITests().testLoadForecastForLocation()
+        APITests().testLoadForecastForLocationWithParams()
         APITests().testLoadForecastForCity()
+        APITests().testLoadForecastForCityWithParams()
     }
 }

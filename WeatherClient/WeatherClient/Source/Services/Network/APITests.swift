@@ -13,12 +13,15 @@ class APITests {
     
     let city = "Dnipro"
     let location = Location(latitude: 49.989619, longitude: 36.241182)
+    let parametrs = (units: Units.metric, lang: Lang.ua)
     
     var value: String = "" //Variable 'self' was written to, but never read
     
+    
+    // MARK: - GEOCODERS
     func testloadCityForLocation() {
     
-        networkService.loadCity(for: location) { [weak self] geoInfo, error in
+        networkService.loadWeatherCity(for: location) { [weak self] geoInfo, error in
                         
             if let err = error {
                 debugPrint("\(err.localizedDescription)")
@@ -31,10 +34,10 @@ class APITests {
             }
         }
     }
-        
+       
     func testloadLocationForCity() {
         
-        networkService.loadCoord(for: city) { [weak self] geoInfo, error in
+        networkService.loadWeatherLocation(for: city) { [weak self] geoInfo, error in
                         
             if let err = error {
                 debugPrint("\(err.localizedDescription)")
@@ -48,9 +51,27 @@ class APITests {
         }
     }
     
+    
+    // MARK: - CURRENT
     func testLoadCurrentWeatherForLocation() {
     
-        networkService.loadCoordWrather(for: location) { [weak self] weatherInfo, error in
+        networkService.loadWeatherForLocation(location) { [weak self] weatherInfo, error in
+
+            if let err = error {
+                debugPrint("\(err.localizedDescription)")
+            }
+
+            if let weather = weatherInfo  {
+                //debugPrint("\(weather.)")
+                self?.value = "\(weather.name)"
+                //self?.mainLabel.text = "\(weather.name)"
+            }
+        }
+    }
+    
+    func testLoadCurrentWeatherForLocationWithParams() {
+    
+        networkService.loadWeatherForLocation(location, with: parametrs) { [weak self] weatherInfo, error in
 
             if let err = error {
                 debugPrint("\(err.localizedDescription)")
@@ -66,7 +87,7 @@ class APITests {
 
     func testLoadCurrentWeatherForCity() {
      
-        networkService.loadCityWrather(for: city) { [weak self] weatherInfo, error in
+        networkService.loadWeatherForCity(city) { [weak self] weatherInfo, error in
 
             if let err = error {
                 debugPrint("\(err.localizedDescription)")
@@ -80,9 +101,43 @@ class APITests {
         }
     }
     
+    func testLoadCurrentWeatherForCityWithParams() {
+     
+        networkService.loadWeatherForCity(city, with: parametrs) { [weak self] weatherInfo, error in
+
+            if let err = error {
+                debugPrint("\(err.localizedDescription)")
+            }
+
+            if let weather = weatherInfo  {
+                //debugPrint("\(weather.)")
+                self?.value = "\(weather.name)"
+                //self?.mainLabel.text = "\(weather.name)"
+            }
+        }
+    }
+    
+    
+    // MARK: - FORECAST
     func testLoadForecastForLocation() {
         
-        networkService.loadCoordWratherForecast(for: location) { [weak self] weatherInfoList, error in
+        networkService.loadWeatherForecastForLocation(location) { [weak self] weatherInfoList, error in
+
+            if let err = error {
+                debugPrint("\(err.localizedDescription)")
+            }
+
+            if let weather = weatherInfoList  {
+                //debugPrint("\(weather.)")
+                self?.value = "\(weather.city)"
+                //self?.mainLabel.text = "\(weather.list)"
+            }
+        }
+    }
+    
+    func testLoadForecastForLocationWithParams() {
+        
+        networkService.loadWeatherForecastForLocation(location, with: parametrs) { [weak self] weatherInfoList, error in
 
             if let err = error {
                 debugPrint("\(err.localizedDescription)")
@@ -98,7 +153,7 @@ class APITests {
 
     func testLoadForecastForCity() {
         
-        networkService.loadCityWratherForecast(for: city) { [weak self] weatherInfoList, error in
+        networkService.loadWeatherForecastForCity(city) { [weak self] weatherInfoList, error in
 
             if let err = error {
                 debugPrint("\(err.localizedDescription)")
@@ -112,4 +167,19 @@ class APITests {
         }
     }
     
+    func testLoadForecastForCityWithParams() {
+        
+        networkService.loadWeatherForecastForCity(city, with: parametrs) { [weak self] weatherInfoList, error in
+
+            if let err = error {
+                debugPrint("\(err.localizedDescription)")
+            }
+
+            if let weather = weatherInfoList  {
+                //debugPrint("\(weather.)")
+                self?.value = "\(weather.city)"
+                //self?.mainLabel.text = "\(weather.list)"
+            }
+        }
+    }
 }
