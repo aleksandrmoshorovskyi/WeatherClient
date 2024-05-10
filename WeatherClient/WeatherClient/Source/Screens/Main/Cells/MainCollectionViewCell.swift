@@ -11,37 +11,12 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     static let idintifier = "MainCollectionViewCell"
     
+    @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var hlLabel: UILabel!
     
     override func awakeFromNib() {
-        super.awakeFromNib()
         
-        self.contentView.backgroundColor = .red
     }
-    
 }
-
-/*
- class CatalogTableViewCell: UITableViewCell {
-
-     @IBOutlet weak var idLabel: UILabel!
-     @IBOutlet weak var nameLabel: UILabel!
-     @IBOutlet weak var mmLabel: UILabel!
-     @IBOutlet weak var ratingLabel: UILabel!
-     @IBOutlet weak var priceCurrencyLabel: UILabel!
-     
-     @IBOutlet weak var favoriteButton: UIButton!
-     @IBAction func favoriteButtonAction(_ sender: Any) {
-         //debugPrint("favoriteButtonAction")
-         favoriteButtonActionCompletion?()
-     }
-     
-     var favoriteButtonActionCompletion: (() -> ())?
-     
-     override func awakeFromNib() {
-         super.awakeFromNib()
-         
-         self.backgroundColor = .systemGray6
-     }
- }
- */

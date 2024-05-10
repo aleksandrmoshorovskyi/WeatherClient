@@ -10,6 +10,6 @@ import Foundation
 // MARK: - Constant
 enum Constant {
     
-    static let tabBarHeight: CGFloat = 20.0
+    static let tabBarHeight: CGFloat = 83.0
     static let labelSideOffset: CGFloat = 20.0
 }

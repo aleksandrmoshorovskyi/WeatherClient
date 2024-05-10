@@ -22,5 +22,6 @@ extension MainViewController: MainModelDelegate {
     func dataDidLoad(with data: DMWeatherInfo) {
         let dataToShow =  "\(data.main.temp)"
         contentView.setupWeather(text: dataToShow)
+        contentView.setupWeather(data: data)
     }
 }

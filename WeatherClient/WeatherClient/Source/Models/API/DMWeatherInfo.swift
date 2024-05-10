@@ -34,8 +34,15 @@ struct DMWeatherInfo: Decodable {
         
         let id: Int
         let main: String
-        let description: String
+        let descWeather: String
         let icon: String
+        
+        enum CodingKeys: String, CodingKey {
+            case id
+            case main
+            case descWeather = "description"
+            case icon
+        }
     }
     
     struct Main: Decodable {

@@ -34,6 +34,7 @@
 		A8A2659C2BEE56D80030D119 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2659B2BEE56D80030D119 /* MainCollectionViewCell.swift */; };
 		A8A2659E2BEE56E00030D119 /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8A2659D2BEE56E00030D119 /* MainCollectionViewCell.xib */; };
 		A8A265A02BEE5A8F0030D119 /* MainViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A2659F2BEE5A8F0030D119 /* MainViewController+Ext.swift */; };
+		A8A265A22BEE8FFD0030D119 /* MainView+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A265A12BEE8FFD0030D119 /* MainView+CollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		A8A2659B2BEE56D80030D119 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		A8A2659D2BEE56E00030D119 /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 		A8A2659F2BEE5A8F0030D119 /* MainViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Ext.swift"; sourceTree = "<group>"; };
+		A8A265A12BEE8FFD0030D119 /* MainView+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView+CollectionView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				A8A265892BEE44260030D119 /* MainView.swift */,
+				A8A265A12BEE8FFD0030D119 /* MainView+CollectionView.swift */,
 				A8A265952BEE50AC0030D119 /* Main+Ext.swift */,
 				A8A2658B2BEE44330030D119 /* MainViewProtocol.swift */,
 				A8A2658D2BEE443C0030D119 /* MainViewDelegate.swift */,
@@ -337,6 +340,7 @@
 				A8A265822BED3F1E0030D119 /* DMWeatherInfoList.swift in Sources */,
 				A8A2658E2BEE443C0030D119 /* MainViewDelegate.swift in Sources */,
 				A8A265A02BEE5A8F0030D119 /* MainViewController+Ext.swift in Sources */,
+				A8A265A22BEE8FFD0030D119 /* MainView+CollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

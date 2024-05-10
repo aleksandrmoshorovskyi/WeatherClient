@@ -10,4 +10,5 @@ import Foundation
 protocol MainViewProtocol {
     
     func setupWeather(text: String)
+    func setupWeather(data: DMWeatherInfo)
 }

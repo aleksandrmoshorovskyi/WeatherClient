@@ -10,9 +10,16 @@ import Foundation
 // MARK: - MainViewProtocol
 extension MainView: MainViewProtocol {
     
+    func setupWeather(data: DMWeatherInfo) {
+        
+        dataDM = data
+        collectionView.reloadData()
+    }
+    
     func setupWeather(text: String) {
-        label.text = text
+        //label.text = text
         
         data = text
+        collectionView.reloadData()
     }
 }
