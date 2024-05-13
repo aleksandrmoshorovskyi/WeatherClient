@@ -11,5 +11,7 @@ import Foundation
 enum Constant {
     
     static let tabBarHeight: CGFloat = 83.0
+    static let standardButtonHeight: CGFloat = 35.0
     static let labelSideOffset: CGFloat = 20.0
+    static let labelTopOffset: CGFloat = 10.0
 }
