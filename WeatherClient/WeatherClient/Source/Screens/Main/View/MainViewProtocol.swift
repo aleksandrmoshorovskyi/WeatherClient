@@ -9,6 +9,6 @@ import Foundation
 
 protocol MainViewProtocol {
     
-    func setupWeather(text: String)
-    func setupWeather(data: DMWeatherInfo)
+    func setupWeather(data: [WeatherViewController])
+    func setupCurrentPageAt(_ indexPath: IndexPath)
 }

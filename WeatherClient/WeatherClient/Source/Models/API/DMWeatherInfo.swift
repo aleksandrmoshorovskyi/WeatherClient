@@ -53,8 +53,8 @@ struct DMWeatherInfo: Decodable {
         let tempMax: Float
         let pressure: Float
         let humidity: Float
-        let seaLevel: Float
-        let grndLevel: Float
+        let seaLevel: Float?
+        let grndLevel: Float?
         
         enum CodingKeys: String, CodingKey {
             case temp
@@ -136,4 +136,5 @@ struct DMWeatherInfo: Decodable {
  }
  
  */
+
 

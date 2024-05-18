@@ -14,14 +14,22 @@ class MainView: UIView {
     //test data {
     var data: String!
     var dataDM: DMWeatherInfo!
+    var dataSourceAr: [WeatherViewController]!
     //} test data
     
     var customTabBarView: UIView!
     var collectionView: UICollectionView!
     
+    var customBarLineView: UIView!
     var mapButton: UIButton!
     var cityListButton: UIButton!
     var mainPageControl: UIPageControl!
+    
+    var currentPage: IndexPath?
+    
+    @objc func cityListButtonClicked() {
+        delegate?.cityListButtonDidTap()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,9 +37,16 @@ class MainView: UIView {
         setupUI()
         setupLayout()
         
+        /*
         collectionView.register(
             UINib(nibName: MainCollectionViewCell.idintifier, bundle: nil),
             forCellWithReuseIdentifier: MainCollectionViewCell.idintifier)
+         */
+        
+        collectionView.register(
+            MainCollectionCell.self,
+            forCellWithReuseIdentifier: MainCollectionCell.idintifier
+        )
     }
     
     required init?(coder: NSCoder) {
@@ -56,25 +71,28 @@ class MainView: UIView {
         
         // MARK: customTabBarView setup
         customTabBarView = UIView()
-        customTabBarView.backgroundColor = .systemTeal
+        customTabBarView.backgroundColor = Constant.mainColor
+        customBarLineView = UIView()
+        customBarLineView.backgroundColor = .darkGray
         
         // MARK: mainPageControl setup
         mainPageControl = UIPageControl()
-        mainPageControl.numberOfPages = 3
+        mainPageControl.numberOfPages = 0
         mainPageControl.currentPage = 0
-        mainPageControl.backgroundColor = .red
+        //mainPageControl.backgroundColor = .red
         
         // MARK: mapButton setup
         mapButton = UIButton()
         mapButton.setImage(UIImage(systemName: "map"), for: .normal)
         mapButton.tintColor = .white
-        mapButton.backgroundColor = .red
+        //mapButton.backgroundColor = .red
         
         // MARK: cityListButton setup
         cityListButton = UIButton()
         cityListButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         cityListButton.tintColor = .white
-        cityListButton.backgroundColor = .red
+        //cityListButton.backgroundColor = .red
+        cityListButton.addTarget(self, action: #selector(cityListButtonClicked), for: .touchUpInside)
     }
     
     func setupLayout() {
@@ -87,13 +105,15 @@ class MainView: UIView {
         addSubview(collectionView)
         
         // MARK: customTabBarView views
+        customBarLineView.translatesAutoresizingMaskIntoConstraints = false
         mainPageControl.translatesAutoresizingMaskIntoConstraints = false
         mapButton.translatesAutoresizingMaskIntoConstraints = false
         cityListButton.translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(mainPageControl)
-        addSubview(mapButton)
-        addSubview(cityListButton)
+        customTabBarView.addSubview(customBarLineView)
+        customTabBarView.addSubview(mainPageControl)
+        customTabBarView.addSubview(mapButton)
+        customTabBarView.addSubview(cityListButton)
         
         NSLayoutConstraint.activate([
             // MARK: customTabBarView constraints
@@ -107,6 +127,12 @@ class MainView: UIView {
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: .zero),
             collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: .zero),
             collectionView.bottomAnchor.constraint(equalTo: customTabBarView.topAnchor, constant: .zero),
+            
+            // MARK: customBarLineView constraints
+            customBarLineView.leadingAnchor.constraint(equalTo: customTabBarView.leadingAnchor, constant: .zero),
+            customBarLineView.trailingAnchor.constraint(equalTo: customTabBarView.trailingAnchor, constant: .zero),
+            customBarLineView.topAnchor.constraint(equalTo: customTabBarView.topAnchor, constant: .zero),
+            customBarLineView.heightAnchor.constraint(equalToConstant: Constant.lineHeight),
             
             // MARK: mainPageControl constraints
             mainPageControl.centerXAnchor.constraint(equalTo: customTabBarView.centerXAnchor),
@@ -124,5 +150,10 @@ class MainView: UIView {
             cityListButton.topAnchor.constraint(equalTo: customTabBarView.topAnchor, constant: Constant.labelTopOffset),
             cityListButton.heightAnchor.constraint(equalToConstant: Constant.standardButtonHeight)
         ])
+    }
+    
+    func scrollToIndex(index:Int) {
+        let rect = collectionView.layoutAttributesForItem(at:IndexPath(row: index, section: 0))?.frame
+        collectionView.scrollRectToVisible(rect!, animated: false)
     }
 }

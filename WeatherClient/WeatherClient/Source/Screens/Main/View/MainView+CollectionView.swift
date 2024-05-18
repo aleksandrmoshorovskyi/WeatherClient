@@ -12,9 +12,30 @@ extension MainView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 3
+        //return 3
+        return dataSourceAr.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MainCollectionCell.idintifier,
+            for: indexPath) as? MainCollectionCell
+        else {
+            assertionFailure()
+            return UICollectionViewCell()
+        }
+        
+        if let data = dataSourceAr {
+            let VC = data[indexPath.row]
+            VC.view.frame = cell.contentView.frame
+            cell.contentView.addSubview(VC.view)
+        }
+        
+        return cell
+    }
+    
+    /*
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(
@@ -25,7 +46,7 @@ extension MainView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.contentView.backgroundColor = .brown
+        //cell.contentView.backgroundColor = .brown
         //cell.tempLabel?.text = "\(data ?? "- -") ℃"
         
         cell.cityLabel?.text = dataDM?.name
@@ -46,13 +67,46 @@ extension MainView: UICollectionViewDataSource {
         cell.descLabel?.text = dataDM?.weather[0].main
         //cell.hlLabel?.text = ""
         
+        /*
+        let VC = WeatherViewController()
+        
+        VC.doSomething(for: indexPath.row)
+        
+        VC.dataSource = "N - \(indexPath.row)"
+        
+        if let data = dataDM {
+            let tempStr = String(format: "%.0f" , data.main.temp)
+            VC.dataSource = "\(tempStr) ℃"
+        } else {
+            VC.dataSource = "- - ℃"
+        }
+        
+        VC.view.frame = cell.contentView.frame
+        //self.addChild(VC)
+        cell.contentView.addSubview(VC.view)
+         */
+        
+        if let data = dataSourceAr {
+            let VC = data[indexPath.row]
+            VC.view.frame = cell.contentView.frame
+            cell.contentView.addSubview(VC.view)
+        }
+        
         return cell
     }
+     */
+     
 }
 
-// MARK: UICollectionView - Delegate
+// MARK: UICollectionViewDelegate
 extension MainView: UICollectionViewDelegate {
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let scrollPosition = scrollView.contentOffset.x / scrollView.bounds.width
+        
+        mainPageControl.currentPage = scrollPosition.isNaN ? 0 : Int(round(scrollPosition))
+    }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout

@@ -10,4 +10,5 @@ import Foundation
 protocol MainViewDelegate: AnyObject {
     
     func cityDidTap()
+    func cityListButtonDidTap()
 }

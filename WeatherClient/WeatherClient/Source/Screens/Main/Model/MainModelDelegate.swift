@@ -9,6 +9,5 @@ import Foundation
 
 protocol MainModelDelegate: AnyObject {
     
-    //func dataDidLoad(with data: CDWeatherInfo)
-    func dataDidLoad(with data: DMWeatherInfo)
+    func dataDidLoad(with data: [WeatherViewController])
 }
