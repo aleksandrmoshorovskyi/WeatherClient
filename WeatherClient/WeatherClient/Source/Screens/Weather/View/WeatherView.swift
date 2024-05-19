@@ -11,9 +11,11 @@ class WeatherView: UIView {
     
     weak var delegate: WeatherViewDelegate?
     
+    //data
     var dataSource: Weather!
     var currentCity: String!
     
+    //UI
     var collectionView: UICollectionView!
 
     override init(frame: CGRect) {
@@ -50,13 +52,12 @@ class WeatherView: UIView {
     
     func setupLayout() {
         
-        // MARK: collectionView
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            // MARK: citiesTableView constraints
+            // collectionView constraints
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .zero),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: .zero),
             collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 60.0),

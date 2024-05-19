@@ -13,5 +13,6 @@ protocol SettingsViewDelegate: AnyObject {
     //func cityListButtonDidTap()
     
     func cityRowDidTapAt(_ indexPath: IndexPath)
+    //func settingsButtonDidTap()
 }
 

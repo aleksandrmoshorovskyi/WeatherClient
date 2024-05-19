@@ -10,8 +10,8 @@ import UIKit
 // MARK: - SettingsViewDelegate
 extension SettingsViewController: SettingsViewDelegate {
 
-    
     func cityRowDidTapAt(_ indexPath: IndexPath) {
+        
         let vc = MainViewController()
             
         vc.currentPage = indexPath
