@@ -35,11 +35,14 @@ extension MainModel: MainModelProtocol {
     
     func loadData() {
         
-        //cities for test {
-        //self.storageService.insertCity("Dnipro")
-        //self.storageService.insertCity("Kyiv")
-        //self.storageService.insertCity("Kharkiv")
-        //}
+        let testCities = storageService.fetchAllCities()
+        
+        if testCities.count == 0 {
+            //data for test
+            self.storageService.insertCity("Dnipro")
+            self.storageService.insertCity("Kyiv")
+            self.storageService.insertCity("Kharkiv")
+        }
         
         let storedCities = storageService.fetchAllCities()
         
