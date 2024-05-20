@@ -13,5 +13,7 @@ protocol SettingsViewProtocol {
 //    func setupWeather(data: [citiesTuple])
     func setupCities(data: [City])
     func setupWeather(data: [City])
+    
+    func settingsBarButtonAction()
 }
 

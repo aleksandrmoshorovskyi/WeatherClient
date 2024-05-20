@@ -28,6 +28,13 @@ class CityTableViewHeader: UIView {
         tableView.dataSource = self
         
         //selectedButton = cityTextField
+        
+        /*
+         var imageView = UIImageView();
+         var image = UIImage(named: "email.png");
+         imageView.image = image;
+         emailField.leftView = imageView;
+         */
     }
     
     func addTransparentView(frames: CGRect) {

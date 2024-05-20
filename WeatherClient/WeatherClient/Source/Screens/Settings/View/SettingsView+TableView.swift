@@ -9,10 +9,12 @@ import UIKit
 
 extension SettingsView: UITableViewDataSource {
     
+    /*
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return "Weather"
     }
+     */
     
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //        
@@ -71,10 +73,12 @@ extension SettingsView: UITableViewDataSource {
 
 extension SettingsView: UITableViewDelegate {
     
+    /*
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 100.0
     }
+     */
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -83,6 +87,7 @@ extension SettingsView: UITableViewDelegate {
         delegate?.cityRowDidTapAt(indexPath)
     }
     
+    /*
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     
         let nibHeader = Bundle.main.loadNibNamed(CityTableViewHeader.idintifier, owner: self)
@@ -90,4 +95,5 @@ extension SettingsView: UITableViewDelegate {
         
         return headerView
     }
+     */
 }

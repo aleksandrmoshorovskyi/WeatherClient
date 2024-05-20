@@ -14,9 +14,16 @@ extension MainViewController: MainViewDelegate {
         
         let settingsViewController = SettingsViewController()
 
+        /*
         settingsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         settingsViewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(settingsViewController, animated: true)
+         */
+        
+        if let navigationController = navigationController {
+            navigationController.pushViewController(settingsViewController, animated: true)
+            //navigationController.popViewController(animated: true)
+        }
     }
     
     func cityDidTap() {

@@ -47,6 +47,10 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         
         //debugPrint("MainVC - viewWillAppear")
+        
+        if let page = currentPage {
+            contentView.setupCurrentPageAt(page)
+        }
     }
     
     override func viewIsAppearing(_ animated: Bool) {

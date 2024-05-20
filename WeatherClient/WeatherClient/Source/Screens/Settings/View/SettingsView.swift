@@ -16,12 +16,14 @@ class SettingsView: UIView {
     
     //UI
     var citiesTableView: UITableView!
-    var settingsButton: UIButton!
+    //var settingsButton: UIButton!
     
+    /*
     @objc func settingsButtonDidTap() {
         citiesTableView.isEditing = !citiesTableView.isEditing
         setupSettingsButton()
     }
+     */
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,19 +62,21 @@ class SettingsView: UIView {
         citiesTableView.delegate = self
         
         // MARK: settings button setup
+        /*
         settingsButton = UIButton()
         setupSettingsButton()
         settingsButton.tintColor = .white
         settingsButton.addTarget(self, action: #selector(settingsButtonDidTap), for: .touchUpInside)
+         */
     }
     
     func setupLayout() {
         
         citiesTableView.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        //settingsButton.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(citiesTableView)
-        addSubview(settingsButton)
+        //addSubview(settingsButton)
         
         NSLayoutConstraint.activate([
             // MARK: citiesTableView constraints
@@ -82,12 +86,13 @@ class SettingsView: UIView {
             citiesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: .zero),
             
             // settingsButton constraints
-            settingsButton.trailingAnchor.constraint(equalTo: citiesTableView.trailingAnchor, constant: -Constant.labelSideOffset),
-            settingsButton.topAnchor.constraint(equalTo: citiesTableView.topAnchor, constant: 60.0)
+            //settingsButton.trailingAnchor.constraint(equalTo: citiesTableView.trailingAnchor, constant: -Constant.labelSideOffset),
+            //settingsButton.topAnchor.constraint(equalTo: citiesTableView.topAnchor, constant: 60.0)
             //settingsButton.heightAnchor.constraint(equalToConstant: Constant.standardButtonHeight)
         ])
     }
     
+    /*
     func setupSettingsButton() {
         
         if citiesTableView.isEditing {
@@ -98,4 +103,5 @@ class SettingsView: UIView {
             settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
         }
     }
+     */
 }

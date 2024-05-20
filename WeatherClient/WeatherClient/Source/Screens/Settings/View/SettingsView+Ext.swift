@@ -8,6 +8,10 @@
 import Foundation
 
 extension SettingsView: SettingsViewProtocol {
+    
+    func settingsBarButtonAction() {
+        citiesTableView.isEditing = !citiesTableView.isEditing
+    }
 
     func setupCities(data: [City]) {
         
