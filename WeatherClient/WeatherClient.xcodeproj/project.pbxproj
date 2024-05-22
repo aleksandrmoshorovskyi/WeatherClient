@@ -71,6 +71,9 @@
 		A8AA86472BF9FC5400376774 /* CityTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA86462BF9FC5400376774 /* CityTableViewHeader.swift */; };
 		A8AA86492BF9FC6000376774 /* CityTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8AA86482BF9FC6000376774 /* CityTableViewHeader.xib */; };
 		A8AA864B2BFA068800376774 /* CityTableViewHeader+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA864A2BFA068800376774 /* CityTableViewHeader+Ext.swift */; };
+		A8AA86872BFE118000376774 /* ResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA86862BFE118000376774 /* ResultsTableController.swift */; };
+		A8AA86892BFE1C1C00376774 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA86882BFE1C1C00376774 /* Search.swift */; };
+		A8AA868B2BFE499A00376774 /* WeatherViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA868A2BFE499900376774 /* WeatherViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +143,9 @@
 		A8AA86462BF9FC5400376774 /* CityTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewHeader.swift; sourceTree = "<group>"; };
 		A8AA86482BF9FC6000376774 /* CityTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewHeader.xib; sourceTree = "<group>"; };
 		A8AA864A2BFA068800376774 /* CityTableViewHeader+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CityTableViewHeader+Ext.swift"; sourceTree = "<group>"; };
+		A8AA86862BFE118000376774 /* ResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableController.swift; sourceTree = "<group>"; };
+		A8AA86882BFE1C1C00376774 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		A8AA868A2BFE499900376774 /* WeatherViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +363,7 @@
 			children = (
 				A8AA85BE2BF4F69100376774 /* WeatherViewController.swift */,
 				A8AA86422BF9492600376774 /* WeatherViewController+Ext.swift */,
+				A8AA868A2BFE499900376774 /* WeatherViewControllerDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -443,6 +450,7 @@
 			children = (
 				A8AA86132BF7C0BB00376774 /* SettingsViewController.swift */,
 				A8AA86212BF7CC2400376774 /* SettingsViewController+Ext.swift */,
+				A8AA86862BFE118000376774 /* ResultsTableController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -453,6 +461,7 @@
 				A8AA86322BF8F49E00376774 /* CityWeather.swift */,
 				A8AA862A2BF8DB7900376774 /* City.swift */,
 				A8AA86282BF8DAB000376774 /* Weather.swift */,
+				A8AA86882BFE1C1C00376774 /* Search.swift */,
 			);
 			path = AppData;
 			sourceTree = "<group>";
@@ -537,8 +546,10 @@
 				A8AA86202BF7CB9800376774 /* SettingsModelDelegate.swift in Sources */,
 				A8AA86182BF7C1F400376774 /* SettingsViewProtocol.swift in Sources */,
 				A8A265992BEE50E80030D119 /* Constants.swift in Sources */,
+				A8AA868B2BFE499A00376774 /* WeatherViewControllerDelegate.swift in Sources */,
 				A8A265842BED533B0030D119 /* APITests.swift in Sources */,
 				A8A265742BEBA29B0030D119 /* NetworkService+Weather.swift in Sources */,
+				A8AA86872BFE118000376774 /* ResultsTableController.swift in Sources */,
 				A8A2658C2BEE44330030D119 /* MainViewProtocol.swift in Sources */,
 				A8A265962BEE50AC0030D119 /* MainView+Ext.swift in Sources */,
 				A8AA85932BF2530600376774 /* CoreDataServiceProtocol.swift in Sources */,
@@ -587,6 +598,7 @@
 				A8A265A02BEE5A8F0030D119 /* MainViewController+Ext.swift in Sources */,
 				A8AA86242BF7CE3E00376774 /* SettingsModel+Ext.swift in Sources */,
 				A8AA86372BF942A400376774 /* WeatherViewProtocol.swift in Sources */,
+				A8AA86892BFE1C1C00376774 /* Search.swift in Sources */,
 				A8A265A22BEE8FFD0030D119 /* MainView+CollectionView.swift in Sources */,
 				A8AA86262BF7CEDA00376774 /* SettingsView+Ext.swift in Sources */,
 			);

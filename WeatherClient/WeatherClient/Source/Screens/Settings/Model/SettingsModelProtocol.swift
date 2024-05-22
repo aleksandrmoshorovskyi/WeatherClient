@@ -10,4 +10,7 @@ import Foundation
 protocol SettingsModelProtocol {
     
     func loadData()
+    func loadSearchData(for string: String)
+    
+    func deleteCity(_ item: City)
 }

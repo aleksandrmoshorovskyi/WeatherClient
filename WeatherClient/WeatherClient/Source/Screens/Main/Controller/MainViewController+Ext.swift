@@ -42,5 +42,13 @@ extension MainViewController: MainModelDelegate {
         if let page = currentPage {
             contentView.setupCurrentPageAt(page)
         }
+        
+        if data.isEmpty {
+            let settingsViewController = SettingsViewController()
+            if let navigationController = navigationController {
+                navigationController.pushViewController(settingsViewController, animated: true)
+                //navigationController.popViewController(animated: true)
+            }
+        }
     }
 }

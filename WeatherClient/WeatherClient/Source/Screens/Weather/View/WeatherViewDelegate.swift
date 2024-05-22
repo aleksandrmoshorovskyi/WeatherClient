@@ -10,4 +10,7 @@ import Foundation
 protocol WeatherViewDelegate: AnyObject {
     
     //func buttonDidTap()
+    
+    func cancelButtonDidTap()
+    func addButtonDidTap()
 }

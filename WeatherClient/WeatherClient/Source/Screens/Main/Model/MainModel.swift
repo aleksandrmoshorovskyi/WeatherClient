@@ -35,6 +35,7 @@ extension MainModel: MainModelProtocol {
     
     func loadData() {
         
+        /*
         let testCities = storageService.fetchAllCities()
         
         if testCities.count == 0 {
@@ -43,6 +44,7 @@ extension MainModel: MainModelProtocol {
             self.storageService.insertCity("Kyiv")
             self.storageService.insertCity("Kharkiv")
         }
+         */
         
         let storedCities = storageService.fetchAllCities()
         
@@ -61,6 +63,7 @@ extension MainModel: MainModelProtocol {
         } else {
             debugPrint("no data (cities)")
             //to add VC
+            self.delegate?.dataDidLoad(with: [])
         }
     }
 }

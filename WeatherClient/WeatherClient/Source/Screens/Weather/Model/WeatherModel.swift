@@ -50,4 +50,14 @@ extension WeatherModel: WeatherModelProtocol {
             }
         }
     }
+    
+    func checkCity(with name: String) {
+        self.delegate?.cityDidLoad(
+            with: storageService.fetchCityWith(name)
+        )
+    }
+    
+    func addCity(with name: String) {
+        self.storageService.insertCity(name)
+    }
 }

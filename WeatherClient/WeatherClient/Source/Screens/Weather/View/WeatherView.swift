@@ -17,6 +17,17 @@ class WeatherView: UIView {
     
     //UI
     var collectionView: UICollectionView!
+    
+    var cancelButton: UIButton!
+    var addButton: UIButton!
+    
+    @objc func cancelButtonDidTap() {
+        delegate?.cancelButtonDidTap()
+    }
+    
+    @objc func addButtonDidTap() {
+        delegate?.addButtonDidTap()
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,20 +59,54 @@ class WeatherView: UIView {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        // MARK: mapButton setup
+        cancelButton = UIButton()
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.setTitleColor(.white, for: .normal)
+        //cancelButton.backgroundColor = .red
+        cancelButton.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
+        cancelButton.isHidden = true
+        
+        // MARK: addButton setup
+        addButton = UIButton()
+        addButton.setTitle("Add", for: .normal)
+        addButton.setTitleColor(.white, for: .normal)
+        //addButton.backgroundColor = .red
+        addButton.addTarget(self, action: #selector(addButtonDidTap), for: .touchUpInside)
+        addButton.isHidden = true
     }
     
     func setupLayout() {
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(collectionView)
+        
+        addSubview(cancelButton)
+        addSubview(addButton)
         
         NSLayoutConstraint.activate([
             // collectionView constraints
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .zero),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: .zero),
             collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 60.0),
-            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: .zero)
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: .zero),
+             
+            //cancelButton
+            cancelButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.labelSideOffset),
+            cancelButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.labelTopOffset),
+            
+            //addButton
+            addButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.labelSideOffset),
+            addButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.labelTopOffset)
         ])
     }
+    
+//    func setupButtons() {
+//        cancelButton.isHidden = false
+//        addButton.isHidden = false
+//    }
 }

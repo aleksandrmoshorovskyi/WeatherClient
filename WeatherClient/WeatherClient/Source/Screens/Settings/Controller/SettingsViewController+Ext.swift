@@ -9,6 +9,10 @@ import UIKit
 
 // MARK: - SettingsViewDelegate
 extension SettingsViewController: SettingsViewDelegate {
+    
+    func cityRowDeleteAt(_ city: City) {
+        model.deleteCity(city)
+    }
 
     func cityRowDidTapAt(_ indexPath: IndexPath) {
         
@@ -39,6 +43,12 @@ extension SettingsViewController: SettingsViewDelegate {
 
 // MARK: - SettingsModelDelegate
 extension SettingsViewController: SettingsModelDelegate {
+    
+    func searchDataDidLoad(with data: [Search]) {
+        //data source for searching
+        serchDataSource = data
+        resultsTableController.tableView.reloadData()
+    }
     
     func citiesDidLoad(with cities: [City]) {
         contentView.setupCities(data: cities)

@@ -11,6 +11,8 @@ protocol CoreDataWeather {
     
     func insertCity(_ city: String)
     func fetchAllCities() -> [CDWeatherCities]
+    func fetchCityWith(_ name: String) -> CDWeatherCities?
+    func deleteCityWith(_ name: String)
 }
 
 // MARK: - CoreDataWeather
@@ -39,9 +41,31 @@ extension CoreDataService: CoreDataWeather {
         return fetchedResult
     }
     
+    func fetchCityWith(_ name: String) -> CDWeatherCities? {
+
+        let fetchRequest = CDWeatherCities.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "cityName == %@", name
+        )
+        
+        let fetchedResult = fetchDataFromEntity(CDWeatherCities.self, fetchRequest: fetchRequest).first
+        
+        return fetchedResult
+    }
+    
     func deleteAllCities() {
         
         deleteAll(CDWeatherCities.self)
+    }
+    
+    func deleteCityWith(_ name: String) {
+        
+        let fetchRequest = CDWeatherCities.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "cityName == %@", name
+        )
+        
+        deleteRecords(CDWeatherCities.self, fetchRequest: fetchRequest)
     }
 }
 

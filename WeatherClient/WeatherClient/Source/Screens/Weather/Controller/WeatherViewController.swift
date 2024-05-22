@@ -9,11 +9,14 @@ import UIKit
 
 class WeatherViewController: UIViewController {
     
+    weak var delegate: WeatherViewControllerDelegate?
+    
     var model: WeatherModelProtocol!
     var contentView: WeatherViewProtocol!
     
     var currentCity: String!
     var dataSource: Weather!
+    var isPresent = false
     
     //var cityLabel: UILabel!
     //var label: UILabel!
@@ -50,6 +53,12 @@ class WeatherViewController: UIViewController {
         
         if let data = dataSource {
             contentView?.setupWeather(data: data)
+        }
+        
+        if isPresent {
+            //contentView.setupControls()
+            contentView.setupCancelButton()
+            model.checkCity(with: currentCity)
         }
     }
     

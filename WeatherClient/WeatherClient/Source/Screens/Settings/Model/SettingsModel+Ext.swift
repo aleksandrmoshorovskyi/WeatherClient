@@ -8,8 +8,14 @@
 import Foundation
 
 extension SettingsModel: SettingsModelProtocol {
+    
+    func deleteCity(_ item: City) {
+        storageService.deleteCityWith(item.name)
+    }
 
     func loadData() {
+        
+        cities = []
         
         let storedCities = storageService.fetchAllCities()
         
@@ -64,4 +70,31 @@ extension SettingsModel: SettingsModelProtocol {
         }
     }
     
+    func loadSearchData(for string: String) {
+
+        //debugPrint("loadData for - \(city)")
+        
+        //networkService.loadWeatherForCity(city, with: parametrs) { [weak self] weatherInfo, error in
+            networkService.loadWeatherLocation(for: string) { [weak self] weatherInfo, error in
+
+            if let err = error {
+                debugPrint("\(err.localizedDescription)")
+            }
+
+            if let data = weatherInfo  {
+                
+//                let tempWeather = Weather(
+//                    city: data.
+//                    desc: data.weather[0].descWeather,
+//                    temp: data.main.temp
+//                )
+                
+                let searchData =  data.compactMap() {
+                    Search(name: $0.name, state: $0.state, country: $0.country)
+                }
+                
+                self?.delegate?.searchDataDidLoad(with: searchData)
+            }
+        }
+    }
 }

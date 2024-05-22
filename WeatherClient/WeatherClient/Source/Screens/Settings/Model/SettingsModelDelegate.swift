@@ -13,5 +13,6 @@ protocol SettingsModelDelegate: AnyObject {
 //    func dataDidLoad(with data: [citiesTuple])
     func citiesDidLoad(with cities: [City])
     func dataDidLoad(with data: [City])
+    func searchDataDidLoad(with data: [Search])
 }
 
