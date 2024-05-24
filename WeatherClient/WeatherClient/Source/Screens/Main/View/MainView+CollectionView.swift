@@ -31,74 +31,14 @@ extension MainView: UICollectionViewDataSource {
         
         if let data = dataSourceAr {
             let VC = data[indexPath.row]
+            //debugPrint("i - \(indexPath.row), VCrfame - \(VC.view.frame), cellFrame -  \(cell.contentView.frame)")
             VC.view.frame = cell.contentView.frame
+            //debugPrint("i - \(indexPath.row), VCrfame - \(VC.view.frame), cellFrame -  \(cell.contentView.frame)")
             cell.contentView.addSubview(VC.view)
         }
         
         return cell
     }
-    
-    /*
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MainCollectionViewCell.idintifier,
-            for: indexPath) as? MainCollectionViewCell
-        else {
-            assertionFailure()
-            return UICollectionViewCell()
-        }
-        
-        //cell.contentView.backgroundColor = .brown
-        //cell.tempLabel?.text = "\(data ?? "- -") ℃"
-        
-        cell.cityLabel?.text = dataDM?.name
-
-        if let data = dataDM {
-            let tempStr = String(format: "%.0f" , data.main.temp)
-            cell.tempLabel?.text = "\(tempStr) ℃"
-            
-            let tempMaxStr = String(format: "%.0f" , data.main.tempMax)
-            let tempMinStr = String(format: "%.0f" , data.main.tempMin)
-            cell.hlLabel?.text = "H:\(tempMaxStr)℃ L:\(tempMinStr)℃"
-        } else {
-            cell.tempLabel?.text = "- - ℃"
-            cell.hlLabel?.text = ""
-        }
-
-        //cell.tempLabel?.text = "\(String(describing: dataDM?.main.temp)) ℃"
-        cell.descLabel?.text = dataDM?.weather[0].main
-        //cell.hlLabel?.text = ""
-        
-        /*
-        let VC = WeatherViewController()
-        
-        VC.doSomething(for: indexPath.row)
-        
-        VC.dataSource = "N - \(indexPath.row)"
-        
-        if let data = dataDM {
-            let tempStr = String(format: "%.0f" , data.main.temp)
-            VC.dataSource = "\(tempStr) ℃"
-        } else {
-            VC.dataSource = "- - ℃"
-        }
-        
-        VC.view.frame = cell.contentView.frame
-        //self.addChild(VC)
-        cell.contentView.addSubview(VC.view)
-         */
-        
-        if let data = dataSourceAr {
-            let VC = data[indexPath.row]
-            VC.view.frame = cell.contentView.frame
-            cell.contentView.addSubview(VC.view)
-        }
-        
-        return cell
-    }
-     */
-     
 }
 
 // MARK: UICollectionViewDelegate
@@ -117,7 +57,10 @@ extension MainView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return collectionView.bounds.size
+        //return collectionView.bounds.size
+        //return collectionView.frame.size
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        //return CGSize(width: 393.0, height: 400.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -126,6 +69,16 @@ extension MainView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         
         return .zero
     }

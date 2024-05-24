@@ -17,7 +17,7 @@ class WeatherMainCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         
-        self.backgroundColor = .clear
-        contentView.backgroundColor = .clear
+        //self.backgroundColor = .clear
+        //contentView.backgroundColor = .clear
     }
 }

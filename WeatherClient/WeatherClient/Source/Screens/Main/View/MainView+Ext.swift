@@ -12,7 +12,11 @@ extension MainView: MainViewProtocol {
     
     func setupCurrentPageAt(_ indexPath: IndexPath) {
         
+        //debugPrint("currentPage - \(String(describing: currentPage))")
+        
         currentPage = indexPath
+        
+        //debugPrint("currentPage - \(String(describing: currentPage))")
         
         if let page = currentPage {
             //collectionView.layoutIfNeeded()
@@ -21,6 +25,8 @@ extension MainView: MainViewProtocol {
             collectionView.scrollToItem(at: page, at: .centeredHorizontally, animated: false)
             
             mainPageControl.currentPage = page.row
+            
+            currentPage = nil
         }
     }
     

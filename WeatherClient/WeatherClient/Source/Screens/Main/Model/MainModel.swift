@@ -35,16 +35,7 @@ extension MainModel: MainModelProtocol {
     
     func loadData() {
         
-        /*
-        let testCities = storageService.fetchAllCities()
-        
-        if testCities.count == 0 {
-            //data for test
-            self.storageService.insertCity("Dnipro")
-            self.storageService.insertCity("Kyiv")
-            self.storageService.insertCity("Kharkiv")
-        }
-         */
+        var cities: [WeatherViewController] = []
         
         let storedCities = storageService.fetchAllCities()
         

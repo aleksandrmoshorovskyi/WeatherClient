@@ -9,5 +9,5 @@ import Foundation
 
 protocol WeatherViewControllerDelegate: AnyObject {
     
-    func controllerDismissed()
+    func cityDidAdd()
 }

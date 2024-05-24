@@ -47,18 +47,26 @@ class WeatherView: UIView {
     func setupUI() {
         
         // MARK: self setup
-        backgroundColor = .clear
+        //backgroundColor = .clear
+        backgroundColor = .brown
         
         // MARK: collectionView setup
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
     
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        //collectionView.showsHorizontalScrollIndicator = false
+        //collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .magenta
         //collectionView.isPagingEnabled = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        //it's almost work
+        collectionView.contentInsetAdjustmentBehavior = .never
+        //https://stackoverflow.com/questions/62668158/uicollectionviewcell-doesnt-fill-the-screen
         
         // MARK: mapButton setup
         cancelButton = UIButton()
@@ -92,7 +100,8 @@ class WeatherView: UIView {
             // collectionView constraints
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .zero),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: .zero),
-            collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 60.0),
+            //collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 60.0),
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: .zero),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: .zero),
              
             //cancelButton

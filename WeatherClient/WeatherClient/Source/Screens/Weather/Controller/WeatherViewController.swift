@@ -18,9 +18,6 @@ class WeatherViewController: UIViewController {
     var dataSource: Weather!
     var isPresent = false
     
-    //var cityLabel: UILabel!
-    //var label: UILabel!
-    
     override func loadView() {
         
         //debugPrint("WeatherViewController - loadView")
@@ -37,26 +34,13 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Constant.mainColor
-        
-//        cityLabel = UILabel(frame: CGRect(x: 200, y: 100, width: 100, height: 100))
-//        
-//        label = UILabel(frame: CGRect(x: 200, y: 200, width: 100, height: 100))
-//        
-//        view.addSubview(cityLabel)
-//        view.addSubview(label)
-//        
-//        setupData()
-        
-        //setupInitialState()
-        //model.loadData()
+        //view.backgroundColor = Constant.mainColor
         
         if let data = dataSource {
             contentView?.setupWeather(data: data)
         }
         
         if isPresent {
-            //contentView.setupControls()
             contentView.setupCancelButton()
             model.checkCity(with: currentCity)
         }
@@ -73,17 +57,6 @@ class WeatherViewController: UIViewController {
         let weatherModel = WeatherModel(delegate: self)
         model = weatherModel
     }
-    
-//    func setupData() {
-//        
-//        cityLabel?.text = currentCity
-//        
-//        if let data = dataSource {
-//            cityLabel?.text = "\(data.name)"
-//            let tempStr = String(format: "%.0f" , data.main.temp)
-//            label?.text = "\(tempStr) ℃"
-//        }
-//    }
     
     func doSomething(with str: String) {
         

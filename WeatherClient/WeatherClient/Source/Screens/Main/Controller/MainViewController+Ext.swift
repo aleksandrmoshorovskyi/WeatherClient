@@ -11,19 +11,7 @@ import UIKit
 extension MainViewController: MainViewDelegate {
     
     func cityListButtonDidTap() {
-        
-        let settingsViewController = SettingsViewController()
-
-        /*
-        settingsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        settingsViewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        self.present(settingsViewController, animated: true)
-         */
-        
-        if let navigationController = navigationController {
-            navigationController.pushViewController(settingsViewController, animated: true)
-            //navigationController.popViewController(animated: true)
-        }
+        pushSettingsViewController()
     }
     
     func cityDidTap() {
@@ -34,21 +22,25 @@ extension MainViewController: MainViewDelegate {
 // MARK: - MainModelDelegate
 extension MainViewController: MainModelDelegate {
     
-
     func dataDidLoad(with data: [WeatherViewController]) {
 
         contentView.setupWeather(data: data)
         
         if let page = currentPage {
             contentView.setupCurrentPageAt(page)
+            currentPage = nil
         }
         
         if data.isEmpty {
-            let settingsViewController = SettingsViewController()
-            if let navigationController = navigationController {
-                navigationController.pushViewController(settingsViewController, animated: true)
-                //navigationController.popViewController(animated: true)
-            }
+            pushSettingsViewController()
         }
+    }
+}
+
+// MARK: - SettingsViewControllerDelegate
+extension MainViewController: SettingsViewControllerDelegate {
+    
+    func dataDidChange() {
+        model.loadData()
     }
 }

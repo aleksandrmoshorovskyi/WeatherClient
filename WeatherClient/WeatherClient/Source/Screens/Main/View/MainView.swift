@@ -61,13 +61,26 @@ class MainView: UIView {
         // MARK: collectionView setup
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = .zero
     
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .darkGray
+        //collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .green
         collectionView.isPagingEnabled = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        //don't work like expect
+        //collectionView.autoresizesSubviews = false
+        
+        //don't work like expect
+        //collectionView.automaticallyAdjustsScrollIndicatorInsets = false
+        
+        //it's almost work
+        collectionView.contentInsetAdjustmentBehavior = .never
+        //https://stackoverflow.com/questions/62668158/uicollectionviewcell-doesnt-fill-the-screen
         
         // MARK: customTabBarView setup
         customTabBarView = UIView()
@@ -109,7 +122,7 @@ class MainView: UIView {
         mainPageControl.translatesAutoresizingMaskIntoConstraints = false
         mapButton.translatesAutoresizingMaskIntoConstraints = false
         cityListButton.translatesAutoresizingMaskIntoConstraints = false
-        
+
         customTabBarView.addSubview(customBarLineView)
         customTabBarView.addSubview(mainPageControl)
         customTabBarView.addSubview(mapButton)
@@ -127,6 +140,7 @@ class MainView: UIView {
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: .zero),
             collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: .zero),
             collectionView.bottomAnchor.constraint(equalTo: customTabBarView.topAnchor, constant: .zero),
+            //collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: .zero)
             
             // MARK: customBarLineView constraints
             customBarLineView.leadingAnchor.constraint(equalTo: customTabBarView.leadingAnchor, constant: .zero),
@@ -152,8 +166,10 @@ class MainView: UIView {
         ])
     }
     
+    /*
     func scrollToIndex(index:Int) {
         let rect = collectionView.layoutAttributesForItem(at:IndexPath(row: index, section: 0))?.frame
         collectionView.scrollRectToVisible(rect!, animated: false)
     }
+     */
 }

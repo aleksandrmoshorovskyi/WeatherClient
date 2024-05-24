@@ -74,6 +74,7 @@
 		A8AA86872BFE118000376774 /* ResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA86862BFE118000376774 /* ResultsTableController.swift */; };
 		A8AA86892BFE1C1C00376774 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA86882BFE1C1C00376774 /* Search.swift */; };
 		A8AA868B2BFE499A00376774 /* WeatherViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA868A2BFE499900376774 /* WeatherViewControllerDelegate.swift */; };
+		A8AA868D2C00CE2F00376774 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA868C2C00CE2F00376774 /* SettingsViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +147,7 @@
 		A8AA86862BFE118000376774 /* ResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableController.swift; sourceTree = "<group>"; };
 		A8AA86882BFE1C1C00376774 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A8AA868A2BFE499900376774 /* WeatherViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A8AA868C2C00CE2F00376774 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,6 +452,7 @@
 			children = (
 				A8AA86132BF7C0BB00376774 /* SettingsViewController.swift */,
 				A8AA86212BF7CC2400376774 /* SettingsViewController+Ext.swift */,
+				A8AA868C2C00CE2F00376774 /* SettingsViewControllerDelegate.swift */,
 				A8AA86862BFE118000376774 /* ResultsTableController.swift */,
 			);
 			path = Controller;
@@ -600,6 +603,7 @@
 				A8AA86372BF942A400376774 /* WeatherViewProtocol.swift in Sources */,
 				A8AA86892BFE1C1C00376774 /* Search.swift in Sources */,
 				A8A265A22BEE8FFD0030D119 /* MainView+CollectionView.swift in Sources */,
+				A8AA868D2C00CE2F00376774 /* SettingsViewControllerDelegate.swift in Sources */,
 				A8AA86262BF7CEDA00376774 /* SettingsView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

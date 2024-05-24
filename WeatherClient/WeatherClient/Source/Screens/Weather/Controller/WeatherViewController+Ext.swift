@@ -21,7 +21,7 @@ extension WeatherViewController: WeatherViewDelegate {
         
         self.dismiss(animated: true)
         model.addCity(with: currentCity)
-        delegate?.controllerDismissed()
+        delegate?.cityDidAdd()
     }
 }
 
@@ -35,17 +35,7 @@ extension WeatherViewController: WeatherModelDelegate {
     }
     
     func dataDidLoad(with data: Weather) {
-        //debugPrint("dataDidLoad - \(data.name)")
-        
         dataSource = data
-        
-        
-        //setupData()
-        //let tempStr = String(format: "%.0f" , data.main.temp)
-        //label?.text = "\(tempStr) ℃"
-        
-        //if let dataA = data {
-            contentView?.setupWeather(data: data)
-        //}
+        contentView?.setupWeather(data: data)
     }
 }

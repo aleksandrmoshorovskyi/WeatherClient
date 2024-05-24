@@ -7,11 +7,9 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController { //, UISearchResultsUpdating
+class SettingsViewController: UIViewController {
     
-    //func updateSearchResults(for searchController: UISearchController) {
-        //code
-    //}
+    weak var delegate: SettingsViewControllerDelegate?
     
     var model: SettingsModelProtocol!
     
@@ -245,9 +243,11 @@ extension SettingsViewController: UISearchControllerDelegate {
 
 extension SettingsViewController: WeatherViewControllerDelegate {
     
-    func controllerDismissed() {
+    func cityDidAdd() {
         navigationItem.searchController?.dismiss(animated: true)
         model.loadData()
+        
+        delegate?.dataDidChange()
     }
 }
 

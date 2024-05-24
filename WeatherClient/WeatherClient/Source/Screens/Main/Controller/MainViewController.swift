@@ -48,9 +48,7 @@ class MainViewController: UIViewController {
         
         //debugPrint("MainVC - viewWillAppear")
         
-        if let page = currentPage {
-            contentView.setupCurrentPageAt(page)
-        }
+        setupCurrentPageAt()
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -70,9 +68,7 @@ class MainViewController: UIViewController {
         
         //debugPrint("MainVC - viewDidLayoutSubviews")
         
-        if let page = currentPage {
-            contentView.setupCurrentPageAt(page)
-        }
+        //setupCurrentPageAt()
         
         //nw_connection_add_timestamp_locked_on_nw_queue [C1] Hit maximum timestamp count, will start dropping events
     }
@@ -81,5 +77,59 @@ class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         
         //debugPrint("MainVC - viewDidAppear")
+        
+        if let navigationController = navigationController {
+            navigationController.navigationItem.titleView?.backgroundColor = .blue
+        }
+    }
+    
+    func pushSettingsViewController() {
+        
+        /*
+        let settingsViewController = SettingsViewController()
+        settingsViewController.delegate = self
+        
+        if let navigationController = navigationController {
+            navigationController.pushViewController(settingsViewController, animated: true)
+        }
+         */
+        
+        /*
+        if let navigationController = navigationController {
+            if contains(navigationController.viewControllers, controller) {
+                // move it
+            } else {
+                // push it
+            }
+        }
+        
+        if let stack = self.navigationController?.viewControllers {
+          for vc in stack where vc.isKind(of: SettingsViewController.self) {
+            debugPrint("exists")
+          }
+        }
+         */
+        
+        if let navigationController = navigationController {
+            if let topViewController = navigationController.topViewController {
+                
+                if topViewController.isKind(of: SettingsViewController.self) {
+                    //navigationController.pushViewController(topViewController, animated: true)
+                    navigationController.popToViewController(topViewController, animated: true)
+                } else {
+                    let settingsViewController = SettingsViewController()
+                    settingsViewController.delegate = self
+                    navigationController.pushViewController(settingsViewController, animated: true)
+                }
+            }
+        }
+        
+    }
+    
+    func setupCurrentPageAt() {
+        if let page = currentPage {
+            contentView.setupCurrentPageAt(page)
+            currentPage = nil
+        }
     }
 }

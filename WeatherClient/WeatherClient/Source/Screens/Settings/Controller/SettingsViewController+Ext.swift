@@ -12,32 +12,28 @@ extension SettingsViewController: SettingsViewDelegate {
     
     func cityRowDeleteAt(_ city: City) {
         model.deleteCity(city)
+        delegate?.dataDidChange()
     }
 
     func cityRowDidTapAt(_ indexPath: IndexPath) {
         
-        /*
-        let vc = MainViewController()
-            
-        vc.currentPage = indexPath
-            
-        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        self.present(vc, animated: true)
-         */
+        debugPrint("cityRowDidTapAt")
         
         if let navigationController = navigationController {
-            //let vc = navigationController.topViewController as? MainViewController
-            //vc?.currentPage = indexPath
-            //navigationController.pushViewController(settingsViewController, animated: true)
             
+            debugPrint("navigationController not nil")
+            
+            debugPrint("navigationControllers - \(navigationController.viewControllers)")
+
             if let rootVC = navigationController.viewControllers.first as? MainViewController {
+                debugPrint("rootVC = \(rootVC)")
                 rootVC.currentPage = indexPath
-                //rootVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
             }
-            //navigationController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-            navigationController.popViewController(animated: true)?.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+            
+            let popvc = navigationController.popViewController(animated: true)//.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+            debugPrint("popvc - \(String(describing: popvc))")
         }
+        
     }
 }
 
