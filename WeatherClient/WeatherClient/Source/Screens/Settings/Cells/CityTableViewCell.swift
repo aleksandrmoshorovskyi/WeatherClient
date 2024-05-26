@@ -19,9 +19,9 @@ class CityTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         
-        self.backgroundColor = .clear
-        contentView.backgroundColor = .clear
+        self.backgroundColor = Constant.cityCellBackgroundColor
+        contentView.backgroundColor = Constant.cityCellContentViewColor
         
-        mainView.backgroundColor = Constant.mainColor
+        mainView.backgroundColor = Constant.cityTableViewCellColor
     }
 }

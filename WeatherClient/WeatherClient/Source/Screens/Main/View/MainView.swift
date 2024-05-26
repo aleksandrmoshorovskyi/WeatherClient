@@ -56,7 +56,7 @@ class MainView: UIView {
     func setupUI() {
         
         // MARK: self setup
-        backgroundColor = .red
+        backgroundColor = Constant.mainViewColor
         
         // MARK: collectionView setup
         let layout = UICollectionViewFlowLayout()
@@ -64,9 +64,8 @@ class MainView: UIView {
         layout.estimatedItemSize = .zero
     
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        //collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .green
+        collectionView.backgroundColor = Constant.mainCollectionViewColor
         collectionView.isPagingEnabled = true
         
         collectionView.dataSource = self
@@ -84,27 +83,36 @@ class MainView: UIView {
         
         // MARK: customTabBarView setup
         customTabBarView = UIView()
-        customTabBarView.backgroundColor = Constant.mainColor
+        customTabBarView.backgroundColor = Constant.mainTabbarColor
         customBarLineView = UIView()
-        customBarLineView.backgroundColor = .darkGray
+        customBarLineView.backgroundColor = Constant.customBarLineViewColor
         
         // MARK: mainPageControl setup
         mainPageControl = UIPageControl()
         mainPageControl.numberOfPages = 0
         mainPageControl.currentPage = 0
-        //mainPageControl.backgroundColor = .red
+        //mainPageControl.backgroundColor = Constant.colorForDebug
         
         // MARK: mapButton setup
-        mapButton = UIButton()
+        mapButton = UIButton()//frame: CGRect(x: 0, y: 0, width: 51, height: 34))
         mapButton.setImage(UIImage(systemName: "map"), for: .normal)
+        mapButton.setPreferredSymbolConfiguration(
+            UIImage.SymbolConfiguration(scale: UIImage.SymbolScale.large),
+            forImageIn: .normal
+        )
         mapButton.tintColor = .white
-        //mapButton.backgroundColor = .red
+        //mapButton.backgroundColor = Constant.colorForDebug
+        //mapButton.addTarget(self, action: #selector('action'), for: .touchUpInside)
         
         // MARK: cityListButton setup
         cityListButton = UIButton()
         cityListButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        cityListButton.setPreferredSymbolConfiguration(
+            UIImage.SymbolConfiguration(scale: UIImage.SymbolScale.large),
+            forImageIn: .normal
+        )
         cityListButton.tintColor = .white
-        //cityListButton.backgroundColor = .red
+        //cityListButton.backgroundColor = Constant.colorForDebug
         cityListButton.addTarget(self, action: #selector(cityListButtonClicked), for: .touchUpInside)
     }
     
@@ -156,13 +164,15 @@ class MainView: UIView {
             mapButton.leadingAnchor.constraint(equalTo: customTabBarView.leadingAnchor, constant: Constant.labelSideOffset),
             mapButton.trailingAnchor.constraint(lessThanOrEqualTo: mainPageControl.leadingAnchor, constant: -Constant.labelSideOffset),
             mapButton.topAnchor.constraint(equalTo: customTabBarView.topAnchor, constant: Constant.labelTopOffset),
-            mapButton.heightAnchor.constraint(equalToConstant: Constant.standardButtonHeight),
+            mapButton.heightAnchor.constraint(equalToConstant: Constant.buttonHeight),
+            mapButton.widthAnchor.constraint(equalToConstant: Constant.buttonWidth),
             
             // MARK: cityListButton constraints
             cityListButton.leadingAnchor.constraint(greaterThanOrEqualTo: mainPageControl.trailingAnchor, constant: Constant.labelSideOffset),
             cityListButton.trailingAnchor.constraint(equalTo: customTabBarView.trailingAnchor, constant: -Constant.labelSideOffset),
             cityListButton.topAnchor.constraint(equalTo: customTabBarView.topAnchor, constant: Constant.labelTopOffset),
-            cityListButton.heightAnchor.constraint(equalToConstant: Constant.standardButtonHeight)
+            cityListButton.heightAnchor.constraint(equalToConstant: Constant.buttonHeight),
+            cityListButton.widthAnchor.constraint(equalToConstant: Constant.buttonWidth)
         ])
     }
     

@@ -18,11 +18,6 @@ extension WeatherView: WeatherViewProtocol {
         addButton.isHidden = false
     }
     
-    
-//    func setupControls() {
-//        setupButtons()
-//    }
-    
     func reloadWeatherData() {
         collectionView.reloadData()
     }

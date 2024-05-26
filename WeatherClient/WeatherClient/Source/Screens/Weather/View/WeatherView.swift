@@ -49,7 +49,7 @@ class WeatherView: UIView {
         
         // MARK: self setup
         //backgroundColor = .clear
-        backgroundColor = .brown
+        backgroundColor = Constant.weatherViewColor
         
         // MARK: collectionView setup
         let layout = UICollectionViewFlowLayout()
@@ -59,7 +59,7 @@ class WeatherView: UIView {
         collectionView.showsVerticalScrollIndicator = false
         //collectionView.showsHorizontalScrollIndicator = false
         //collectionView.backgroundColor = .clear
-        collectionView.backgroundColor = .magenta
+        collectionView.backgroundColor = Constant.weatherCollectionViewColor
         //collectionView.isPagingEnabled = true
         
         collectionView.dataSource = self

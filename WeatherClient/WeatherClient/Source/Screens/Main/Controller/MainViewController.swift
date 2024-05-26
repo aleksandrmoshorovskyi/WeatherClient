@@ -19,7 +19,6 @@ class MainViewController: UIViewController {
         //debugPrint("MainVC - loadView")
         
         let mainView = MainView()
-        mainView.backgroundColor = .red
         mainView.delegate = self
         mainView.currentPage = currentPage
         
@@ -78,9 +77,7 @@ class MainViewController: UIViewController {
         
         //debugPrint("MainVC - viewDidAppear")
         
-        if let navigationController = navigationController {
-            navigationController.navigationItem.titleView?.backgroundColor = .blue
-        }
+        contentView.printBtnsFrame()
     }
     
     func pushSettingsViewController() {

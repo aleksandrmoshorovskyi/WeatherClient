@@ -10,6 +10,11 @@ import Foundation
 // MARK: - MainViewProtocol
 extension MainView: MainViewProtocol {
     
+    func printBtnsFrame() {
+        //debugPrint("mapButton - \(mapButton.frame)")
+        //debugPrint("cityListButton - \(cityListButton.frame)")
+    }
+    
     func setupCurrentPageAt(_ indexPath: IndexPath) {
         
         //debugPrint("currentPage - \(String(describing: currentPage))")

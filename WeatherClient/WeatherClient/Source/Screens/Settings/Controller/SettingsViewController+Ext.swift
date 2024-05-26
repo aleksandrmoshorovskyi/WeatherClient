@@ -23,23 +23,14 @@ extension SettingsViewController: SettingsViewDelegate {
 
     func cityRowDidTapAt(_ indexPath: IndexPath) {
         
-        //debugPrint("cityRowDidTapAt")
-        
         if let navigationController = navigationController {
             
-            //debugPrint("navigationController not nil")
-            
-            //debugPrint("navigationControllers - \(navigationController.viewControllers)")
-
             if let rootVC = navigationController.viewControllers.first as? MainViewController {
                 //debugPrint("rootVC = \(rootVC)")
                 rootVC.currentPage = indexPath
             }
-            
-            let popvc = navigationController.popViewController(animated: true)//.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-            //debugPrint("popvc - \(String(describing: popvc))")
-        }
-        
+            navigationController.popViewController(animated: true)
+        }        
     }
 }
 

@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,7 +43,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGray4Color"/>
                         <constraints>
                             <constraint firstItem="d6P-WW-4av" firstAttribute="centerY" secondItem="QWR-Us-ZbY" secondAttribute="centerY" id="AnG-fD-cUI"/>
                             <constraint firstItem="d6P-WW-4av" firstAttribute="centerX" secondItem="QWR-Us-ZbY" secondAttribute="centerX" id="Dgp-IC-USm"/>
@@ -56,7 +54,6 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="QWR-Us-ZbY" secondAttribute="bottom" constant="8" id="OkC-Vw-op1"/>
                     <constraint firstItem="QWR-Us-ZbY" firstAttribute="top" secondItem="WtW-Zt-FL1" secondAttribute="top" constant="8" id="btk-ae-t9e"/>
@@ -67,15 +64,11 @@
             <size key="customSize" width="407" height="235"/>
             <connections>
                 <outlet property="cityNameLabel" destination="Tys-HI-C3m" id="cNp-iV-kKQ"/>
+                <outlet property="containerView" destination="QWR-Us-ZbY" id="9Du-Lq-0Dz"/>
                 <outlet property="tempLabel" destination="U0D-jV-6k5" id="ay0-vQ-jV9"/>
                 <outlet property="weatherDescLabel" destination="ZQj-fu-h45" id="CaW-xA-3EB"/>
             </connections>
             <point key="canvasLocation" x="96.946564885496173" y="-448.23943661971833"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

@@ -11,4 +11,6 @@ protocol MainViewProtocol {
     
     func setupWeather(data: [WeatherViewController])
     func setupCurrentPageAt(_ indexPath: IndexPath)
+    
+    func printBtnsFrame()
 }

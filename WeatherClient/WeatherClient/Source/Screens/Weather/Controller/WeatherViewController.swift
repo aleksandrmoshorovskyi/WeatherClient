@@ -35,15 +35,12 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //view.backgroundColor = Constant.mainColor
-        
         if let data = dataSource {
             contentView?.setupWeather(data: data)
         }
         
         if isPresent {
             contentView.setupCancelButton()
-            //model.checkCity(with: currentCity)
             model.checkCity(currentCity)
         }
     }
@@ -59,16 +56,6 @@ class WeatherViewController: UIViewController {
         let weatherModel = WeatherModel(delegate: self)
         model = weatherModel
     }
-    
-//    func doSomething(with str: String) {
-//        
-//        //debugPrint("Hello VC - \(str)")
-//        
-//        currentCity = str
-//        
-//        setupInitialState()
-//        model.loadData(for: str)
-//    }
     
     func loadWeatherData(for city: CityDataModel) {
         

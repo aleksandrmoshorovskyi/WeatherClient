@@ -30,6 +30,11 @@ extension MainView: UICollectionViewDataSource {
         }
         
         if let data = dataSourceAr {
+            
+            for subview in cell.contentView.subviews {
+                subview.removeFromSuperview()
+            }
+            
             let VC = data[indexPath.row]
             //debugPrint("i - \(indexPath.row), VCrfame - \(VC.view.frame), cellFrame -  \(cell.contentView.frame)")
             VC.view.frame = cell.contentView.frame

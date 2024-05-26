@@ -25,12 +25,15 @@ extension WeatherView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        //debugPrint("\(currentCity.name)")
         cell.cityNameLabel?.text = currentCity.name
+        debugPrint("\(String(describing: cell.cityNameLabel?.text))")
         cell.tempLabel?.text = "- -"
         cell.weatherDescLabel?.text = ""
         
         if let data = dataSource {
             cell.cityNameLabel?.text = data.city
+            debugPrint("\(String(describing: cell.cityNameLabel?.text))")
             
             let tempStr = String(format: "%.0f" , data.temp)
             cell.tempLabel?.text = "\(tempStr) ℃"

@@ -11,13 +11,17 @@ class WeatherMainCell: UICollectionViewCell {
     
     static let idintifier = "WeatherMainCell"
     
+    @IBOutlet weak var containerView: UIView!
+    
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherDescLabel: UILabel!
     
     override func awakeFromNib() {
         
-        //self.backgroundColor = .clear
-        //contentView.backgroundColor = .clear
+        self.backgroundColor = Constant.weatherTopCellBackgroundColor
+        contentView.backgroundColor = Constant.weatherTopCellContentViewColor
+        
+        containerView.backgroundColor = Constant.weatherTopCellContainerViewColor
     }
 }
