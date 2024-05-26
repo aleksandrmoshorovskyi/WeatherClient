@@ -27,7 +27,7 @@ extension WeatherView: WeatherViewProtocol {
         collectionView.reloadData()
     }
     
-    func setupWeather(data: Weather) {
+    func setupWeather(data: WeatherDataModel) {
         dataSource = data
         collectionView.reloadData()
     }

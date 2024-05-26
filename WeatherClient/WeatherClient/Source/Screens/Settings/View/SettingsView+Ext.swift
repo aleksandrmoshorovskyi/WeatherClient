@@ -10,18 +10,19 @@ import Foundation
 extension SettingsView: SettingsViewProtocol {
     
     func settingsBarButtonAction() {
+        
         citiesTableView.isEditing = !citiesTableView.isEditing
     }
 
-    func setupCities(data: [City]) {
+    func setupCities(data: [CityWeatherDataModel]) {
         
-        citiesDataSource = data
+        citiesWithWeather = data
         citiesTableView.reloadData()
     }
     
-    func setupWeather(data: [City]) {
+    func setupWeather(data: [CityWeatherDataModel]) {
         
-        citiesDataSource = data
+        citiesWithWeather = data
         citiesTableView.reloadData()
     }
 }

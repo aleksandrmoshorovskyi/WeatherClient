@@ -9,47 +9,9 @@ import UIKit
 
 extension SettingsView: UITableViewDataSource {
     
-    /*
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return "Weather"
-    }
-     */
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            delegate?.cityRowDeleteAt(citiesDataSource[indexPath.row])
-            citiesDataSource.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
-        //model.items.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        //tableView.reloadData()
-    }
-    
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        
-//        return true
-//    }
-//    
-//    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-//        
-//        return true
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        //return citiesDataSource.count
-        
-        if let dataSource = citiesDataSource {
-            return dataSource.count
-        } else {
-            return 0
-        }
+        return citiesWithWeather == nil ? 0 : citiesWithWeather.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,9 +26,11 @@ extension SettingsView: UITableViewDataSource {
         cell.weatherDescLabel?.text = ""
         cell.tempLabel?.text = ""
         
-        if let dataSource = citiesDataSource {
-            let city = dataSource[indexPath.row]
+        if let dataSource = citiesWithWeather {
+            
+            let city = dataSource[indexPath.row].city
             cell.cityNameLabel?.text = city.name
+            
             if let weather = dataSource[indexPath.row].weather {
                 cell.weatherDescLabel?.text = weather.desc
                 let tempStr = String(format: "%.0f" , weather.temp)
@@ -75,6 +39,25 @@ extension SettingsView: UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            delegate?.cityRowDeleteAt(citiesWithWeather[indexPath.row].city)
+            citiesWithWeather.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+
+        delegate?.swapAt(
+            citiesWithWeather[sourceIndexPath.row].city,
+            citiesWithWeather[destinationIndexPath.row].city
+        )
+        citiesWithWeather.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        tableView.reloadData()
     }
 }
 
@@ -93,14 +76,4 @@ extension SettingsView: UITableViewDelegate {
         
         delegate?.cityRowDidTapAt(indexPath)
     }
-    
-    /*
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
-        let nibHeader = Bundle.main.loadNibNamed(CityTableViewHeader.idintifier, owner: self)
-        let headerView = nibHeader?.first as! UIView
-        
-        return headerView
-    }
-     */
 }

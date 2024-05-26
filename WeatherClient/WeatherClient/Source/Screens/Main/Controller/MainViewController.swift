@@ -85,45 +85,21 @@ class MainViewController: UIViewController {
     
     func pushSettingsViewController() {
         
-        /*
-        let settingsViewController = SettingsViewController()
-        settingsViewController.delegate = self
-        
         if let navigationController = navigationController {
-            navigationController.pushViewController(settingsViewController, animated: true)
-        }
-         */
         
-        /*
-        if let navigationController = navigationController {
-            if contains(navigationController.viewControllers, controller) {
-                // move it
-            } else {
-                // push it
-            }
-        }
-        
-        if let stack = self.navigationController?.viewControllers {
-          for vc in stack where vc.isKind(of: SettingsViewController.self) {
-            debugPrint("exists")
-          }
-        }
-         */
-        
-        if let navigationController = navigationController {
             if let topViewController = navigationController.topViewController {
-                
                 if topViewController.isKind(of: SettingsViewController.self) {
-                    //navigationController.pushViewController(topViewController, animated: true)
+                    
                     navigationController.popToViewController(topViewController, animated: true)
                 } else {
+                    
                     let settingsViewController = SettingsViewController()
                     settingsViewController.delegate = self
+                    
                     navigationController.pushViewController(settingsViewController, animated: true)
                 }
             }
         }
-        
     }
     
     func setupCurrentPageAt() {

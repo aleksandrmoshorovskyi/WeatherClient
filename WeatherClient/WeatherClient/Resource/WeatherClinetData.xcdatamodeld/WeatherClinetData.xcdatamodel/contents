@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="CDWeatherCities" representedClassName="CDWeatherCities" syncable="YES" codeGenerationType="class">
+        <attribute name="cityCountry" optional="YES" attributeType="String"/>
+        <attribute name="cityLatitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="cityLongitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="cityName" optional="YES" attributeType="String"/>
+        <attribute name="cityOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cityState" optional="YES" attributeType="String"/>
     </entity>
 </model>

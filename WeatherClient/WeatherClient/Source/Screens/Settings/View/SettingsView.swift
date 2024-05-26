@@ -12,7 +12,7 @@ class SettingsView: UIView {
     weak var delegate: SettingsViewDelegate?
     
     //data
-    var citiesDataSource: [City]!
+    var citiesWithWeather: [CityWeatherDataModel]!
     
     //UI
     var citiesTableView: UITableView!

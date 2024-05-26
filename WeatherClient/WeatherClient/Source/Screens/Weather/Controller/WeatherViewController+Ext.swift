@@ -20,7 +20,8 @@ extension WeatherViewController: WeatherViewDelegate {
         debugPrint("WeatherViewController - addButtonDidTap")
         
         self.dismiss(animated: true)
-        model.addCity(with: currentCity)
+        //model.addCity(with: currentCity)
+        model.addCity(currentCity)
         delegate?.cityDidAdd()
     }
 }
@@ -34,7 +35,7 @@ extension WeatherViewController: WeatherModelDelegate {
         }
     }
     
-    func dataDidLoad(with data: Weather) {
+    func dataDidLoad(with data: WeatherDataModel) {
         dataSource = data
         contentView?.setupWeather(data: data)
     }

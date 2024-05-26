@@ -14,8 +14,9 @@ class WeatherViewController: UIViewController {
     var model: WeatherModelProtocol!
     var contentView: WeatherViewProtocol!
     
-    var currentCity: String!
-    var dataSource: Weather!
+    //var currentCity: String!
+    var currentCity: CityDataModel!
+    var dataSource: WeatherDataModel!
     var isPresent = false
     
     override func loadView() {
@@ -42,7 +43,8 @@ class WeatherViewController: UIViewController {
         
         if isPresent {
             contentView.setupCancelButton()
-            model.checkCity(with: currentCity)
+            //model.checkCity(with: currentCity)
+            model.checkCity(currentCity)
         }
     }
     
@@ -58,13 +60,21 @@ class WeatherViewController: UIViewController {
         model = weatherModel
     }
     
-    func doSomething(with str: String) {
+//    func doSomething(with str: String) {
+//        
+//        //debugPrint("Hello VC - \(str)")
+//        
+//        currentCity = str
+//        
+//        setupInitialState()
+//        model.loadData(for: str)
+//    }
+    
+    func loadWeatherData(for city: CityDataModel) {
         
-        //debugPrint("Hello VC - \(str)")
-        
-        currentCity = str
+        currentCity = city
         
         setupInitialState()
-        model.loadData(for: str)
+        model.loadData(for: city)
     }
 }

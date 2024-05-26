@@ -9,7 +9,7 @@ import Foundation
 
 protocol WeatherViewProtocol {
     
-    func setupWeather(data: Weather)
+    func setupWeather(data: WeatherDataModel)
     func reloadWeatherData()
     
     //func setupControls()

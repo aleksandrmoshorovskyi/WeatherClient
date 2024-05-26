@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct Search {
+struct SearchDataModel {
     
     let name: String
-    var state: String?
-    var country: String?
+    let latitude: Float
+    let longitude: Float
+    let state: String?
+    let country: String?
 }

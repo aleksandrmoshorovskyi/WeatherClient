@@ -28,11 +28,42 @@ class WeatherModel {
 // MARK: - WeatherModelProtocol
 extension WeatherModel: WeatherModelProtocol {
     
-    func loadData(for city: String) {
-
-        //debugPrint("loadData for - \(city)")
+//    func loadData(for city: String) {
+//
+//        //debugPrint("loadData for - \(city)")
+//        
+//        networkService.loadWeatherForCity(city, with: parametrs) { [weak self] weatherInfo, error in
+//
+//            if let err = error {
+//                debugPrint("\(err.localizedDescription)")
+//            }
+//
+//            if let data = weatherInfo  {
+//                
+//                let tempWeather = WeatherDataModel(
+//                    city: data.name,
+//                    desc: data.weather[0].descWeather,
+//                    temp: data.main.temp
+//                )
+//                
+//                self?.delegate?.dataDidLoad(with: tempWeather)
+//            }
+//        }
+//    }
+    
+//    func checkCity(with name: String) {
+//        self.delegate?.cityDidLoad(
+//            with: storageService.fetchCityWith(name)
+//        )
+//    }
+    
+//    func addCity(with name: String) {
+//        self.storageService.insertCity(name)
+//    }
+    
+    func loadData(for city: CityDataModel) {
         
-        networkService.loadWeatherForCity(city, with: parametrs) { [weak self] weatherInfo, error in
+        networkService.loadWeatherForCity(city.name, with: parametrs) { [weak self] weatherInfo, error in
 
             if let err = error {
                 debugPrint("\(err.localizedDescription)")
@@ -40,7 +71,7 @@ extension WeatherModel: WeatherModelProtocol {
 
             if let data = weatherInfo  {
                 
-                let tempWeather = Weather(
+                let tempWeather = WeatherDataModel(
                     city: data.name,
                     desc: data.weather[0].descWeather,
                     temp: data.main.temp
@@ -51,13 +82,13 @@ extension WeatherModel: WeatherModelProtocol {
         }
     }
     
-    func checkCity(with name: String) {
+    func checkCity(_ city: CityDataModel) {
         self.delegate?.cityDidLoad(
-            with: storageService.fetchCityWith(name)
+            with: storageService.fetchCityWith(city)
         )
     }
     
-    func addCity(with name: String) {
-        self.storageService.insertCity(name)
+    func addCity(_ city: CityDataModel) {
+        self.storageService.insertCity(city)
     }
 }

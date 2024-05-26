@@ -12,8 +12,9 @@ class WeatherView: UIView {
     weak var delegate: WeatherViewDelegate?
     
     //data
-    var dataSource: Weather!
-    var currentCity: String!
+    var dataSource: WeatherDataModel!
+    //var currentCity: String!
+    var currentCity: CityDataModel!
     
     //UI
     var collectionView: UICollectionView!

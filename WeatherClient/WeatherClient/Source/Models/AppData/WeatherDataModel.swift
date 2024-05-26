@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Weather {
+struct WeatherDataModel {
     
     let city: String
     let desc: String

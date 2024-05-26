@@ -14,8 +14,10 @@ protocol SettingsViewDelegate: AnyObject {
     
     func cityRowDidTapAt(_ indexPath: IndexPath)
     
-    func cityRowDeleteAt(_ city: City)
+    func cityRowDeleteAt(_ city: CityDataModel)
     
     //func settingsButtonDidTap()
+    
+    func swapAt(_ sourceCity: CityDataModel, _ destinationCity: CityDataModel)
 }
 

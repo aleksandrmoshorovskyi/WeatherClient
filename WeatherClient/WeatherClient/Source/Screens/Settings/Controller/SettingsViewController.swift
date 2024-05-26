@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
     
     var settingsBarButton: UIBarButtonItem!
     
-    var serchDataSource: [Search] = []
+    var serchDataSource: [SearchDataModel] = []
     var resultsTableController: UITableViewController!
     
     @objc func settingsBarButtonDidTap() {
@@ -232,11 +232,20 @@ extension SettingsViewController: UISearchControllerDelegate {
         let weatherViewController = WeatherViewController()
         weatherViewController.delegate = self
         
-        let cityName = serchDataSource[indexPath.row].name
-        weatherViewController.currentCity = cityName
+        let serchedCity = serchDataSource[indexPath.row]
+        
+        let dataCity = CityDataModel(
+            name: serchedCity.name,
+            latitude: serchedCity.latitude,
+            longitude: serchedCity.longitude,
+            state: serchedCity.state,
+            country: serchedCity.country
+        )
+        
+        weatherViewController.currentCity = dataCity
         weatherViewController.isPresent = true
-        weatherViewController.doSomething(with: cityName)
-
+        weatherViewController.loadWeatherData(for: dataCity)
+        
         self.present(weatherViewController, animated: true)
     }
 }

@@ -25,7 +25,7 @@ extension WeatherView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.cityNameLabel?.text = currentCity
+        cell.cityNameLabel?.text = currentCity.name
         cell.tempLabel?.text = "- -"
         cell.weatherDescLabel?.text = ""
         

@@ -10,28 +10,34 @@ import UIKit
 // MARK: - SettingsViewDelegate
 extension SettingsViewController: SettingsViewDelegate {
     
-    func cityRowDeleteAt(_ city: City) {
-        model.deleteCity(city)
+    func swapAt(_ sourceCity: CityDataModel, _ destinationCity: CityDataModel) {
+        model.swapCities(sourceCity, destinationCity)
+        delegate?.dataDidChange()
+    }
+    
+    func cityRowDeleteAt(_ city: CityDataModel) {
+        //model.deleteCity(city)
+        model.deleteCity(for: city)
         delegate?.dataDidChange()
     }
 
     func cityRowDidTapAt(_ indexPath: IndexPath) {
         
-        debugPrint("cityRowDidTapAt")
+        //debugPrint("cityRowDidTapAt")
         
         if let navigationController = navigationController {
             
-            debugPrint("navigationController not nil")
+            //debugPrint("navigationController not nil")
             
-            debugPrint("navigationControllers - \(navigationController.viewControllers)")
+            //debugPrint("navigationControllers - \(navigationController.viewControllers)")
 
             if let rootVC = navigationController.viewControllers.first as? MainViewController {
-                debugPrint("rootVC = \(rootVC)")
+                //debugPrint("rootVC = \(rootVC)")
                 rootVC.currentPage = indexPath
             }
             
             let popvc = navigationController.popViewController(animated: true)//.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-            debugPrint("popvc - \(String(describing: popvc))")
+            //debugPrint("popvc - \(String(describing: popvc))")
         }
         
     }
@@ -40,17 +46,17 @@ extension SettingsViewController: SettingsViewDelegate {
 // MARK: - SettingsModelDelegate
 extension SettingsViewController: SettingsModelDelegate {
     
-    func searchDataDidLoad(with data: [Search]) {
+    func searchDataDidLoad(with data: [SearchDataModel]) {
         //data source for searching
         serchDataSource = data
         resultsTableController.tableView.reloadData()
     }
     
-    func citiesDidLoad(with cities: [City]) {
+    func citiesDidLoad(with cities: [CityWeatherDataModel]) {
         contentView.setupCities(data: cities)
     }
     
-    func dataDidLoad(with data: [City]) {
+    func dataDidLoad(with data: [CityWeatherDataModel]) {
         contentView.setupCities(data: data)
     }
 }

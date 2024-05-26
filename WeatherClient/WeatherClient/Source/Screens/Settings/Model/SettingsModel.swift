@@ -9,7 +9,7 @@ import Foundation
 
 class SettingsModel {
     
-    var cities: [City] = []
+    //var cities: [CityWeatherModel] = []
     
     //must be from settings
     let parametrs = (units: Units.metric, lang: Lang.ua)
