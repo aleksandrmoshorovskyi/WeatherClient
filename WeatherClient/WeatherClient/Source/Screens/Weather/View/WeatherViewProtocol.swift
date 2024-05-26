@@ -12,8 +12,7 @@ protocol WeatherViewProtocol {
     func setupWeather(data: WeatherDataModel)
     func reloadWeatherData()
     
-    //func setupControls()
-    
+    func setupBackground()
     func setupCancelButton()
     func setupAddButton()
 }

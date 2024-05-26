@@ -10,6 +10,11 @@ import Foundation
 // MARK: - MainViewProtocol
 extension WeatherView: WeatherViewProtocol {
     
+    func setupBackground() {
+        //for present mode
+        backgroundColor = Constant.mainViewColor
+    }
+    
     func setupCancelButton() {
         cancelButton.isHidden = false
     }

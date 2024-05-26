@@ -40,8 +40,7 @@ class WeatherViewController: UIViewController {
         }
         
         if isPresent {
-            contentView.setupCancelButton()
-            model.checkCity(currentCity)
+            setupForPresentMode()
         }
     }
     
@@ -55,6 +54,12 @@ class WeatherViewController: UIViewController {
         
         let weatherModel = WeatherModel(delegate: self)
         model = weatherModel
+    }
+    
+    private func setupForPresentMode() {
+        contentView.setupBackground()
+        contentView.setupCancelButton()
+        model.checkCity(currentCity)
     }
     
     func loadWeatherData(for city: CityDataModel) {
