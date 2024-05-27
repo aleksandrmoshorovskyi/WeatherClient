@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="WeatherHourlyCell" id="R7K-me-LeG" customClass="WeatherHourlyCell" customModule="WeatherClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="665" height="373"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eir-vX-CFU">
+                    <rect key="frame" x="20" y="20" width="625" height="333"/>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Odn-0q-8Gv"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="eir-vX-CFU" firstAttribute="leading" secondItem="R7K-me-LeG" secondAttribute="leading" constant="20" symbolic="YES" id="F7u-qF-Fez"/>
+                <constraint firstAttribute="bottom" secondItem="eir-vX-CFU" secondAttribute="bottom" constant="20" symbolic="YES" id="Hj8-ro-eVz"/>
+                <constraint firstAttribute="trailing" secondItem="eir-vX-CFU" secondAttribute="trailing" constant="20" symbolic="YES" id="P30-zN-k5f"/>
+                <constraint firstItem="eir-vX-CFU" firstAttribute="top" secondItem="R7K-me-LeG" secondAttribute="top" constant="20" symbolic="YES" id="cqb-SQ-sYO"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="containerView" destination="eir-vX-CFU" id="YBC-XE-NW4"/>
+            </connections>
+            <point key="canvasLocation" x="-197.70992366412213" y="151.7605633802817"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

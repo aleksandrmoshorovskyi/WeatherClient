@@ -22,6 +22,8 @@ extension SettingsView: UITableViewDataSource {
             return UITableViewCell()
         }
         
+        cell.selectionStyle = .none
+        
         cell.cityNameLabel?.text = ""
         cell.weatherDescLabel?.text = ""
         cell.tempLabel?.text = ""

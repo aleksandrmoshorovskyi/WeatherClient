@@ -76,6 +76,8 @@
 		A8AA868B2BFE499A00376774 /* WeatherViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA868A2BFE499900376774 /* WeatherViewControllerDelegate.swift */; };
 		A8AA868D2C00CE2F00376774 /* SettingsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA868C2C00CE2F00376774 /* SettingsViewControllerDelegate.swift */; };
 		A8AA868F2C03393800376774 /* MainModel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA868E2C03393800376774 /* MainModel+Ext.swift */; };
+		A8AA86922C04CE9600376774 /* WeatherHourlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA86912C04CE9600376774 /* WeatherHourlyCell.swift */; };
+		A8AA86942C04D02800376774 /* WeatherHourlyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8AA86932C04D02800376774 /* WeatherHourlyCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +152,8 @@
 		A8AA868A2BFE499900376774 /* WeatherViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A8AA868C2C00CE2F00376774 /* SettingsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A8AA868E2C03393800376774 /* MainModel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainModel+Ext.swift"; sourceTree = "<group>"; };
+		A8AA86912C04CE9600376774 /* WeatherHourlyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourlyCell.swift; sourceTree = "<group>"; };
+		A8AA86932C04D02800376774 /* WeatherHourlyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHourlyCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +405,8 @@
 			children = (
 				A8AA863E2BF9455400376774 /* WeatherMainCell.swift */,
 				A8AA86402BF9456100376774 /* WeatherMainCell.xib */,
+				A8AA86912C04CE9600376774 /* WeatherHourlyCell.swift */,
+				A8AA86932C04D02800376774 /* WeatherHourlyCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8A2655B2BEB9A7F0030D119 /* Assets.xcassets in Resources */,
+				A8AA86942C04D02800376774 /* WeatherHourlyCell.xib in Resources */,
 				A8AA86412BF9456100376774 /* WeatherMainCell.xib in Resources */,
 				A8A2659E2BEE56E00030D119 /* MainCollectionViewCell.xib in Resources */,
 				A8AA86492BF9FC6000376774 /* CityTableViewHeader.xib in Resources */,
@@ -559,6 +566,7 @@
 				A8AA85BF2BF4F69100376774 /* WeatherViewController.swift in Sources */,
 				A8AA86202BF7CB9800376774 /* SettingsModelDelegate.swift in Sources */,
 				A8AA86182BF7C1F400376774 /* SettingsViewProtocol.swift in Sources */,
+				A8AA86922C04CE9600376774 /* WeatherHourlyCell.swift in Sources */,
 				A8A265992BEE50E80030D119 /* Constants.swift in Sources */,
 				A8AA868B2BFE499A00376774 /* WeatherViewControllerDelegate.swift in Sources */,
 				A8A265842BED533B0030D119 /* APITests.swift in Sources */,
@@ -765,8 +773,8 @@
 				INFOPLIST_FILE = WeatherClient/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -792,8 +800,8 @@
 				INFOPLIST_FILE = WeatherClient/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

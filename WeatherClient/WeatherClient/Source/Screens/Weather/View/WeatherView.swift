@@ -39,6 +39,10 @@ class WeatherView: UIView {
         collectionView.register(
             UINib(nibName: WeatherMainCell.idintifier, bundle: nil),
             forCellWithReuseIdentifier: WeatherMainCell.idintifier)
+        
+        collectionView.register(
+            UINib(nibName: WeatherHourlyCell.idintifier, bundle: nil),
+            forCellWithReuseIdentifier: WeatherHourlyCell.idintifier)
     }
     
     required init?(coder: NSCoder) {
