@@ -15,7 +15,7 @@ extension WeatherView: UICollectionViewDataSource {
         var numberOfItems = 1
         
         if dataSource != nil {
-            numberOfItems = 3
+            numberOfItems = 9
         }
         
         return numberOfItems
@@ -74,6 +74,114 @@ extension WeatherView: UICollectionViewDataSource {
      
             return cell
             
+        case 3:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WeatherSmallCell.idintifier,
+                for: indexPath) as? WeatherSmallCell
+            else {
+                assertionFailure()
+                return UICollectionViewCell()
+            }
+            
+            cell.titleLabel.text = "pressure".uppercased()
+            cell.valueLabel.text = "-"
+            
+            if let data = dataSource {
+                cell.valueLabel.text = "\(data.pressure)"
+            }
+     
+            return cell
+            
+        case 4:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WeatherSmallCell.idintifier,
+                for: indexPath) as? WeatherSmallCell
+            else {
+                assertionFailure()
+                return UICollectionViewCell()
+            }
+            
+            cell.titleLabel.text = "humidity".uppercased()
+            cell.valueLabel.text = "-"
+            
+            if let data = dataSource {
+                cell.valueLabel.text = "\(data.humidity)"
+            }
+     
+            return cell
+            
+        case 5:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WeatherSmallCell.idintifier,
+                for: indexPath) as? WeatherSmallCell
+            else {
+                assertionFailure()
+                return UICollectionViewCell()
+            }
+            
+            cell.titleLabel.text = "feels like".uppercased()
+            cell.valueLabel.text = "-"
+            
+            if let data = dataSource {
+                cell.valueLabel.text = "\(data.feelsLike ?? 0.0)"
+            }
+     
+            return cell
+            
+        case 6:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WeatherSmallCell.idintifier,
+                for: indexPath) as? WeatherSmallCell
+            else {
+                assertionFailure()
+                return UICollectionViewCell()
+            }
+            
+            cell.titleLabel.text = "wind".uppercased()
+            cell.valueLabel.text = "-"
+            
+            if let data = dataSource {
+                cell.valueLabel.text = "\(data.wind?.speed ?? 0.0)"
+            }
+     
+            return cell
+            
+        case 7:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WeatherSmallCell.idintifier,
+                for: indexPath) as? WeatherSmallCell
+            else {
+                assertionFailure()
+                return UICollectionViewCell()
+            }
+            
+            cell.titleLabel.text = "sunrise".uppercased()
+            cell.valueLabel.text = "-"
+            
+            if let data = dataSource {
+                cell.valueLabel.text = "\(data.sys?.sunrise ?? 0)"
+            }
+     
+            return cell
+            
+        case 8:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WeatherSmallCell.idintifier,
+                for: indexPath) as? WeatherSmallCell
+            else {
+                assertionFailure()
+                return UICollectionViewCell()
+            }
+            
+            cell.titleLabel.text = "visibility".uppercased()
+            cell.valueLabel.text = "-"
+     
+            if let data = dataSource {
+                cell.valueLabel.text = "\(data.visibility ?? 0)"
+            }
+            
+            return cell
+            
         default:
             return UICollectionViewCell()
         }
@@ -105,6 +213,9 @@ extension WeatherView: UICollectionViewDelegateFlowLayout {
             
         case 2:
             return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width)
+            
+        case 3...8:
+            return CGSize(width: collectionView.bounds.width/2, height: collectionView.bounds.width/2)
             
         default:
             return .zero

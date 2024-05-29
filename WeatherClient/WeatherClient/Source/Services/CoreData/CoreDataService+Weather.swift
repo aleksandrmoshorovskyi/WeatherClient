@@ -137,8 +137,25 @@ extension CoreDataService: CoreDataWeather {
         }
         
         weatherDetailsEntity.dt = Int32(details.dt)
+        
         weatherDetailsEntity.temp = details.main.temp
-        weatherDetailsEntity.descriptMain = details.weather[0].main
+        
+        weatherDetailsEntity.descriptMain = details.weather.first?.main
+        weatherDetailsEntity.descriptDetail = details.weather.first?.descWeather
+        weatherDetailsEntity.descriptIcon = details.weather.first?.icon
+        
+        weatherDetailsEntity.pressure = details.main.pressure
+        weatherDetailsEntity.humidity = details.main.humidity
+        weatherDetailsEntity.feelsLike = details.main.feelsLike
+        
+        weatherDetailsEntity.windSpeed = details.wind.speed
+        weatherDetailsEntity.windDeg = details.wind.deg
+        weatherDetailsEntity.windGust = details.wind.gust
+        
+        weatherDetailsEntity.sunrise = Int32(details.sys.sunset)
+        weatherDetailsEntity.sunset = Int32(details.sys.sunset)
+        
+        weatherDetailsEntity.visibility = details.visibility ?? 0.0
         
         return weatherDetailsEntity
     }

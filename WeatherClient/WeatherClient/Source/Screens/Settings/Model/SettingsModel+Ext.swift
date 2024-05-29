@@ -67,7 +67,9 @@ extension SettingsModel: SettingsModelProtocol {
                     let tempWeather = WeatherDataModel(
                         city: data.name,
                         desc: data.weather[0].descWeather,
-                        temp: data.main.temp
+                        temp: data.main.temp,
+                        pressure: 0.0,
+                        humidity: 0.0
                     )
                     
                     citiesWithWeather[index].weather = tempWeather

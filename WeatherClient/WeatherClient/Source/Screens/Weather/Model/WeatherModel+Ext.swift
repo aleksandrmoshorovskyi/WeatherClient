@@ -22,11 +22,27 @@ extension WeatherModel: WeatherModelProtocol {
         
         if let storedData = storageService.fetchWeatherFor(city) {
             
+            let forecastSet = storedData.forecast
+            let sortDesc = [NSSortDescriptor(key: "dt", ascending: true)]
+            let sortedArray = forecastSet?.sortedArray(using: sortDesc) as! [CDWeatherForecast]
+            
+            let curWeath = sortedArray.first
+            
+            //debugPrint("sortedArray - \(sortedArray.count)")
+            
+//            delegate?.dataDidLoad(with: WeatherDataModel(
+//                city: city.name,
+//                desc: storedData.descriptMain ?? "",
+//                temp: storedData.temp)
+//            )
+            
             delegate?.dataDidLoad(with: WeatherDataModel(
                 city: city.name,
-                desc: storedData.descriptMain ?? "",
-                temp: storedData.temp)
-            )
+                desc: curWeath?.descriptDetail ?? "",
+                temp: curWeath?.temp ?? 0.0,
+                pressure: curWeath?.pressure ?? 0.0,
+                humidity: curWeath?.humidity ?? 0.0
+            ))
             
         } else {
             
@@ -51,12 +67,29 @@ extension WeatherModel: WeatherModelProtocol {
                     self?.storageService.insertWeather(data, with: nil, for: city)
                     
                     if let fetchedWeather = self?.storageService.fetchWeatherFor(city) {
+                        
+                        let forecastSet = fetchedWeather.forecast
+                        let sortDesc = [NSSortDescriptor(key: "dt", ascending: true)]
+                        let sortedArray = forecastSet?.sortedArray(using: sortDesc) as! [CDWeatherForecast]
+                        
+                        let curWeath = sortedArray.first
+                        
                         //self?.delegate?.dataDidLoad(with: fetchedWeather)
+//                        self?.delegate?.dataDidLoad(with: WeatherDataModel(
+//                            city: city.name,
+//                            desc: fetchedWeather.descriptMain ?? "",
+//                            temp: fetchedWeather.temp),
+//                            pressure: curWeath?.pressure ?? 0.0,
+//                            humidity: curWeath?.humidity ?? 0.0
+//                        ))
+                        
                         self?.delegate?.dataDidLoad(with: WeatherDataModel(
                             city: city.name,
-                            desc: fetchedWeather.descriptMain ?? "",
-                            temp: fetchedWeather.temp)
-                        )
+                            desc: curWeath?.descriptDetail ?? "",
+                            temp: curWeath?.temp ?? 0.0,
+                            pressure: curWeath?.pressure ?? 0.0,
+                            humidity: curWeath?.humidity ?? 0.0
+                        ))
                     }
                     
                 }
