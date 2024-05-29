@@ -5,4 +5,4 @@
 //  Created by Aleksandr Moroshovskyi on 13.05.2024.
 //
 
-typealias CoreDataServiceProtocol = CoreDataWeather
+typealias CoreDataServiceProtocol = CoreDataCity & CoreDataWeather

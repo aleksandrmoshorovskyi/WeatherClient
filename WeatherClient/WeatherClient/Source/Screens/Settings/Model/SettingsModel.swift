@@ -17,7 +17,7 @@ class SettingsModel {
     weak var delegate: SettingsModelDelegate?
     
     let networkService: NetworkServiceWeather
-    let storageService: CoreDataWeather
+    let storageService: CoreDataServiceProtocol
     
     init(delegate: SettingsModelDelegate? = nil) {
         self.delegate = delegate

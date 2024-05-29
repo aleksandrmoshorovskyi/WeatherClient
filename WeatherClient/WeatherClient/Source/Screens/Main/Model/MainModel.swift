@@ -14,7 +14,7 @@ class MainModel {
     weak var delegate: MainModelDelegate?
     
     let networkService: NetworkServiceWeather
-    let storageService: CoreDataWeather
+    let storageService: CoreDataCity
     
     init(delegate: MainModelDelegate? = nil) {
         self.delegate = delegate

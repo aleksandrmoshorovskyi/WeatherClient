@@ -16,79 +16,11 @@ class WeatherModel {
     weak var delegate: WeatherModelDelegate?
     
     let networkService: NetworkServiceWeather
-    let storageService: CoreDataWeather
+    let storageService: CoreDataServiceProtocol
     
     init(delegate: WeatherModelDelegate? = nil) {
         self.delegate = delegate
         self.networkService = ServiceProvider.networkService()
         self.storageService = ServiceProvider.coreDataService()
-    }
-}
-
-// MARK: - WeatherModelProtocol
-extension WeatherModel: WeatherModelProtocol {
-    
-//    func loadData(for city: String) {
-//
-//        //debugPrint("loadData for - \(city)")
-//        
-//        networkService.loadWeatherForCity(city, with: parametrs) { [weak self] weatherInfo, error in
-//
-//            if let err = error {
-//                debugPrint("\(err.localizedDescription)")
-//            }
-//
-//            if let data = weatherInfo  {
-//                
-//                let tempWeather = WeatherDataModel(
-//                    city: data.name,
-//                    desc: data.weather[0].descWeather,
-//                    temp: data.main.temp
-//                )
-//                
-//                self?.delegate?.dataDidLoad(with: tempWeather)
-//            }
-//        }
-//    }
-    
-//    func checkCity(with name: String) {
-//        self.delegate?.cityDidLoad(
-//            with: storageService.fetchCityWith(name)
-//        )
-//    }
-    
-//    func addCity(with name: String) {
-//        self.storageService.insertCity(name)
-//    }
-    
-    func loadData(for city: CityDataModel) {
-        
-        networkService.loadWeatherForCity(city.name, with: parametrs) { [weak self] weatherInfo, error in
-
-            if let err = error {
-                debugPrint("\(err.localizedDescription)")
-            }
-
-            if let data = weatherInfo  {
-                
-                let tempWeather = WeatherDataModel(
-                    city: data.name,
-                    desc: data.weather[0].descWeather,
-                    temp: data.main.temp
-                )
-                
-                self?.delegate?.dataDidLoad(with: tempWeather)
-            }
-        }
-    }
-    
-    func checkCity(_ city: CityDataModel) {
-        self.delegate?.cityDidLoad(
-            with: storageService.fetchCityWith(city)
-        )
-    }
-    
-    func addCity(_ city: CityDataModel) {
-        self.storageService.insertCity(city)
     }
 }

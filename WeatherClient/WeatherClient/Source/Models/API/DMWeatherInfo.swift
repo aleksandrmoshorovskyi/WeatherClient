@@ -14,7 +14,7 @@ struct DMWeatherInfo: Decodable {
     let weather: [Weather]
     let base: String
     let main: Main
-    let visibility: Float
+    let visibility: Float?
     let wind: Wind
     let clouds: Clouds
     let dt: Int

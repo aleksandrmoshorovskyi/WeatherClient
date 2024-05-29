@@ -130,6 +130,9 @@ extension NetworkService: NetworkServiceWeather {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         
+        //MARK: IF WITH CACHE - WRONG WEATHER
+        urlRequest.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        
         request(urlRequest: urlRequest) { (result: Result<T, Error>) in
             
             switch result {
