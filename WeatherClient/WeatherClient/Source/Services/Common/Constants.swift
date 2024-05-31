@@ -11,8 +11,10 @@ import UIKit
 enum Constant {
     
     //dt
+    //static let updateDelay: Int32 = 60 //1 minute
     static let updateDelay: Int32 = 600 //10 minutes
     static let storagePeriod: Int32 = 86400 //24 hours
+    static let periodDay: Int32 = 86400 //24 hours
     
     //layouts
     static let tabBarHeight: CGFloat = 80.0 //83.0

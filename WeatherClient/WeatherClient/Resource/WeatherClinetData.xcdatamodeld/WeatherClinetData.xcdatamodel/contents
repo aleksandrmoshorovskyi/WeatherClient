@@ -35,6 +35,7 @@
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="timeMark" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDWeatherCities" inverseName="relationship" inverseEntity="CDWeatherCities"/>
         <relationship name="forecast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDWeatherForecast" inverseName="relationship" inverseEntity="CDWeatherForecast"/>
     </entity>

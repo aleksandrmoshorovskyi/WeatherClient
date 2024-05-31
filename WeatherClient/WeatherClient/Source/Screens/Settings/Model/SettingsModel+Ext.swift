@@ -64,12 +64,18 @@ extension SettingsModel: SettingsModelProtocol {
                 if let data = weatherInfo  {
                     //debugPrint("\(data.name)")
 
-                    let tempWeather = WeatherDataModel(
+//                    let tempWeather = WeatherDataModel(
+//                        city: data.name,
+//                        desc: data.weather[0].descWeather,
+//                        temp: data.main.temp,
+//                        pressure: 0.0,
+//                        humidity: 0.0
+//                    )
+                    
+                    let tempWeather = WeatherCompactDataModel(
                         city: data.name,
                         desc: data.weather[0].descWeather,
-                        temp: data.main.temp,
-                        pressure: 0.0,
-                        humidity: 0.0
+                        temp: data.main.temp
                     )
                     
                     citiesWithWeather[index].weather = tempWeather

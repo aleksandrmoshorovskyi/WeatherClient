@@ -15,19 +15,14 @@ struct WeatherDataModel {
     
     let pressure: Float
     let humidity: Float
-//    let feelsLike: Float?
-//    
-//    let wind: Wind?
-//    
-//    let sys: Sys?
-//    let visibility: Float?
+    let feelsLike: Float
     
-    var feelsLike: Float?
+    let wind: Wind?
     
-    var wind: Wind?
+    let sys: Sys?
+    let visibility: Float?
     
-    var sys: Sys?
-    var visibility: Float?
+    var hourlyForecast: [HourlyForecast]?
 }
 
 struct Wind {
@@ -41,4 +36,12 @@ struct Sys {
     
     let sunrise: Int
     let sunset: Int
+}
+
+struct HourlyForecast {
+    
+    let dt: Int
+    let time: String
+    let icon: String
+    let desc: String
 }

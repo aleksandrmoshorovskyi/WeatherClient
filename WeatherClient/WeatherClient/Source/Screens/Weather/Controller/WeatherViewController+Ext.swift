@@ -35,7 +35,7 @@ extension WeatherViewController: WeatherModelDelegate {
         }
     }
     
-    func dataDidLoad(with data: WeatherDataModel) {
+    func dataDidLoad(with data: WeatherDataModel?) {
         dataSource = data
         contentView?.setupWeather(data: data)
     }

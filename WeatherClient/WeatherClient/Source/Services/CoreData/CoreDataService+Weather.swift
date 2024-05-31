@@ -107,6 +107,8 @@ extension CoreDataService: CoreDataWeather {
         weatherMainEntity.latitude = city.latitude
         weatherMainEntity.longitude = city.longitude
         
+        weatherMainEntity.timezone = Int32(main.timezone)
+        
         weatherMainEntity.temp = main.main.temp
         weatherMainEntity.descriptMain = main.weather[0].main
         
@@ -172,6 +174,8 @@ extension CoreDataService: CoreDataWeather {
         weatherDetailsEntity.dt = Int32(details.dt)
         weatherDetailsEntity.temp = details.main.temp
         weatherDetailsEntity.descriptMain = details.weather[0].main
+        
+        weatherDetailsEntity.descriptIcon = details.weather.first?.icon
         
         return weatherDetailsEntity
     }

@@ -54,11 +54,15 @@ extension WeatherView: UICollectionViewDataSource {
             
         case 1:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherHourlyCell.idintifier,
-                for: indexPath) as? WeatherHourlyCell
+                withReuseIdentifier: WeatherHourlyCellCode.idintifier,
+                for: indexPath) as? WeatherHourlyCellCode
             else {
                 assertionFailure()
                 return UICollectionViewCell()
+            }
+            
+            if let data = dataSource {
+                cell.dataSource = data.hourlyForecast
             }
      
             return cell
@@ -71,6 +75,10 @@ extension WeatherView: UICollectionViewDataSource {
                 assertionFailure()
                 return UICollectionViewCell()
             }
+            
+//            if let data = dataSource {
+//                cell.dataSource = data.hourlyForecast
+//            }
      
             return cell
             
@@ -123,7 +131,7 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                cell.valueLabel.text = "\(data.feelsLike ?? 0.0)"
+                cell.valueLabel.text = "\(data.feelsLike)"
             }
      
             return cell

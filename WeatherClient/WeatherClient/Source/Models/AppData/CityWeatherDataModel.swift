@@ -10,5 +10,6 @@ import Foundation
 struct CityWeatherDataModel {
     
     let city: CityDataModel
-    var weather: WeatherDataModel?
+    //var weather: WeatherDataModel?
+    var weather: WeatherCompactDataModel?
 }
