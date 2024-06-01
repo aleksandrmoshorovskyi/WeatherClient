@@ -52,6 +52,7 @@ class WeatherHourlyDetailCellCode: UICollectionViewCell {
         //detailLabel
         detailLabel = UILabel()
         detailLabel.textColor = Constant.baseCellTextColor
+        //detailLabel.font = UIFont.systemFont(ofSize: 20)
         
         // MARK: - stackView config
         stackView = UIStackView()

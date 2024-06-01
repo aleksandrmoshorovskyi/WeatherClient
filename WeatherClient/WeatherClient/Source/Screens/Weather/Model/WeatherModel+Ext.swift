@@ -155,6 +155,10 @@ extension WeatherModel: WeatherModelProtocol {
         let currentTimezone = storedData.timezone
         var weatherDataModel: WeatherDataModel? = nil
         
+        //for Main
+        var currentTempMin: Float = 0.0
+        var currentTempMax: Float = 0.0
+        
         let forecastSet = storedData.forecast
         let sortDesc = [NSSortDescriptor(key: "dt", ascending: true)]
         let sortedArray = forecastSet?.sortedArray(using: sortDesc) as! [CDWeatherForecast]
@@ -167,15 +171,48 @@ extension WeatherModel: WeatherModelProtocol {
             let currentDt = networkData.dt //+ currentTimezone
             let dayAfterDt = currentDt + Constant.periodDay
             
+            //for Main
+            currentTempMin = networkData.tempMin
+            currentTempMax = networkData.tempMax
+            
+            // tomorrow sunrise - sunset
+            /*
+             it will be with an error of a few minutes,
+             because this is today's data,
+             tomorrow's data is not available on the server
+             */
+            var tomorrowSunrise = networkData.sunrise + Constant.periodDay
+            var tomorrowSunset = networkData.sunset + Constant.periodDay
+            
             for item in sortedArray {
                 if item.dt >= currentDt && item.dt < dayAfterDt {
+                    
+                    if item.tempMin < currentTempMin {
+                        currentTempMin = item.tempMin
+                    }
+                    
+                    if item.tempMax > currentTempMax {
+                        currentTempMax = item.tempMax
+                    }
+                    
+                    //debugPrint("\(item.sunrise)")
+                    /*
+                    if item.sunrise > tomorrowSunrise {
+                        tomorrowSunrise = item.sunrise
+                    }
+                    
+                    if item.sunset > tomorrowSunset {
+                        tomorrowSunset = item.sunset
+                    }
+                     */
                     
                     var timeStr = ""
                     
                     if isFirstHour {
                         timeStr = "Now"
                     } else {
-                        timeStr = "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))"
+                        //timeStr = "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))"
+                        timeStr = DateStr.timeFromDateInterval(Int(item.dt), like: "HH")
                     }
                     
                     let hf = HourlyForecast(
@@ -191,6 +228,50 @@ extension WeatherModel: WeatherModelProtocol {
                 
             }
             
+            //item Sunrise (today)
+            if networkData.sunrise > currentDt {
+                let hfSunrise = HourlyForecast(
+                    dt: Int(networkData.sunrise),
+                    time: DateStr.timeFromDateInterval(Int(networkData.sunrise), like: "HH:mm"),
+                    icon: "sunrise",
+                    desc: "Sunrise"
+                )
+                hourlyArray.append(hfSunrise)
+            }
+            
+            //item Sunset (today)
+            if networkData.sunset > currentDt {
+                let hfSunset = HourlyForecast(
+                    dt: Int(networkData.sunset),
+                    time: DateStr.timeFromDateInterval(Int(networkData.sunset), like: "HH:mm"),
+                    icon: "sunset",
+                    desc: "Sunset"
+                )
+                hourlyArray.append(hfSunset)
+            }
+
+            //item Sunrise (tomorrow)
+            if tomorrowSunrise > currentDt {
+                let hfSunrise = HourlyForecast(
+                    dt: Int(tomorrowSunrise),
+                    time: DateStr.timeFromDateInterval(Int(tomorrowSunrise), like: "HH:mm"),
+                    icon: "sunrise",
+                    desc: "Sunrise"
+                )
+                hourlyArray.append(hfSunrise)
+            }
+            
+            //item Sunset (tomorrow)
+            if tomorrowSunset < dayAfterDt {
+                let hfSunset = HourlyForecast(
+                    dt: Int(tomorrowSunset),
+                    time: DateStr.timeFromDateInterval(Int(tomorrowSunset), like: "HH:mm"),
+                    icon: "sunset",
+                    desc: "Sunset"
+                )
+                hourlyArray.append(hfSunset)
+            }
+            
             hourlyArray.sort() { $0.dt < $1.dt }
             //} hourly forecast
             
@@ -199,7 +280,59 @@ extension WeatherModel: WeatherModelProtocol {
             var dayliArray: [DayliForecast] = []
             //let currentDt = networkData.dt //+ currentTimezone
             //let dayAfterDt = currentDt + Constant.periodDay
+            var currentDayEEE = DateStr.timeFromDateInterval(Int(networkData.dt), like: "EEE")
+            var temporaryDayEEE = ""
             
+            var tempDt = Int(networkData.dt)
+            var tempDay = currentDayEEE
+            var tempIcon = ""
+            var temptempMin = currentTempMin
+            var temptempMax = currentTempMax
+            
+            for item in sortedArray {
+                temporaryDayEEE = DateStr.timeFromDateInterval(Int(item.dt), like: "EEE")
+                
+                //debugPrint("temporaryDayEEE - \(temporaryDayEEE)")
+                //debugPrint("currentDayEEE - \(currentDayEEE)")
+                
+                if temporaryDayEEE == currentDayEEE {
+                    tempDt = Int(item.dt)
+                    tempDay = temporaryDayEEE
+                    tempIcon = item.descriptIcon ?? ""
+                    temptempMin = item.tempMin < temptempMin ? item.tempMin : temptempMin
+                    temptempMax = item.tempMax > temptempMax ? item.tempMax : temptempMax
+                } else {
+                    var dayStr = ""
+                    
+                    if isFirstDay {
+                        dayStr = "Today"
+                    } else {
+                        //dayStr = "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))"
+                        dayStr = DateStr.timeFromDateInterval(Int(tempDt), like: "EEE")
+                    }
+                    
+                    let df = DayliForecast(
+                        dt: tempDt,
+                        day: dayStr,
+                        icon: tempIcon,
+                        tempMin: Temp.stringTemp(temptempMin),
+                        tempMax: Temp.stringTemp(temptempMax)
+                    )
+                    
+                    dayliArray.append(df)
+                    isFirstDay = false
+                    
+                    currentDayEEE = DateStr.timeFromDateInterval(Int(item.dt), like: "EEE")
+                    
+                    tempDt = 0
+                    tempDay = ""
+                    tempIcon = ""
+                    temptempMin = 1000
+                    temptempMax = -1000
+                }
+            }
+            
+            /*
             for item in sortedArray {
                 //if item.dt >= currentDt && item.dt < dayAfterDt {
                     
@@ -208,7 +341,8 @@ extension WeatherModel: WeatherModelProtocol {
                     if isFirstDay {
                         dayStr = "Today"
                     } else {
-                        dayStr = "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))"
+                        //dayStr = "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))"
+                        dayStr = DateStr.timeFromDateInterval(Int(item.dt), like: "EEE")
                     }
                 
                     let df = DayliForecast(
@@ -224,6 +358,7 @@ extension WeatherModel: WeatherModelProtocol {
                 //}
                 
             }
+             */
             
             dayliArray.sort() { $0.dt < $1.dt }
             //} dayli forecast
@@ -232,8 +367,8 @@ extension WeatherModel: WeatherModelProtocol {
                 city: city.name,
                 desc: networkData.descriptDetail ?? "",
                 temp: networkData.temp,
-                tempMin: networkData.temp,
-                tempMax: networkData.temp,
+                tempMin: currentTempMin,
+                tempMax: currentTempMax,
                 pressure: networkData.pressure,
                 humidity: networkData.humidity,
                 feelsLike: networkData.feelsLike,

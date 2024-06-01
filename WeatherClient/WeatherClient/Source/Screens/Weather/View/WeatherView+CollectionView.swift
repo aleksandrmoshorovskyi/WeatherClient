@@ -24,7 +24,8 @@ extension WeatherView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch indexPath.row {
-            
+           
+        //MainCell
         case 0:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WeatherMainCellCode.idintifier,
@@ -44,14 +45,22 @@ extension WeatherView: UICollectionViewDataSource {
                 cell.cityNameLabel?.text = data.city
                 //debugPrint("\(String(describing: cell.cityNameLabel?.text))")
                 
+                /*
                 let tempStr = String(format: "%.0f" , data.temp)
                 cell.tempLabel?.text = "\(tempStr) ℃"
+                 */
+                
+                cell.tempLabel?.text = Temp.stringTemp(data.temp, for: true)
                 
                 cell.weatherDescLabel?.text = data.desc
+                
+                cell.tempMaxLabel.text = "H:\(Temp.stringTemp(data.tempMax))"
+                cell.tempMinLabel.text = "L:\(Temp.stringTemp(data.tempMin))"
             }
      
             return cell
             
+        //Hourly forecast
         case 1:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WeatherHourlyCellCode.idintifier,
@@ -69,6 +78,7 @@ extension WeatherView: UICollectionViewDataSource {
      
             return cell
             
+        //Dayli forecast
         case 2:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WeatherDayliCell.idintifier,
@@ -85,7 +95,8 @@ extension WeatherView: UICollectionViewDataSource {
             }
      
             return cell
-            
+         
+        //Pressure
         case 3:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WeatherPressureCell.idintifier,
@@ -99,15 +110,17 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                cell.valueLabel.text = "\(data.pressure)"
+                //cell.valueLabel.text = "\(data.pressure)"
+                cell.valueLabel.text = Metrics.strPressure(data.pressure)
             }
      
             return cell
-            
+           
+        //Humidity
         case 4:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherFeelsLikeCell.idintifier,
-                for: indexPath) as? WeatherFeelsLikeCell
+                withReuseIdentifier: WeatherHumidityCell.idintifier,
+                for: indexPath) as? WeatherHumidityCell
             else {
                 assertionFailure()
                 return UICollectionViewCell()
@@ -117,11 +130,13 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                cell.valueLabel.text = "\(data.humidity)"
+                //cell.valueLabel.text = "\(data.humidity)"
+                cell.valueLabel.text = Metrics.strHumidity(data.humidity)
             }
      
             return cell
-            
+           
+        //Feels like
         case 5:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WeatherFeelsLikeCell.idintifier,
@@ -135,11 +150,13 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                cell.valueLabel.text = "\(data.feelsLike)"
+                //cell.valueLabel.text = "\(data.feelsLike)"
+                cell.valueLabel.text = Metrics.strTemp(data.feelsLike, for: true)
             }
      
             return cell
-            
+           
+        //Wind
         case 6:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WeatherWindCell.idintifier,
@@ -150,14 +167,24 @@ extension WeatherView: UICollectionViewDataSource {
             }
             
             cell.titleLabel.text = "wind".uppercased()
-            cell.valueLabel.text = "-"
+            //cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                cell.valueLabel.text = "\(data.wind?.speed ?? 0.0)"
+                //cell.valueLabel.text = "\(data.wind?.speed ?? 0.0)"
+                
+                let strWindDeg = Metrics.strWindDeg(data.wind?.deg)
+                cell.windDegLabel.text = "Direction: \(strWindDeg)"
+
+                let strWindSpeed = Metrics.strWindSpeedGust(data.wind?.speed)
+                cell.windSpeedLabel.text = "Speed: \(strWindSpeed)"
+                
+                let strWindGust = Metrics.strWindSpeedGust(data.wind?.gust)
+                cell.windGustLabel.text = "Gusts: \(strWindGust)"
             }
      
             return cell
-            
+         
+        //SYS
         case 7:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WeatherSunRiseSetCell.idintifier,
@@ -167,15 +194,20 @@ extension WeatherView: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.titleLabel.text = "sunrise".uppercased()
-            cell.valueLabel.text = "-"
+            cell.titleLabel.text = "sunset".uppercased()
+            //cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                cell.valueLabel.text = "\(data.sys?.sunrise ?? 0)"
+                //cell.valueLabel.text = "\(data.sys?.sunrise ?? 0)"
+                cell.sunsetLabel.text = DateStr.timeFromDateInterval(data.sys?.sunset, like: "HH:mm")
+                
+                let sunriseTime = DateStr.timeFromDateInterval(data.sys?.sunrise, like: "HH:mm")
+                cell.sunriseLabel.text = "Sunrise: \(sunriseTime)"
             }
      
             return cell
-            
+         
+        //Visibility
         case 8:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WeatherVisibilityCell.idintifier,
@@ -189,7 +221,8 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
      
             if let data = dataSource {
-                cell.valueLabel.text = "\(data.visibility ?? 0)"
+                //cell.valueLabel.text = "\(data.visibility ?? 0)"
+                cell.valueLabel.text = Metrics.strVisibility(data.visibility)
             }
             
             return cell
@@ -218,30 +251,53 @@ extension WeatherView: UICollectionViewDelegateFlowLayout {
         switch indexPath.row {
             
         case 0:
-            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width)
+            return CGSize(
+                width: collectionView.bounds.width - Constant.weatherUIEdgeInset * 2,
+                height: Constant.weatherMainCellHeight + 20
+            )
             
         case 1:
-            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width/2)
+            return CGSize(
+                width: collectionView.bounds.width - Constant.weatherUIEdgeInset * 2,
+                height: Constant.weatherHourlyCellHeight
+            )
             
         case 2:
-            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width)
+            return CGSize(
+                width: collectionView.bounds.width - Constant.weatherUIEdgeInset * 2,
+                height: Constant.weatherDayliCellHeight
+            )
             
         case 3...8:
-            return CGSize(width: collectionView.bounds.width/2, height: collectionView.bounds.width/2)
+            return CGSize(
+                width: collectionView.bounds.width/2 - Constant.weatherMinimumVerticalSpacing/2 - Constant.weatherUIEdgeInset,
+                height: collectionView.bounds.width/2 - Constant.weatherMinimumVerticalSpacing/2 - Constant.weatherUIEdgeInset
+            )
             
         default:
             return .zero
         }
     }
     
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(
+            top: 0, //Constant.weatherUIEdgeInset,
+            left: Constant.weatherUIEdgeInset,
+            bottom: Constant.weatherUIEdgeInset,
+            right: Constant.weatherUIEdgeInset
+        )
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return .zero
+        return Constant.weatherMinimumLineSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return .zero
+        return Constant.weatherMinimumVerticalSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

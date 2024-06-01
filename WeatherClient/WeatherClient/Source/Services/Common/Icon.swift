@@ -34,7 +34,7 @@ class Icon {
             return "🌫️"
             
         case "01n":
-            return "🌕"
+            return "🌙"
         case "02n":
             return "☁️"
         case "03n":
@@ -53,9 +53,9 @@ class Icon {
             return "🌫️"
             
         case "sunrise":
-            return "🌅"
+            return "🌞"
         case "sunset":
-            return "🌆"
+            return "🌗"
             
         default:
             debugPrint("\(code)")

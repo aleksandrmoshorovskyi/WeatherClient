@@ -141,6 +141,8 @@ extension CoreDataService: CoreDataWeather {
         weatherDetailsEntity.dt = Int32(details.dt)
         
         weatherDetailsEntity.temp = details.main.temp
+        weatherDetailsEntity.tempMin = details.main.tempMin
+        weatherDetailsEntity.tempMax = details.main.tempMax
         
         weatherDetailsEntity.descriptMain = details.weather.first?.main
         weatherDetailsEntity.descriptDetail = details.weather.first?.descWeather
@@ -154,7 +156,7 @@ extension CoreDataService: CoreDataWeather {
         weatherDetailsEntity.windDeg = details.wind.deg
         weatherDetailsEntity.windGust = details.wind.gust
         
-        weatherDetailsEntity.sunrise = Int32(details.sys.sunset)
+        weatherDetailsEntity.sunrise = Int32(details.sys.sunrise)
         weatherDetailsEntity.sunset = Int32(details.sys.sunset)
         
         weatherDetailsEntity.visibility = details.visibility ?? 0.0
@@ -173,9 +175,15 @@ extension CoreDataService: CoreDataWeather {
         
         weatherDetailsEntity.dt = Int32(details.dt)
         weatherDetailsEntity.temp = details.main.temp
+        weatherDetailsEntity.tempMin = details.main.tempMin
+        weatherDetailsEntity.tempMax = details.main.tempMax
+        
         weatherDetailsEntity.descriptMain = details.weather[0].main
         
         weatherDetailsEntity.descriptIcon = details.weather.first?.icon
+        
+        //weatherDetailsEntity.sunrise = Int32(city.sunrise)
+        //weatherDetailsEntity.sunset = Int32(city.sunset)
         
         return weatherDetailsEntity
     }

@@ -16,6 +16,7 @@ extension WeatherDayliCell: UITableViewDataSource {
         
         if let data = dataSource {
             cellCount = data.count
+            cellCount = 5
         }
         
         return cellCount
@@ -23,19 +24,23 @@ extension WeatherDayliCell: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        /*
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.idintifier) as? CityTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherDayliTableViewCell.idintifier) as? WeatherDayliTableViewCell
         else {
             assertionFailure()
             return UITableViewCell()
         }
-         */
          
-        let cell = UITableViewCell()
+        //let cell = UITableViewCell()
         cell.backgroundColor = .clear
+        cell.textLabel?.textColor = Constant.baseCellTextColor
         
         if let data = dataSource {
-            cell.textLabel?.text = data[indexPath.row].day
+            cell.dayLabel.text = "    \(data[indexPath.row].day)"
+            cell.iconLabel.text = Icon.getIconByCode(data[indexPath.row].icon)
+            //cell.tempMinLabel.text = Metrics.strTemp(data[indexPath.row].tempMin)
+            //cell.tempMaxLabel.text = Metrics.strTemp(data[indexPath.row].tempMax)
+            cell.tempMinLabel.text = data[indexPath.row].tempMin
+            cell.tempMaxLabel.text = data[indexPath.row].tempMax
         }
         
         return cell
@@ -45,5 +50,9 @@ extension WeatherDayliCell: UITableViewDataSource {
 //MARK: UITableViewDelegate
 extension WeatherDayliCell: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 44.0
+    }
 }
 

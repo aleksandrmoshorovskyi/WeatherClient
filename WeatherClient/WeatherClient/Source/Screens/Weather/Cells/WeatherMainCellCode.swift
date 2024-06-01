@@ -13,8 +13,14 @@ class WeatherMainCellCode: UICollectionViewCell {
     var stackView: UIStackView!
     
     var cityNameLabel: UILabel!
+    var citySmallLabel: UILabel!
     var tempLabel: UILabel!
     var weatherDescLabel: UILabel!
+    
+    var tempMinLabel: UILabel!
+    var tempMaxLabel: UILabel!
+    
+    var stackViewHL: UIStackView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,33 +41,71 @@ class WeatherMainCellCode: UICollectionViewCell {
         contentView.layer.cornerRadius = Constant.weatherCellCornerRadius
         contentView.backgroundColor = Constant.contentViewColor
         contentView.alpha = Constant.contentViewAlpha
+        contentView.backgroundColor = .clear
         
         //containerView setup
         containerView = UIView()
-        containerView.backgroundColor = Constant.containerViewColor
+        containerView.backgroundColor = .clear //Constant.containerViewColor
         
         //cityNameLabel
         cityNameLabel = UILabel()
         cityNameLabel.textColor = Constant.baseCellTextColor
+        cityNameLabel.font = UIFont.systemFont(ofSize: 40)
+        
+        //citySmallLabel
+        citySmallLabel = UILabel()
+        citySmallLabel.textColor = Constant.baseCellTextColor
         
         //tempLabel
         tempLabel = UILabel()
         tempLabel.textColor = Constant.baseCellTextColor
+        tempLabel.font = UIFont.systemFont(ofSize: 90)
         
         //weatherDescLabel
         weatherDescLabel = UILabel()
         weatherDescLabel.textColor = Constant.baseCellTextColor
+        weatherDescLabel.font = UIFont.systemFont(ofSize: 25)
         
-        // MARK: - stackView config
+        //tempLabel
+        tempMaxLabel = UILabel()
+        tempMaxLabel.textColor = Constant.baseCellTextColor
+        //tempMaxLabel.font = UIFont.systemFont(ofSize: 20)
+        
+        //tempLabel
+        tempMinLabel = UILabel()
+        tempMinLabel.textColor = Constant.baseCellTextColor
+        //tempMinLabel.font = UIFont.systemFont(ofSize: 20)
+        
+        //for TEST backgroundColor = .red
+        //cityNameLabel.backgroundColor = .red
+        //citySmallLabel.backgroundColor = .red
+        //tempLabel.backgroundColor = .red
+        //weatherDescLabel.backgroundColor = .red
+        //tempMaxLabel.backgroundColor = .red
+        //tempMinLabel.backgroundColor = .red
+        
+        //stackViewHL config
+        stackViewHL = UIStackView()
+        stackViewHL.axis = NSLayoutConstraint.Axis.horizontal
+        stackViewHL.alignment = .center
+        stackViewHL.distribution = .fillEqually
+        stackViewHL.spacing = 5
+        
+        stackViewHL.addArrangedSubview(tempMaxLabel)
+        stackViewHL.addArrangedSubview(tempMinLabel)
+        
+        //stackView config
         stackView = UIStackView()
         stackView.axis = NSLayoutConstraint.Axis.vertical
         stackView.alignment = .center
-        stackView.distribution = .fillEqually
-        stackView.spacing = 0
+        //stackView.distribution = .fillEqually
+        //stackView.spacing = 10
         
         stackView.addArrangedSubview(cityNameLabel)
+        stackView.addArrangedSubview(citySmallLabel)
         stackView.addArrangedSubview(tempLabel)
         stackView.addArrangedSubview(weatherDescLabel)
+        stackView.addArrangedSubview(stackViewHL)
     }
     
     func setupBaseLayout() {
@@ -88,10 +132,8 @@ class WeatherMainCellCode: UICollectionViewCell {
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: .zero),
             
             //stackView constraints
-            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: .zero),
-            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: .zero),
-            stackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: .zero),
-            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: .zero)
+            stackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
         ])
     }
 }

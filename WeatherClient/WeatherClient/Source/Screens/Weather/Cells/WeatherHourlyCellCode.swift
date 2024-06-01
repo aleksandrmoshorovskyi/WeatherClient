@@ -58,8 +58,8 @@ class WeatherHourlyCellCode: WeatherBaseCell {
             // MARK: collectionView constraints
             collectionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: .zero),
             collectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: .zero),
-            collectionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: .zero),
-            collectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: .zero)
+            collectionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10.0),
+            collectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10.0)
         ])
     }
 }

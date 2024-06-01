@@ -24,6 +24,17 @@ enum Constant {
     static let labelSideOffset: CGFloat = 20.0
     static let labelTopOffset: CGFloat = 10.0
     
+    //weather cells height
+    //top: Optional(50.0) bootom: Optional(34.0)
+    static let weatherSafeAreaHeight: CGFloat = 50.0
+    static let weatherMinimumLineSpacing: CGFloat = 12.0
+    static let weatherMinimumVerticalSpacing: CGFloat = 12.0
+    static let weatherUIEdgeInset = 20.0
+    
+    static let weatherMainCellHeight: CGFloat = 270.0
+    static let weatherHourlyCellHeight: CGFloat = 170.0
+    static let weatherDayliCellHeight: CGFloat = 255.0
+    
     //UI
     static let mainColor: UIColor = .systemCyan
     static let colorForDebug: UIColor = .red
@@ -49,7 +60,7 @@ enum Constant {
     
     ///WeatherBaseCell
     static let baseCellBackgroundColor: UIColor = .clear
-    static let weatherCellCornerRadius: CGFloat = 10.0
+    static let weatherCellCornerRadius: CGFloat = 15.0 //10.0
     static let contentViewColor: UIColor = .systemGray5
     static let contentViewAlpha: CGFloat = 0.5
     
@@ -58,4 +69,6 @@ enum Constant {
     static let containerViewColor: UIColor = .clear
     
     static let baseCellTextColor: UIColor = .white
+    static let baseCellTextFont: UIFont = .systemFont(ofSize: 25)
+    static let windCellTextFont: UIFont = .systemFont(ofSize: 20)
 }

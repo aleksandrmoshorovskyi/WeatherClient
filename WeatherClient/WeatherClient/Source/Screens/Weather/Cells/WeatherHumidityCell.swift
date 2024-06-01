@@ -26,14 +26,16 @@ class WeatherHumidityCell: WeatherBaseCell {
         
         //valueLabel
         valueLabel = UILabel()
+        valueLabel.textColor = Constant.baseCellTextColor
+        valueLabel.font = Constant.baseCellTextFont
     }
     
     func setupLayout() {
         
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        contentView.addSubview(valueLabel) //.alpha = 0.5
-        //addSubview(valueLabel) //.alpha = 1
+        //contentView.addSubview(valueLabel) //.alpha = 0.5
+        addSubview(valueLabel) //.alpha = 1
         
         NSLayoutConstraint.activate([
             //valueLabel

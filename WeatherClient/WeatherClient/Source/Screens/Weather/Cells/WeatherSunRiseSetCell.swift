@@ -9,7 +9,10 @@ import UIKit
 
 class WeatherSunRiseSetCell: WeatherBaseCell {
     
-    var valueLabel: UILabel!
+    var stackView: UIStackView!
+    
+    var sunsetLabel: UILabel!
+    var sunriseLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,20 +28,37 @@ class WeatherSunRiseSetCell: WeatherBaseCell {
     func setupUI() {
         
         //valueLabel
-        valueLabel = UILabel()
+        sunsetLabel = UILabel()
+        sunsetLabel.textColor = Constant.baseCellTextColor
+        sunsetLabel.font = Constant.baseCellTextFont
+        
+        //valueLabel
+        sunriseLabel = UILabel()
+        sunriseLabel.textColor = Constant.baseCellTextColor
+        sunriseLabel.font = .systemFont(ofSize: 15)
+        
+        //stackView config
+        stackView = UIStackView()
+        stackView.axis = NSLayoutConstraint.Axis.vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fillEqually
+        stackView.spacing = 40
+        
+        stackView.addArrangedSubview(sunsetLabel)
+        stackView.addArrangedSubview(sunriseLabel)
     }
     
     func setupLayout() {
         
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        contentView.addSubview(valueLabel) //.alpha = 0.5
-        //addSubview(valueLabel) //.alpha = 1
+        //contentView.addSubview(valueLabel) //.alpha = 0.5
+        addSubview(stackView) //.alpha = 1
         
         NSLayoutConstraint.activate([
-            //valueLabel
-            valueLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            valueLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+            //stackView
+            stackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
         ])
     }
 }

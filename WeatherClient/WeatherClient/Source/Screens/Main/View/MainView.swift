@@ -146,7 +146,8 @@ class MainView: UIView {
             // MARK: collectionView constraints
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .zero),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: .zero),
-            collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: .zero),
+            //collectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: .zero),
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.weatherSafeAreaHeight),
             collectionView.bottomAnchor.constraint(equalTo: customTabBarView.topAnchor, constant: .zero),
             //collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: .zero)
             

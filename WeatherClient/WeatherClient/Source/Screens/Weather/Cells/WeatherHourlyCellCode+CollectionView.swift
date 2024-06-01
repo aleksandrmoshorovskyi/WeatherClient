@@ -64,7 +64,7 @@ extension WeatherHourlyCellCode: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         //return CGSize(width: collectionView.bounds.height/2, height: collectionView.bounds.height)
-        return CGSize(width: 80.0, height: collectionView.frame.height)
+        return CGSize(width: 70.0, height: collectionView.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

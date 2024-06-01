@@ -29,8 +29,16 @@ class WeatherDayliCell: WeatherBaseCell {
         tableView = UITableView()
         tableView.backgroundColor = .clear
         
+        tableView.isScrollEnabled = false
+        tableView.allowsSelection = false
+        
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.register(
+            WeatherDayliTableViewCell.self,
+            forCellReuseIdentifier: WeatherDayliTableViewCell.idintifier
+        )
     }
     
     func setupLayout() {

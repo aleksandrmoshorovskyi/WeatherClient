@@ -9,13 +9,18 @@ import Foundation
 
 class Temp {
     
-    static func stringTemp(_ temp: Float) -> String {
+    static func stringTemp(_ temp: Float, for main: Bool = false) -> String {
         
         //" ℃ "
         //" ℉ "
         
         var tempStr = String(format: "%.0f" , temp)
-        tempStr = "\(tempStr)°"
+       
+        if main {
+            tempStr = "\(tempStr) ℃"
+        } else {
+            tempStr = "\(tempStr)°"
+        }
         
         return tempStr
     }
