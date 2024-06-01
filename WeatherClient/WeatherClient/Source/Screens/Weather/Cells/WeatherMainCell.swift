@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherMainCell: UICollectionViewCell {
     
-    static let idintifier = "WeatherMainCell"
+    //static let idintifier = "WeatherMainCell"
     
     @IBOutlet weak var containerView: UIView!
     

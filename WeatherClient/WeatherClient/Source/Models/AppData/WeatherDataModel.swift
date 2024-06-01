@@ -12,6 +12,8 @@ struct WeatherDataModel {
     let city: String
     let desc: String
     let temp: Float
+    let tempMin: Float
+    let tempMax: Float
     
     let pressure: Float
     let humidity: Float
@@ -23,6 +25,7 @@ struct WeatherDataModel {
     let visibility: Float?
     
     var hourlyForecast: [HourlyForecast]?
+    var dayliForecast: [DayliForecast]?
 }
 
 struct Wind {
@@ -44,4 +47,13 @@ struct HourlyForecast {
     let time: String
     let icon: String
     let desc: String
+}
+
+struct DayliForecast {
+    
+    let dt: Int
+    let day: String
+    let icon: String
+    let tempMin: String
+    let tempMax: String
 }

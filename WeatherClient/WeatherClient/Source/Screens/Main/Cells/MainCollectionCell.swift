@@ -9,5 +9,5 @@ import UIKit
 
 class MainCollectionCell: UICollectionViewCell {
     
-    static let idintifier = "MainCollectionCell"
+    //static let idintifier = "MainCollectionCell"
 }

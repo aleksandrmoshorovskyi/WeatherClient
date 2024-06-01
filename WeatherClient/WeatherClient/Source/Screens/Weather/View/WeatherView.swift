@@ -36,21 +36,80 @@ class WeatherView: UIView {
         setupUI()
         setupLayout()
         
-        collectionView.register(
-            UINib(nibName: WeatherMainCell.idintifier, bundle: nil),
-            forCellWithReuseIdentifier: WeatherMainCell.idintifier)
+//        collectionView.register(
+//            UINib(nibName: WeatherMainCell.idintifier, bundle: nil),
+//            forCellWithReuseIdentifier: WeatherMainCell.idintifier)
         
-        collectionView.register(
-            UINib(nibName: WeatherHourlyCell.idintifier, bundle: nil),
-            forCellWithReuseIdentifier: WeatherHourlyCell.idintifier)
+//        collectionView.register(
+//            UINib(nibName: WeatherHourlyCell.idintifier, bundle: nil),
+//            forCellWithReuseIdentifier: WeatherHourlyCell.idintifier)
         
-        collectionView.register(
-            UINib(nibName: WeatherSmallCell.idintifier, bundle: nil),
-            forCellWithReuseIdentifier: WeatherSmallCell.idintifier)
+//        collectionView.register(
+//            UINib(nibName: WeatherSmallCell.idintifier, bundle: nil),
+//            forCellWithReuseIdentifier: WeatherSmallCell.idintifier)
         
+//        collectionView.register(
+//            WeatherHourlyCellCode.self,
+//            forCellWithReuseIdentifier: WeatherHourlyCellCode.idintifier
+//        )
+        
+//        collectionView.register(
+//            WeatherDayliCell.self,
+//            forCellWithReuseIdentifier: WeatherDayliCell.idintifier
+//        )
+        
+        // Main - WeatherMainCellCode
+        collectionView.register(
+            WeatherMainCellCode.self,
+            forCellWithReuseIdentifier: WeatherMainCellCode.idintifier
+        )
+        
+        // Hourly - WeatherHourlyCellCode
         collectionView.register(
             WeatherHourlyCellCode.self,
             forCellWithReuseIdentifier: WeatherHourlyCellCode.idintifier
+        )
+        
+        // Dayli - WeatherDayliCell
+        collectionView.register(
+            WeatherDayliCell.self,
+            forCellWithReuseIdentifier: WeatherDayliCell.idintifier
+        )
+        
+        // Pressure - WeatherPressureCell
+        collectionView.register(
+            WeatherPressureCell.self,
+            forCellWithReuseIdentifier: WeatherPressureCell.idintifier
+        )
+        
+        // Humidity - WeatherHumidityCell
+        collectionView.register(
+            WeatherHumidityCell.self,
+            forCellWithReuseIdentifier: WeatherHumidityCell.idintifier
+        )
+        
+        // Feels like - WeatherFeelsLikeCell
+        collectionView.register(
+            WeatherFeelsLikeCell.self,
+            forCellWithReuseIdentifier: WeatherFeelsLikeCell.idintifier
+        )
+        
+        // Wind - WeatherWindCell
+        collectionView.register(
+            WeatherWindCell.self,
+            forCellWithReuseIdentifier: WeatherWindCell.idintifier
+        )
+        
+        // SunRiseSet - WeatherSunRiseSetCell
+        collectionView.register(
+            WeatherSunRiseSetCell.self,
+            forCellWithReuseIdentifier: WeatherSunRiseSetCell.idintifier
+        )
+        
+        // Visibility - WeatherVisibilityCell
+        collectionView.register(
+            WeatherVisibilityCell.self,
+            forCellWithReuseIdentifier: WeatherVisibilityCell.idintifier
         )
     }
     

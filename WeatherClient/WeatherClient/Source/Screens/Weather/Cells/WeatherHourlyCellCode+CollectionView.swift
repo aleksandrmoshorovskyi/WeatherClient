@@ -44,7 +44,7 @@ extension WeatherHourlyCellCode: UICollectionViewDataSource {
             
             //cell.iconImage.load(url: url)
             
-            cell.iconLabel.text =  getIconByCode(iconID)
+            cell.iconLabel.text =  Icon.getIconByCode(iconID)
             
             cell.detailLabel.text = data[indexPath.row].desc
         }

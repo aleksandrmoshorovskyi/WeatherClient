@@ -27,8 +27,8 @@ extension WeatherView: UICollectionViewDataSource {
             
         case 0:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherMainCell.idintifier,
-                for: indexPath) as? WeatherMainCell
+                withReuseIdentifier: WeatherMainCellCode.idintifier,
+                for: indexPath) as? WeatherMainCellCode
             else {
                 assertionFailure()
                 return UICollectionViewCell()
@@ -61,6 +61,8 @@ extension WeatherView: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
+            cell.titleLabel.text = "hourly forecast".uppercased()
+            
             if let data = dataSource {
                 cell.dataSource = data.hourlyForecast
             }
@@ -69,23 +71,25 @@ extension WeatherView: UICollectionViewDataSource {
             
         case 2:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherHourlyCell.idintifier,
-                for: indexPath) as? WeatherHourlyCell
+                withReuseIdentifier: WeatherDayliCell.idintifier,
+                for: indexPath) as? WeatherDayliCell
             else {
                 assertionFailure()
                 return UICollectionViewCell()
             }
             
-//            if let data = dataSource {
-//                cell.dataSource = data.hourlyForecast
-//            }
+            cell.titleLabel.text = "5-day forecast".uppercased()
+            
+            if let data = dataSource {
+                cell.dataSource = data.dayliForecast
+            }
      
             return cell
             
         case 3:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherSmallCell.idintifier,
-                for: indexPath) as? WeatherSmallCell
+                withReuseIdentifier: WeatherPressureCell.idintifier,
+                for: indexPath) as? WeatherPressureCell
             else {
                 assertionFailure()
                 return UICollectionViewCell()
@@ -102,8 +106,8 @@ extension WeatherView: UICollectionViewDataSource {
             
         case 4:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherSmallCell.idintifier,
-                for: indexPath) as? WeatherSmallCell
+                withReuseIdentifier: WeatherFeelsLikeCell.idintifier,
+                for: indexPath) as? WeatherFeelsLikeCell
             else {
                 assertionFailure()
                 return UICollectionViewCell()
@@ -120,8 +124,8 @@ extension WeatherView: UICollectionViewDataSource {
             
         case 5:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherSmallCell.idintifier,
-                for: indexPath) as? WeatherSmallCell
+                withReuseIdentifier: WeatherFeelsLikeCell.idintifier,
+                for: indexPath) as? WeatherFeelsLikeCell
             else {
                 assertionFailure()
                 return UICollectionViewCell()
@@ -138,8 +142,8 @@ extension WeatherView: UICollectionViewDataSource {
             
         case 6:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherSmallCell.idintifier,
-                for: indexPath) as? WeatherSmallCell
+                withReuseIdentifier: WeatherWindCell.idintifier,
+                for: indexPath) as? WeatherWindCell
             else {
                 assertionFailure()
                 return UICollectionViewCell()
@@ -156,8 +160,8 @@ extension WeatherView: UICollectionViewDataSource {
             
         case 7:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherSmallCell.idintifier,
-                for: indexPath) as? WeatherSmallCell
+                withReuseIdentifier: WeatherSunRiseSetCell.idintifier,
+                for: indexPath) as? WeatherSunRiseSetCell
             else {
                 assertionFailure()
                 return UICollectionViewCell()
@@ -174,8 +178,8 @@ extension WeatherView: UICollectionViewDataSource {
             
         case 8:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherSmallCell.idintifier,
-                for: indexPath) as? WeatherSmallCell
+                withReuseIdentifier: WeatherVisibilityCell.idintifier,
+                for: indexPath) as? WeatherVisibilityCell
             else {
                 assertionFailure()
                 return UICollectionViewCell()

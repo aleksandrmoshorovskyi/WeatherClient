@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherHourlyDetailCell: UICollectionViewCell {
     
-    static let idintifier = "WeatherHourlyDetailCell"
+    //static let idintifier = "WeatherHourlyDetailCell"
     
     @IBOutlet weak var containerView: UIView!
     

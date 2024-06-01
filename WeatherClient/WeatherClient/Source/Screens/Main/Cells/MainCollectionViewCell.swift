@@ -9,7 +9,7 @@ import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
     
-    static let idintifier = "MainCollectionViewCell"
+    //static let idintifier = "MainCollectionViewCell"
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!

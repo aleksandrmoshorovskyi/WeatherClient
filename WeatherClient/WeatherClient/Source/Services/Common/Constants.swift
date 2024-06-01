@@ -46,4 +46,16 @@ enum Constant {
     static let weatherTopCellBackgroundColor: UIColor = .clear
     static let weatherTopCellContentViewColor: UIColor = .clear
     static let weatherTopCellContainerViewColor: UIColor = .clear
+    
+    ///WeatherBaseCell
+    static let baseCellBackgroundColor: UIColor = .clear
+    static let weatherCellCornerRadius: CGFloat = 10.0
+    static let contentViewColor: UIColor = .systemGray5
+    static let contentViewAlpha: CGFloat = 0.5
+    
+    static let titleLabelHeight: CGFloat = 35.0
+    static let titleLabelSideOffset: CGFloat = 10.0
+    static let containerViewColor: UIColor = .clear
+    
+    static let baseCellTextColor: UIColor = .white
 }

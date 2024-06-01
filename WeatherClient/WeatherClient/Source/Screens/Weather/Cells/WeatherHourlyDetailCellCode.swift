@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherHourlyDetailCellCode: UICollectionViewCell {
     
-    static let idintifier = "WeatherHourlyDetailCellCode"
+    //static let idintifier = "WeatherHourlyDetailCellCode"
     
     var stackView: UIStackView!
     
@@ -38,7 +38,7 @@ class WeatherHourlyDetailCellCode: UICollectionViewCell {
         
         //hourLabel
         hourLabel = UILabel()
-        hourLabel.textColor = .white
+        hourLabel.textColor = Constant.baseCellTextColor
         
         //hourLabel
         iconImage = UIImageView()
@@ -51,7 +51,7 @@ class WeatherHourlyDetailCellCode: UICollectionViewCell {
         
         //detailLabel
         detailLabel = UILabel()
-        detailLabel.textColor = .white
+        detailLabel.textColor = Constant.baseCellTextColor
         
         // MARK: - stackView config
         stackView = UIStackView()

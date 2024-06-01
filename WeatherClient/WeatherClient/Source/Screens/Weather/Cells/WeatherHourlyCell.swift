@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherHourlyCell: UICollectionViewCell {
 
-    static let idintifier = "WeatherHourlyCell"
+    //static let idintifier = "WeatherHourlyCell"
     
     var dataSource: [HourlyForecast]!
     

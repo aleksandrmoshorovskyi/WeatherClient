@@ -153,49 +153,87 @@ extension WeatherModel: WeatherModelProtocol {
     func getDataModelFrom(_ storedData: CDWeatherMain, for city: CityDataModel) -> WeatherDataModel? {
         
         let currentTimezone = storedData.timezone
+        var weatherDataModel: WeatherDataModel? = nil
         
         let forecastSet = storedData.forecast
         let sortDesc = [NSSortDescriptor(key: "dt", ascending: true)]
         let sortedArray = forecastSet?.sortedArray(using: sortDesc) as! [CDWeatherForecast]
         
-        
-        var weatherDataModel: WeatherDataModel? = nil
-        
         if let networkData = sortedArray.first {
             
-            //hourly forecast
+            //hourly forecast {
+            var isFirstHour = true
             var hourlyArray: [HourlyForecast] = []
             let currentDt = networkData.dt //+ currentTimezone
             let dayAfterDt = currentDt + Constant.periodDay
             
             for item in sortedArray {
-                
-                //let currentDay = getDayFrom(Int(item.dt), for: 10800)
-                //let networkDataDay = getDayFrom(Int(networkData.dt), for: 10800)
-                
-                //debugPrint("currentDay = \(currentDay) | networkDataDay = \(networkDataDay)")
-                //debugPrint("city = \(city.name) | item.dt = \(item.dt) | networkData.dt = \(networkData.dt)")
-                //debugPrint("")
-                
                 if item.dt >= currentDt && item.dt < dayAfterDt {
+                    
+                    var timeStr = ""
+                    
+                    if isFirstHour {
+                        timeStr = "Now"
+                    } else {
+                        timeStr = "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))"
+                    }
                     
                     let hf = HourlyForecast(
                         dt: Int(item.dt),
-                        time: "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))",
+                        time: timeStr,
                         icon: item.descriptIcon ?? "",
                         desc: Temp.stringTemp(item.temp)
                     )
                     
                     hourlyArray.append(hf)
+                    isFirstHour = false
                 }
+                
             }
             
             hourlyArray.sort() { $0.dt < $1.dt }
+            //} hourly forecast
+            
+            //dayli forecast {
+            var isFirstDay = true
+            var dayliArray: [DayliForecast] = []
+            //let currentDt = networkData.dt //+ currentTimezone
+            //let dayAfterDt = currentDt + Constant.periodDay
+            
+            for item in sortedArray {
+                //if item.dt >= currentDt && item.dt < dayAfterDt {
+                    
+                    var dayStr = ""
+                    
+                    if isFirstDay {
+                        dayStr = "Today"
+                    } else {
+                        dayStr = "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))"
+                    }
+                
+                    let df = DayliForecast(
+                        dt: Int(item.dt),
+                        day: dayStr,
+                        icon: item.descriptIcon ?? "",
+                        tempMin: Temp.stringTemp(item.temp),
+                        tempMax: Temp.stringTemp(item.temp)
+                    )
+                    
+                dayliArray.append(df)
+                    isFirstDay = false
+                //}
+                
+            }
+            
+            dayliArray.sort() { $0.dt < $1.dt }
+            //} dayli forecast
             
             weatherDataModel = WeatherDataModel(
                 city: city.name,
                 desc: networkData.descriptDetail ?? "",
                 temp: networkData.temp,
+                tempMin: networkData.temp,
+                tempMax: networkData.temp,
                 pressure: networkData.pressure,
                 humidity: networkData.humidity,
                 feelsLike: networkData.feelsLike,
@@ -205,6 +243,7 @@ extension WeatherModel: WeatherModelProtocol {
             )
             
             weatherDataModel?.hourlyForecast = hourlyArray
+            weatherDataModel?.dayliForecast = dayliArray
         }
         
         return weatherDataModel
