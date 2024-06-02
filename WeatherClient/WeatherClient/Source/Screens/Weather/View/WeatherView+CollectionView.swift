@@ -172,7 +172,7 @@ extension WeatherView: UICollectionViewDataSource {
             if let data = dataSource {
                 //cell.valueLabel.text = "\(data.wind?.speed ?? 0.0)"
                 
-                let strWindDeg = Metrics.strWindDeg(data.wind?.deg)
+                //let strWindDeg = Metrics.strWindDeg(data.wind?.deg)
                 let strWindDegArrow = Metrics.strWindDegArrow(data.wind?.deg)
                 //cell.windDegLabel.text = "Direction: \(strWindDeg)"
                 cell.windDegLabel.text = "\(strWindDegArrow)"
