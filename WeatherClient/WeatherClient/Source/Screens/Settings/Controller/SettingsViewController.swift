@@ -166,6 +166,23 @@ class SettingsViewController: UIViewController {
             attributes: [.destructive]
         ) {_ in
             //clear cash
+            let alert = UIAlertController(title: "Clear cash", message: "All saved weather information will be deleted from the device! (except saved locations)", preferredStyle: .alert)
+            
+            let aletalertAction = UIAlertAction(
+                title: "OK",
+                style: .destructive,
+                handler: { _ in NSLog("The \"OK\" alert occured.")})
+            
+            let cancelAction = UIAlertAction(
+                title: "Cancel",
+                style: .cancel) { (action) in
+                // ...
+            }
+            
+            alert.addAction(aletalertAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
         }
         
         let subEditMenu = UIMenu(

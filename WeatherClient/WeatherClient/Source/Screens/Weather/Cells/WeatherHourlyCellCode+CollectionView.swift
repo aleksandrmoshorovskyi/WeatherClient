@@ -37,8 +37,8 @@ extension WeatherHourlyCellCode: UICollectionViewDataSource {
             
             let iconID = data[indexPath.row].icon
             
-            let urlString = "https://openweathermap.org/img/wn/\(iconID).png"
-            let url = URL(string: urlString)!
+            //let urlString = "https://openweathermap.org/img/wn/\(iconID).png"
+            //let url = URL(string: urlString)!
             
             //let imageView: UIImageView = UIImageView()
             //imageView.load(url: url)
