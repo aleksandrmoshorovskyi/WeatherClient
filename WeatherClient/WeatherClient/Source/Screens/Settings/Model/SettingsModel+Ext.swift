@@ -55,7 +55,11 @@ extension SettingsModel: SettingsModelProtocol {
         var citiesWithWeather = cities
         
         citiesWithWeather.enumerated().forEach() {index, value in
-            networkService.loadWeatherForCity(value.city.name, with: parametrs) { [weak self] weatherInfo, error in
+            
+            let location = Location(latitude: Double(value.city.latitude), longitude: Double(value.city.longitude))
+            
+            //networkService.loadWeatherForCity(value.city.name, with: parametrs) { [weak self] weatherInfo, error in
+            networkService.loadWeatherForLocation(location) { [weak self] weatherInfo, error in
 
                 if let err = error {
                     debugPrint("\(err.localizedDescription)")

@@ -35,7 +35,11 @@ extension WeatherModel: WeatherModelProtocol {
             
         } else {
             
-            networkService.loadWeatherForCity(city.name, with: parametrs) { [weak self] weatherInfo, error in
+            let location = Location(latitude: Double(city.latitude), longitude: Double(city.longitude))
+            
+            //networkService.loadWeatherForCity(city.name, with: parametrs) { [weak self] weatherInfo, error in
+            //networkService.loadWeatherForCity(city.name) { [weak self] weatherInfo, error in
+            networkService.loadWeatherForLocation(location) { [weak self] weatherInfo, error in
 
                 if let err = error {
                     debugPrint("\(err.localizedDescription)")
@@ -47,7 +51,8 @@ extension WeatherModel: WeatherModelProtocol {
                         
                         let location = Location(latitude: Double(city.latitude), longitude: Double(city.longitude))
                         
-                        networkService.loadWeatherForecastForLocation(location, with: parametrs) { [weak self] weatherInfoList, error in
+                        //networkService.loadWeatherForecastForLocation(location, with: parametrs) { [weak self] weatherInfoList, error in
+                        networkService.loadWeatherForecastForLocation(location) { [weak self] weatherInfoList, error in
                             
                             if let err = error {
                                 debugPrint("\(err.localizedDescription)")
@@ -152,7 +157,7 @@ extension WeatherModel: WeatherModelProtocol {
     
     func getDataModelFrom(_ storedData: CDWeatherMain, for city: CityDataModel) -> WeatherDataModel? {
         
-        let currentTimezone = storedData.timezone
+        let _ = storedData.timezone //currentTimezone
         var weatherDataModel: WeatherDataModel? = nil
         
         //for Main
@@ -181,8 +186,8 @@ extension WeatherModel: WeatherModelProtocol {
              because this is today's data,
              tomorrow's data is not available on the server
              */
-            var tomorrowSunrise = networkData.sunrise + Constant.periodDay
-            var tomorrowSunset = networkData.sunset + Constant.periodDay
+            let tomorrowSunrise = networkData.sunrise + Constant.periodDay
+            let tomorrowSunset = networkData.sunset + Constant.periodDay
             
             for item in sortedArray {
                 if item.dt >= currentDt && item.dt < dayAfterDt {
@@ -219,7 +224,7 @@ extension WeatherModel: WeatherModelProtocol {
                         dt: Int(item.dt),
                         time: timeStr,
                         icon: item.descriptIcon ?? "",
-                        desc: Temp.stringTemp(item.temp)
+                        desc: Metrics.strTemp(item.temp)
                     )
                     
                     hourlyArray.append(hf)
@@ -282,23 +287,31 @@ extension WeatherModel: WeatherModelProtocol {
             //let dayAfterDt = currentDt + Constant.periodDay
             var currentDayEEE = DateStr.timeFromDateInterval(Int(networkData.dt), like: "EEE")
             var temporaryDayEEE = ""
+            var temporaryHourHH = ""
             
             var tempDt = Int(networkData.dt)
-            var tempDay = currentDayEEE
-            var tempIcon = ""
+            //var tempDay = currentDayEEE
+            //var tempIcon = ""
+            var tempIcon = networkData.descriptIcon ?? ""
             var temptempMin = currentTempMin
             var temptempMax = currentTempMax
             
             for item in sortedArray {
                 temporaryDayEEE = DateStr.timeFromDateInterval(Int(item.dt), like: "EEE")
+                temporaryHourHH = DateStr.timeFromDateInterval(Int(item.dt), like: "HH")
                 
                 //debugPrint("temporaryDayEEE - \(temporaryDayEEE)")
                 //debugPrint("currentDayEEE - \(currentDayEEE)")
                 
                 if temporaryDayEEE == currentDayEEE {
                     tempDt = Int(item.dt)
-                    tempDay = temporaryDayEEE
-                    tempIcon = item.descriptIcon ?? ""
+                    //tempDay = temporaryDayEEE
+                    //tempIcon = item.descriptIcon ?? ""
+                    
+                    if temporaryHourHH == "12" {
+                        tempIcon = item.descriptIcon ?? ""
+                    }
+                    
                     temptempMin = item.tempMin < temptempMin ? item.tempMin : temptempMin
                     temptempMax = item.tempMax > temptempMax ? item.tempMax : temptempMax
                 } else {
@@ -315,8 +328,8 @@ extension WeatherModel: WeatherModelProtocol {
                         dt: tempDt,
                         day: dayStr,
                         icon: tempIcon,
-                        tempMin: Temp.stringTemp(temptempMin),
-                        tempMax: Temp.stringTemp(temptempMax)
+                        tempMin: Metrics.strTemp(temptempMin),
+                        tempMax: Metrics.strTemp(temptempMax)
                     )
                     
                     dayliArray.append(df)
@@ -325,7 +338,7 @@ extension WeatherModel: WeatherModelProtocol {
                     currentDayEEE = DateStr.timeFromDateInterval(Int(item.dt), like: "EEE")
                     
                     tempDt = 0
-                    tempDay = ""
+                    //tempDay = ""
                     tempIcon = ""
                     temptempMin = 1000
                     temptempMax = -1000

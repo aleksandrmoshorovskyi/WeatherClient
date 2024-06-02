@@ -33,6 +33,7 @@ class WeatherWindCell: WeatherBaseCell {
         windDegLabel = UILabel()
         windDegLabel.textColor = Constant.baseCellTextColor
         windDegLabel.font = Constant.baseCellTextFont
+        windDegLabel.font = .systemFont(ofSize: 35)
         
         //spacingLabel
         spacingLabel = UILabel()

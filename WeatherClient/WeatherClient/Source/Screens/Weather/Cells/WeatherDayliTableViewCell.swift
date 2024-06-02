@@ -19,6 +19,8 @@ class WeatherDayliTableViewCell: UITableViewCell {
     var spacingLabel4: UILabel!
     
     var spacingLongLabel: UILabel!
+    var progressViewContainer: UIView!
+    var progressView: UIProgressView!
     
     var dayLabel: UILabel!
     //var iconImage: UIImageView!
@@ -57,6 +59,7 @@ class WeatherDayliTableViewCell: UITableViewCell {
         //hourLabel
         dayLabel = UILabel()
         dayLabel.textColor = Constant.baseCellTextColor
+        dayLabel.font = UIFont.systemFont(ofSize: 20)
         
         //spacingLabel
         spacingLabel = UILabel()
@@ -86,7 +89,8 @@ class WeatherDayliTableViewCell: UITableViewCell {
         spacingLongLabel = UILabel()
         spacingLongLabel.textColor = Constant.baseCellTextColor
         //spacingLabel.font = Constant.baseCellTextFont
-        spacingLongLabel.text = "-----"
+        spacingLongLabel.text = "--------"
+        spacingLongLabel.textAlignment = .center
         
         //hourLabel
         //iconImage = UIImageView()
@@ -96,6 +100,9 @@ class WeatherDayliTableViewCell: UITableViewCell {
         
         //iconLabel
         iconLabel = UILabel()
+        iconLabel.font = UIFont.systemFont(ofSize: 25)
+        iconLabel.textAlignment = .center
+        //iconLabel.contentMode = .scaleToFill
         
         //detailLabel
         //detailLabel = UILabel()
@@ -105,17 +112,32 @@ class WeatherDayliTableViewCell: UITableViewCell {
         //tempMinLabel
         tempMinLabel = UILabel()
         tempMinLabel.textColor = Constant.baseCellTextColor
+        tempMinLabel.font = UIFont.systemFont(ofSize: 20)
+        tempMinLabel.textAlignment = .center
         
         //tempMaxLabel
         tempMaxLabel = UILabel()
         tempMaxLabel.textColor = Constant.baseCellTextColor
+        tempMaxLabel.font = UIFont.systemFont(ofSize: 20)
+        tempMaxLabel.textAlignment = .center
+        
+        //progressView
+        progressView = UIProgressView()
+        progressView.progress = 1
+        progressView.tintColor = .systemGray5
+        progressView.contentMode = .center
+        
+        //progressViewContainer
+        //progressViewContainer = UIView()
+        //progressViewContainer.contentMode = .center
+        //progressViewContainer.addSubview(progressView)
         
         // MARK: - stackView config
         stackView = UIStackView()
         stackView.axis = NSLayoutConstraint.Axis.horizontal
         stackView.alignment = .center
         stackView.distribution = .fillEqually
-        stackView.spacing = 0
+        //stackView.spacing = 10
         
         //view.addSubview(stackView)
         
@@ -125,9 +147,15 @@ class WeatherDayliTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(iconLabel)
         //stackView.addArrangedSubview(spacingLabel3)
         stackView.addArrangedSubview(tempMinLabel)
-        stackView.addArrangedSubview(spacingLongLabel)
+        //stackView.addArrangedSubview(spacingLongLabel)
+        stackView.addArrangedSubview(progressView)
         stackView.addArrangedSubview(tempMaxLabel)
         //stackView.addArrangedSubview(spacingLabel4)
+        
+//        stackView.subviews.forEach() {
+//            $0.contentMode = .center
+//            $0.backgroundColor = .red
+//        }
     }
     
     func setupLayout() {
@@ -138,7 +166,7 @@ class WeatherDayliTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             // MARK: collectionView constraints
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .zero),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15.0),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: .zero),
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: .zero),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: .zero)

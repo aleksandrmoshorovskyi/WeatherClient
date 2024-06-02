@@ -7,6 +7,9 @@
 
 import Foundation
 
+// ----- ----- -----> transferred to Metrics
+
+/*
 class Temp {
     
     static func stringTemp(_ temp: Float, for main: Bool = false) -> String {
@@ -25,3 +28,4 @@ class Temp {
         return tempStr
     }
 }
+*/

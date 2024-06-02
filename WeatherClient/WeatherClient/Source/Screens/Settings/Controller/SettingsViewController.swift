@@ -89,103 +89,137 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    /*
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupInitialState()
-        model.loadData()
-        
-        settingsBarButton = UIBarButtonItem(
-            image: UIImage(systemName: "gearshape"),
-            style: .plain,
-            target: self,
-            action: #selector(settingsBarButtonDidTap)
-        )
-        
-        if let nc = navigationController {
-            navigationItem.rightBarButtonItem = settingsBarButton
-            navigationItem.hidesBackButton = true
-            navigationItem.title = "Weather"
-            
-            nc.navigationBar.prefersLargeTitles = true
-            nc.navigationBar.tintColor = .white
-            
-            let nsAttributedString = [NSAttributedString.Key.foregroundColor: UIColor.white]
-            nc.navigationBar.titleTextAttributes = nsAttributedString
-            nc.navigationBar.largeTitleTextAttributes = nsAttributedString
-            
-//            var segment = UISegmentedControl()
-//            segment = UISegmentedControl(items: ["1", "2"])
-//            segment.selectedSegmentIndex = 0
-//            segment.addTarget(self, action: #selector(settingsBarButtonDidTap), for: .valueChanged)
-//            self.navigationItem.titleView = segment
-            
-            /*
-            let sc = UIViewController()
-            sc.view.frame = CGRect(x: 0, y: 100, width: 300, height: 300)
-            sc.view.backgroundColor = .brown
-             */
-            
-            let resultsTableController = ResultsTableController()
-            resultsTableController.tableView.delegate = self
-            
-            let search = UISearchController(searchResultsController: resultsTableController)
-            
-            search.showsSearchResultsController = true
-            
-            search.searchResultsUpdater = self
-            //search.obscuresBackgroundDuringPresentation = false
-            search.searchBar.placeholder = "Search for a city"
-            //search.searchBar.tintColor = .white
-            //search.searchBar.barTintColor = .cyan
-            //search.searchBar.searchTextField.textColor = .white
-            
-            navigationItem.searchController = search
-            
-            //navigationItem.searchController?.isActive = true
-            navigationItem.hidesSearchBarWhenScrolling = false
-            //navigationItem.searchController?.searchBar.barStyle = .default
-            //navigationItem.searchController?.searchBar.searchTextField.tintColor = .white
-            navigationItem.searchController?.searchBar.searchTextField.textColor = .white
-            
-            
-            let colorForPlaceholder = UIColor.systemGray
-            navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = colorForPlaceholder
-            let placeholderColor = NSAttributedString(
-                string: "Search for a city",
-                attributes: [NSAttributedString.Key.foregroundColor: colorForPlaceholder]
-            )
-            navigationItem.searchController?.searchBar.searchTextField.attributedPlaceholder = placeholderColor
-            
-            //var searchField = navigationItem.searchController?.searchBar.searchTextField
-            
-            //[searchField, setValue:[UIColor blueColor] forKeyPath:@"_placeholderLabel.textColor"]
-            
-            //navigationItem.searchController?.isActive = true
-            //navigationItem.searchController?.searchBar.isEnabled = true
-            //navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
-        }
-    }
-     */
-    
     private func setupInitialState() {
         let settingsModel = SettingsModel(delegate: self)
         model = settingsModel
     }
     
     private func setupUI() {
+        
+        /*
         settingsBarButton = UIBarButtonItem(
             image: UIImage(systemName: "gearshape"),
             style: .plain,
             target: self,
             action: #selector(settingsBarButtonDidTap)
         )
+         */
+        
+        let settingsMenu = generatePullDownMenu()
+
+        settingsBarButton = UIBarButtonItem(
+            image: UIImage(systemName: "ellipsis.circle"),
+            menu: settingsMenu
+        )
     }
     
     @objc func editButtonDidTap() {
         //contentView.tableView.isEditing = !contentView.tableView.isEditing
         //btn.title = contentView.tableView.isEditing ? "Done" : "Edit"
+    }
+    
+    private func generatePullDownMenu() -> UIMenu {
+        
+        let defaults = UserDefaults.standard
+        let tempUnit = defaults.integer(forKey: "tempUnit")
+        
+        let editList = UIAction(
+            title: "Edit List",
+            image: UIImage(systemName: "pencil")
+        ) { _ in
+            self.settingsBarButtonDidTap()
+        }
+        
+        let notificatBtn = UIAction(
+            title: "Notifications",
+            image: UIImage(systemName: "bell.badge")
+        ) { _ in
+            //action
+        }
+        
+        let celsiusItem = UIAction(
+            title: "Celsius",
+            image: UIImage(named: "celsiusIcon"),
+            state: tempUnit == 0 ? .on : .off
+        ) {_ in
+            self.celsiusItemDidTap()
+        }
+        
+        let fahrenheitItem = UIAction(
+            title: "Fahrenheit",
+            image: UIImage(named: "tempFahrenheitIcon"),
+            state: tempUnit == 1 ? .on : .off
+        ) {_ in
+            self.fahrenheitItemDidTap()
+        }
+        
+        let unitsBtn = UIAction(
+            title: "Units",
+            image: UIImage(systemName: "chart.bar")
+        ) {_ in
+            //action
+        }
+        
+        let clearCash = UIAction(
+            title: "Clear cash",
+            image: UIImage(systemName: "trash.fill"),
+            attributes: [.destructive]
+        ) {_ in
+            //clear cash
+        }
+        
+        let subEditMenu = UIMenu(
+            options: .displayInline,
+            children: [editList, notificatBtn]
+        )
+        
+        let degreesMenu = UIMenu(
+            options: .displayInline,
+            children: [celsiusItem, fahrenheitItem]
+        )
+        
+        let unitsMenu = UIMenu(
+            options: .displayInline,
+            children: [unitsBtn]
+        )
+        
+        let subCashMenu = UIMenu(
+            options: .displayInline,
+            children: [clearCash]
+        )
+        
+        let settingsMenu = UIMenu(
+            children: [subEditMenu,
+                       degreesMenu,
+                       unitsMenu,
+                       subCashMenu]
+        )
+        
+        return settingsMenu
+    }
+    
+    private func celsiusItemDidTap() {
+        // 0 - Celsius
+        // 1 - Fahrenheit
+        let defaults = UserDefaults.standard
+        let tempUnit = defaults.integer(forKey: "tempUnit")
+        
+        defaults.set(tempUnit == 1 ? 0 : 0, forKey: "tempUnit")
+        self.settingsBarButton.menu = generatePullDownMenu()
+        delegate?.dataDidChange()
+        model.loadData()
+    }
+    
+    private func fahrenheitItemDidTap() {
+        // 0 - Celsius
+        // 1 - Fahrenheit
+        let defaults = UserDefaults.standard
+        let tempUnit = defaults.integer(forKey: "tempUnit")
+        
+        defaults.set(tempUnit == 0 ? 1 : 1, forKey: "tempUnit")
+        self.settingsBarButton.menu = generatePullDownMenu()
+        delegate?.dataDidChange()
+        model.loadData()
     }
 }
 
@@ -253,6 +287,7 @@ extension SettingsViewController: UISearchControllerDelegate {
 extension SettingsViewController: WeatherViewControllerDelegate {
     
     func cityDidAdd() {
+        navigationItem.searchController?.searchBar.searchTextField.text = ""
         navigationItem.searchController?.dismiss(animated: true)
         model.loadData()
         
@@ -278,45 +313,7 @@ extension SettingsViewController: UISearchResultsUpdating {
 
 extension SettingsViewController: UISearchBarDelegate {
     
-}
-
-/*
- func updateSearchResults(for searchController: UISearchController) {
-        // Update the filtered array based on the search text.
-        let searchResults = products
-
-
-        // Strip out all the leading and trailing spaces.
-        let whitespaceCharacterSet = CharacterSet.whitespaces
-        let strippedString =
-            searchController.searchBar.text!.trimmingCharacters(in: whitespaceCharacterSet)
-        let searchItems = strippedString.components(separatedBy: " ") as [String]
-
-
-        // Build all the "AND" expressions for each value in searchString.
-        let andMatchPredicates: [NSPredicate] = searchItems.map { searchString in
-            findMatches(searchString: searchString)
-        }
-
-
-        // Match up the fields of the Product object.
-        let finalCompoundPredicate =
-            NSCompoundPredicate(andPredicateWithSubpredicates: andMatchPredicates)
-
-
-        let filteredResults = searchResults.filter { finalCompoundPredicate.evaluate(with: $0) }
-
-
-        // Apply the filtered results to the search results table.
-        if let resultsController = searchController.searchResultsController as? ResultsTableController {
-            resultsController.filteredProducts = filteredResults
-            resultsController.tableView.reloadData()
-
-
-            resultsController.resultsLabel.text = resultsController.filteredProducts.isEmpty ?
-                NSLocalizedString("NoItemsFoundTitle", comment: "") :
-                String(format: NSLocalizedString("Items found: %ld", comment: ""),
-                       resultsController.filteredProducts.count)
-        }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.text = ""
     }
- */
+}

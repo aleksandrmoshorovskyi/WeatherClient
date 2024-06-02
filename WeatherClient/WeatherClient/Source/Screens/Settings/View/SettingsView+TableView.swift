@@ -34,9 +34,10 @@ extension SettingsView: UITableViewDataSource {
             cell.cityNameLabel?.text = city.name
             
             if let weather = dataSource[indexPath.row].weather {
-                cell.weatherDescLabel?.text = weather.desc
-                let tempStr = String(format: "%.0f" , weather.temp)
-                cell.tempLabel?.text = "\(tempStr) ℃"
+                cell.weatherDescLabel?.text = weather.desc.capitalized
+                //let tempStr = String(format: "%.0f" , weather.temp)
+                //cell.tempLabel?.text = "\(tempStr) ℃"
+                cell.tempLabel?.text = Metrics.strTemp(weather.temp, for: true)
             }
         }
         

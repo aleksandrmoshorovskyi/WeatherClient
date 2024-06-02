@@ -69,6 +69,7 @@ enum Constant {
     static let containerViewColor: UIColor = .clear
     
     static let baseCellTextColor: UIColor = .white
-    static let baseCellTextFont: UIFont = .systemFont(ofSize: 25)
+    //static let baseCellTextFont: UIFont = .systemFont(ofSize: 25)
+    static let baseCellTextFont: UIFont = .systemFont(ofSize: 30)
     static let windCellTextFont: UIFont = .systemFont(ofSize: 20)
 }

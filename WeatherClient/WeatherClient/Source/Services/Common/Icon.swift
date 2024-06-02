@@ -15,23 +15,23 @@ class Icon {
         
         switch code {
         case "01d":
-            return "☀️"
+            return "☀️" //clear sky
         case "02d":
-            return "🌤️"
+            return "🌤️" //few clouds
         case "03d":
-            return "🌥️"
+            return "🌥️" //scattered clouds
         case "04d":
-            return "☁️"
+            return "☁️" //broken clouds
         case "09d":
-            return "🌧️"
+            return "🌧️" //shower rain
         case "10d":
-            return "🌦️"
+            return "🌦️" //rain
         case "11d":
-            return "⛈️"
+            return "🌩️" //thunderstorm
         case "13d":
-            return "❄️"
+            return "❄️" //snow
         case "50d":
-            return "🌫️"
+            return "🌫️" //mist
             
         case "01n":
             return "🌙"
@@ -44,9 +44,9 @@ class Icon {
         case "09n":
             return "🌧️"
         case "10n":
-            return "🌦️"
+            return "🌧️"
         case "11n":
-            return "⛈️"
+            return "⚡️"
         case "13n":
             return "❄️"
         case "50n":

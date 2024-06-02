@@ -39,6 +39,7 @@ class WeatherHourlyDetailCellCode: UICollectionViewCell {
         //hourLabel
         hourLabel = UILabel()
         hourLabel.textColor = Constant.baseCellTextColor
+        //hourLabel.font = UIFont.systemFont(ofSize: 18)
         
         //hourLabel
         iconImage = UIImageView()
@@ -48,11 +49,14 @@ class WeatherHourlyDetailCellCode: UICollectionViewCell {
         
         //iconLabel
         iconLabel = UILabel()
+        iconLabel.font = UIFont.systemFont(ofSize: 25)
+        iconLabel.textAlignment = .center
         
         //detailLabel
         detailLabel = UILabel()
         detailLabel.textColor = Constant.baseCellTextColor
-        //detailLabel.font = UIFont.systemFont(ofSize: 20)
+        detailLabel.font = UIFont.systemFont(ofSize: 20)
+        //debugPrint("\(detailLabel.font.pointSize)")
         
         // MARK: - stackView config
         stackView = UIStackView()

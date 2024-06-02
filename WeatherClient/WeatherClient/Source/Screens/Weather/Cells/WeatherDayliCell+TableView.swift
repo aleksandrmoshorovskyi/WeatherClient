@@ -35,7 +35,7 @@ extension WeatherDayliCell: UITableViewDataSource {
         cell.textLabel?.textColor = Constant.baseCellTextColor
         
         if let data = dataSource {
-            cell.dayLabel.text = "    \(data[indexPath.row].day)"
+            cell.dayLabel.text = "\(data[indexPath.row].day)"
             cell.iconLabel.text = Icon.getIconByCode(data[indexPath.row].icon)
             //cell.tempMinLabel.text = Metrics.strTemp(data[indexPath.row].tempMin)
             //cell.tempMaxLabel.text = Metrics.strTemp(data[indexPath.row].tempMax)

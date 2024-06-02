@@ -50,12 +50,12 @@ extension WeatherView: UICollectionViewDataSource {
                 cell.tempLabel?.text = "\(tempStr) ℃"
                  */
                 
-                cell.tempLabel?.text = Temp.stringTemp(data.temp, for: true)
+                cell.tempLabel?.text = Metrics.strTemp(data.temp, for: true)
                 
-                cell.weatherDescLabel?.text = data.desc
+                cell.weatherDescLabel?.text = data.desc.capitalized
                 
-                cell.tempMaxLabel.text = "H:\(Temp.stringTemp(data.tempMax))"
-                cell.tempMinLabel.text = "L:\(Temp.stringTemp(data.tempMin))"
+                cell.tempMaxLabel.text = "H:\(Metrics.strTemp(data.tempMax))"
+                cell.tempMinLabel.text = "L:\(Metrics.strTemp(data.tempMin))"
             }
      
             return cell
@@ -173,7 +173,9 @@ extension WeatherView: UICollectionViewDataSource {
                 //cell.valueLabel.text = "\(data.wind?.speed ?? 0.0)"
                 
                 let strWindDeg = Metrics.strWindDeg(data.wind?.deg)
-                cell.windDegLabel.text = "Direction: \(strWindDeg)"
+                let strWindDegArrow = Metrics.strWindDegArrow(data.wind?.deg)
+                //cell.windDegLabel.text = "Direction: \(strWindDeg)"
+                cell.windDegLabel.text = "\(strWindDegArrow)"
 
                 let strWindSpeed = Metrics.strWindSpeedGust(data.wind?.speed)
                 cell.windSpeedLabel.text = "Speed: \(strWindSpeed)"

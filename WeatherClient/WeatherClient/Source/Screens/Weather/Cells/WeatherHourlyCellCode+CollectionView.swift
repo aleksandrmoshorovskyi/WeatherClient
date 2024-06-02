@@ -40,7 +40,8 @@ extension WeatherHourlyCellCode: UICollectionViewDataSource {
             let urlString = "https://openweathermap.org/img/wn/\(iconID).png"
             let url = URL(string: urlString)!
             
-            //let imageView: UIImageView = UIImageView().load(url: url)
+            //let imageView: UIImageView = UIImageView()
+            //imageView.load(url: url)
             
             //cell.iconImage.load(url: url)
             
