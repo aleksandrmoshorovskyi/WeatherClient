@@ -238,7 +238,14 @@ extension WeatherView: UICollectionViewDataSource {
 
 // MARK: UICollectionView - Delegate
 extension WeatherView: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //code
+    }
 }
 
 // MARK: UICollectionView - DelegateFlowLayout
