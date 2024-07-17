@@ -19,7 +19,6 @@ extension SettingsModel: SettingsModelProtocol {
 
     func loadData() {
         
-        //cities = []
         var citiesWithWeather: [CityWeatherDataModel] = []
         
         let storedCities = storageService.fetchAllCDCities()
@@ -27,7 +26,6 @@ extension SettingsModel: SettingsModelProtocol {
         if storedCities.count > 0 {
             storedCities.forEach() {
 
-                //let city = CityWeatherModel(order: 0, name: $0.cityName ?? "")
                 let city = CityDataModel(
                     name: $0.cityName ?? "",
                     latitude: $0.cityLatitude,
@@ -58,7 +56,6 @@ extension SettingsModel: SettingsModelProtocol {
             
             let location = Location(latitude: Double(value.city.latitude), longitude: Double(value.city.longitude))
             
-            //networkService.loadWeatherForCity(value.city.name, with: parametrs) { [weak self] weatherInfo, error in
             networkService.loadWeatherForLocation(location) { [weak self] weatherInfo, error in
 
                 if let err = error {
@@ -66,15 +63,6 @@ extension SettingsModel: SettingsModelProtocol {
                 }
 
                 if let data = weatherInfo  {
-                    //debugPrint("\(data.name)")
-
-//                    let tempWeather = WeatherDataModel(
-//                        city: data.name,
-//                        desc: data.weather[0].descWeather,
-//                        temp: data.main.temp,
-//                        pressure: 0.0,
-//                        humidity: 0.0
-//                    )
                     
                     let tempWeather = WeatherCompactDataModel(
                         city: data.name,
@@ -91,22 +79,13 @@ extension SettingsModel: SettingsModelProtocol {
     
     func loadSearchData(for string: String) {
 
-        //debugPrint("loadData for - \(city)")
-        
-        //networkService.loadWeatherForCity(city, with: parametrs) { [weak self] weatherInfo, error in
-            networkService.loadWeatherLocation(for: string) { [weak self] weatherInfo, error in
+        networkService.loadWeatherLocation(for: string) { [weak self] weatherInfo, error in
 
             if let err = error {
                 debugPrint("\(err.localizedDescription)")
             }
 
             if let data = weatherInfo  {
-                
-//                let tempWeather = Weather(
-//                    city: data.
-//                    desc: data.weather[0].descWeather,
-//                    temp: data.main.temp
-//                )
                 
                 let searchData =  data.compactMap() {
                     //SearchDataModel(name: $0.name, state: $0.state, country: $0.country)

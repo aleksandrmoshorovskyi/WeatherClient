@@ -9,7 +9,6 @@ import Foundation
 
 protocol WeatherModelDelegate: AnyObject {
     
-    func dataDidLoad(with data: WeatherDataModel?)
-    
+    func dataDidLoad(with data: WeatherDataModel?)    
     func cityDidLoad(with data: CDWeatherCities?)
 }

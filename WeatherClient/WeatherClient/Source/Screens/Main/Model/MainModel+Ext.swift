@@ -23,9 +23,6 @@ extension MainModel: MainModelProtocol {
                 //debugPrint("\($0.cityName ?? "")")
                 
                 let VC = WeatherViewController()
-                //VC.dataSource = $0.cityName ?? ""
-                //VC.doSomething(with: $0.cityName ?? "")
-                
                 VC.loadWeatherData(for: $0)
                 
                 cities.append(VC)

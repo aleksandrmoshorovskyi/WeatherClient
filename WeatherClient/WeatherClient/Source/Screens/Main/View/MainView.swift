@@ -177,10 +177,4 @@ class MainView: UIView {
         ])
     }
     
-    /*
-    func scrollToIndex(index:Int) {
-        let rect = collectionView.layoutAttributesForItem(at:IndexPath(row: index, section: 0))?.frame
-        collectionView.scrollRectToVisible(rect!, animated: false)
-    }
-     */
 }

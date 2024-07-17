@@ -20,25 +20,12 @@ extension WeatherModel: WeatherModelProtocol {
         
         if let storedData = storageService.fetchWeatherFor(city) {
             
-//            let forecastSet = storedData.forecast
-//            let sortDesc = [NSSortDescriptor(key: "dt", ascending: true)]
-//            let sortedArray = forecastSet?.sortedArray(using: sortDesc) as! [CDWeatherForecast]
-//            
-//            let curWeath = sortedArray.first
-//            
-//            if let curWeath = sortedArray.first {
-//                delegate?.dataDidLoad(with: getDataModelFrom(curWeath, for: city))
-//            }
-            
-            //PrepareAndSubmitData(storedData, for: city)
             delegate?.dataDidLoad(with: getDataModelFrom(storedData, for: city))
             
         } else {
             
             let location = Location(latitude: Double(city.latitude), longitude: Double(city.longitude))
             
-            //networkService.loadWeatherForCity(city.name, with: parametrs) { [weak self] weatherInfo, error in
-            //networkService.loadWeatherForCity(city.name) { [weak self] weatherInfo, error in
             networkService.loadWeatherForLocation(location) { [weak self] weatherInfo, error in
 
                 if let err = error {
@@ -51,7 +38,6 @@ extension WeatherModel: WeatherModelProtocol {
                         
                         let location = Location(latitude: Double(city.latitude), longitude: Double(city.longitude))
                         
-                        //networkService.loadWeatherForecastForLocation(location, with: parametrs) { [weak self] weatherInfoList, error in
                         networkService.loadWeatherForecastForLocation(location) { [weak self] weatherInfoList, error in
                             
                             if let err = error {
@@ -72,34 +58,10 @@ extension WeatherModel: WeatherModelProtocol {
                         }
                     }
                     
-                    //self?.storageService.insertWeather(data, with: nil, for: city)
-                    
-                    //if let fetchedWeather = self?.storageService.fetchWeatherFor(city) {
-                        
-//                        let forecastSet = fetchedWeather.forecast
-//                        let sortDesc = [NSSortDescriptor(key: "dt", ascending: true)]
-//                        let sortedArray = forecastSet?.sortedArray(using: sortDesc) as! [CDWeatherForecast]
-//                        
-//                        if let self = self {
-//                            if let curWeath = sortedArray.first {
-//                                self.delegate?.dataDidLoad(with: self.getDataModelFrom(curWeath, for: city))
-//                            }
-//                        }
-
-//                        if let self = self {
-//                            PrepareAndSubmitData(fetchedWeather, for: city)
-//                        }
-                        
-                        
-                    //}
-                    
                 }
             }
         }
         
-        //storageService.deleteOldWeatherFor(city)
-        //storageService.deleteAllWeatherFor(city)
-        //storageService.deleteAllWeatherData()
         storageService.deleteAllOldWeatherData()
     }
     
@@ -112,21 +74,6 @@ extension WeatherModel: WeatherModelProtocol {
     func addCity(_ city: CityDataModel) {
         self.storageService.insertCity(city)
     }
-    
-//    func getDataModelFrom(_ networkData: CDWeatherForecast, for city: CityDataModel) -> WeatherDataModel {
-//        
-//        return WeatherDataModel(
-//            city: city.name,
-//            desc: networkData.descriptDetail ?? "",
-//            temp: networkData.temp,
-//            pressure: networkData.pressure,
-//            humidity: networkData.humidity, 
-//            feelsLike: networkData.feelsLike, 
-//            wind: Wind(speed: networkData.windSpeed, deg: networkData.windDeg, gust: networkData.windGust), 
-//            sys: Sys(sunrise: Int(networkData.sunrise), sunset: Int(networkData.sunset)), 
-//            visibility: networkData.visibility
-//        )
-//    }
     
     func getDateFromTimeInterval(_ timeInterval: TimeInterval, for timezone: Int) {
         
@@ -181,11 +128,6 @@ extension WeatherModel: WeatherModelProtocol {
             currentTempMax = networkData.tempMax
             
             // tomorrow sunrise - sunset
-            /*
-             it will be with an error of a few minutes,
-             because this is today's data,
-             tomorrow's data is not available on the server
-             */
             let tomorrowSunrise = networkData.sunrise + Constant.periodDay
             let tomorrowSunset = networkData.sunset + Constant.periodDay
             
@@ -200,16 +142,6 @@ extension WeatherModel: WeatherModelProtocol {
                         currentTempMax = item.tempMax
                     }
                     
-                    //debugPrint("\(item.sunrise)")
-                    /*
-                    if item.sunrise > tomorrowSunrise {
-                        tomorrowSunrise = item.sunrise
-                    }
-                    
-                    if item.sunset > tomorrowSunset {
-                        tomorrowSunset = item.sunset
-                    }
-                     */
                     
                     var timeStr = ""
                     
@@ -283,15 +215,13 @@ extension WeatherModel: WeatherModelProtocol {
             //dayli forecast {
             var isFirstDay = true
             var dayliArray: [DayliForecast] = []
-            //let currentDt = networkData.dt //+ currentTimezone
-            //let dayAfterDt = currentDt + Constant.periodDay
+
             var currentDayEEE = DateStr.timeFromDateInterval(Int(networkData.dt), like: "EEE")
             var temporaryDayEEE = ""
             var temporaryHourHH = ""
             
             var tempDt = Int(networkData.dt)
-            //var tempDay = currentDayEEE
-            //var tempIcon = ""
+
             var tempIcon = networkData.descriptIcon ?? ""
             var temptempMin = currentTempMin
             var temptempMax = currentTempMax
@@ -344,34 +274,7 @@ extension WeatherModel: WeatherModelProtocol {
                     temptempMax = -1000
                 }
             }
-            
-            /*
-            for item in sortedArray {
-                //if item.dt >= currentDt && item.dt < dayAfterDt {
-                    
-                    var dayStr = ""
-                    
-                    if isFirstDay {
-                        dayStr = "Today"
-                    } else {
-                        //dayStr = "\(Date(timeIntervalSince1970: TimeInterval(item.dt)).get(.hour))"
-                        dayStr = DateStr.timeFromDateInterval(Int(item.dt), like: "EEE")
-                    }
-                
-                    let df = DayliForecast(
-                        dt: Int(item.dt),
-                        day: dayStr,
-                        icon: item.descriptIcon ?? "",
-                        tempMin: Temp.stringTemp(item.temp),
-                        tempMax: Temp.stringTemp(item.temp)
-                    )
-                    
-                dayliArray.append(df)
-                    isFirstDay = false
-                //}
-                
-            }
-             */
+
             
             dayliArray.sort() { $0.dt < $1.dt }
             //} dayli forecast
@@ -398,16 +301,6 @@ extension WeatherModel: WeatherModelProtocol {
     }
     
     func PrepareAndSubmitData(_ storedData: CDWeatherMain, for city: CityDataModel) {
-        
-        //let forecastSet = storedData.forecast
-        //let sortDesc = [NSSortDescriptor(key: "dt", ascending: true)]
-        //let sortedArray = forecastSet?.sortedArray(using: sortDesc) as! [CDWeatherForecast]
-        
-        //let curWeath = sortedArray.first
-        
-        //if let curWeath = sortedArray.first {
-            //delegate?.dataDidLoad(with: getDataModelFrom(curWeath, for: city))
-            delegate?.dataDidLoad(with: getDataModelFrom(storedData, for: city))
-        //}
+        delegate?.dataDidLoad(with: getDataModelFrom(storedData, for: city))
     }
 }

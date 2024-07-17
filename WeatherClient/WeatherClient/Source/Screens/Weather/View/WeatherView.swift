@@ -36,28 +36,6 @@ class WeatherView: UIView {
         setupUI()
         setupLayout()
         
-//        collectionView.register(
-//            UINib(nibName: WeatherMainCell.idintifier, bundle: nil),
-//            forCellWithReuseIdentifier: WeatherMainCell.idintifier)
-        
-//        collectionView.register(
-//            UINib(nibName: WeatherHourlyCell.idintifier, bundle: nil),
-//            forCellWithReuseIdentifier: WeatherHourlyCell.idintifier)
-        
-//        collectionView.register(
-//            UINib(nibName: WeatherSmallCell.idintifier, bundle: nil),
-//            forCellWithReuseIdentifier: WeatherSmallCell.idintifier)
-        
-//        collectionView.register(
-//            WeatherHourlyCellCode.self,
-//            forCellWithReuseIdentifier: WeatherHourlyCellCode.idintifier
-//        )
-        
-//        collectionView.register(
-//            WeatherDayliCell.self,
-//            forCellWithReuseIdentifier: WeatherDayliCell.idintifier
-//        )
-        
         // Main - WeatherMainCellCode
         collectionView.register(
             WeatherMainCellCode.self,
@@ -129,10 +107,7 @@ class WeatherView: UIView {
     
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
-        //collectionView.showsHorizontalScrollIndicator = false
-        //collectionView.backgroundColor = .clear
         collectionView.backgroundColor = Constant.weatherCollectionViewColor
-        //collectionView.isPagingEnabled = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -186,9 +161,4 @@ class WeatherView: UIView {
             addButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.labelTopOffset)
         ])
     }
-    
-//    func setupButtons() {
-//        cancelButton.isHidden = false
-//        addButton.isHidden = false
-//    }
 }

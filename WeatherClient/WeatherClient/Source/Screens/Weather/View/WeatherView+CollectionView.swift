@@ -35,23 +35,13 @@ extension WeatherView: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            //debugPrint("\(currentCity.name)")
             cell.cityNameLabel?.text = currentCity.name
-            //debugPrint("\(String(describing: cell.cityNameLabel?.text))")
             cell.tempLabel?.text = "- -"
             cell.weatherDescLabel?.text = ""
             
             if let data = dataSource {
                 cell.cityNameLabel?.text = data.city
-                //debugPrint("\(String(describing: cell.cityNameLabel?.text))")
-                
-                /*
-                let tempStr = String(format: "%.0f" , data.temp)
-                cell.tempLabel?.text = "\(tempStr) ℃"
-                 */
-                
                 cell.tempLabel?.text = Metrics.strTemp(data.temp, for: true)
-                
                 cell.weatherDescLabel?.text = data.desc.capitalized
                 
                 cell.tempMaxLabel.text = "H:\(Metrics.strTemp(data.tempMax))"
@@ -110,7 +100,6 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                //cell.valueLabel.text = "\(data.pressure)"
                 cell.valueLabel.text = Metrics.strPressure(data.pressure)
             }
      
@@ -130,7 +119,6 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                //cell.valueLabel.text = "\(data.humidity)"
                 cell.valueLabel.text = Metrics.strHumidity(data.humidity)
             }
      
@@ -150,7 +138,6 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                //cell.valueLabel.text = "\(data.feelsLike)"
                 cell.valueLabel.text = Metrics.strTemp(data.feelsLike, for: true)
             }
      
@@ -167,14 +154,9 @@ extension WeatherView: UICollectionViewDataSource {
             }
             
             cell.titleLabel.text = "wind".uppercased()
-            //cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                //cell.valueLabel.text = "\(data.wind?.speed ?? 0.0)"
-                
-                //let strWindDeg = Metrics.strWindDeg(data.wind?.deg)
                 let strWindDegArrow = Metrics.strWindDegArrow(data.wind?.deg)
-                //cell.windDegLabel.text = "Direction: \(strWindDeg)"
                 cell.windDegLabel.text = "\(strWindDegArrow)"
 
                 let strWindSpeed = Metrics.strWindSpeedGust(data.wind?.speed)
@@ -197,10 +179,8 @@ extension WeatherView: UICollectionViewDataSource {
             }
             
             cell.titleLabel.text = "sunset".uppercased()
-            //cell.valueLabel.text = "-"
             
             if let data = dataSource {
-                //cell.valueLabel.text = "\(data.sys?.sunrise ?? 0)"
                 cell.sunsetLabel.text = DateStr.timeFromDateInterval(data.sys?.sunset, like: "HH:mm")
                 
                 let sunriseTime = DateStr.timeFromDateInterval(data.sys?.sunrise, like: "HH:mm")
@@ -223,7 +203,6 @@ extension WeatherView: UICollectionViewDataSource {
             cell.valueLabel.text = "-"
      
             if let data = dataSource {
-                //cell.valueLabel.text = "\(data.visibility ?? 0)"
                 cell.valueLabel.text = Metrics.strVisibility(data.visibility)
             }
             
@@ -252,10 +231,6 @@ extension WeatherView: UICollectionViewDelegate {
 extension WeatherView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        //return CGSize(width: collectionView.bounds.width, height: 300.0)
-        //return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width/2)
-        //return CGSize(width: 100.00, height: 100.00)
         
         switch indexPath.row {
             
@@ -319,4 +294,3 @@ extension WeatherView: UICollectionViewDelegateFlowLayout {
         return .zero
     }
 }
-

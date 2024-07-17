@@ -16,27 +16,12 @@ class SettingsView: UIView {
     
     //UI
     var citiesTableView: UITableView!
-    //var settingsButton: UIButton!
-    
-    /*
-    @objc func settingsButtonDidTap() {
-        citiesTableView.isEditing = !citiesTableView.isEditing
-        setupSettingsButton()
-    }
-     */
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupUI()
         setupLayout()
-        
-        /*
-        citiesTableView.register(
-            CityTableViewCell.self,
-            forCellReuseIdentifier: CityTableViewCell.idintifier
-        )
-         */
         
         let nibCell = UINib(nibName: CityTableViewCell.idintifier, bundle: nil)
         citiesTableView.register(nibCell, forCellReuseIdentifier: CityTableViewCell.idintifier)
@@ -60,23 +45,13 @@ class SettingsView: UIView {
         
         citiesTableView.dataSource = self
         citiesTableView.delegate = self
-        
-        // MARK: settings button setup
-        /*
-        settingsButton = UIButton()
-        setupSettingsButton()
-        settingsButton.tintColor = .white
-        settingsButton.addTarget(self, action: #selector(settingsButtonDidTap), for: .touchUpInside)
-         */
     }
     
     func setupLayout() {
         
         citiesTableView.translatesAutoresizingMaskIntoConstraints = false
-        //settingsButton.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(citiesTableView)
-        //addSubview(settingsButton)
         
         NSLayoutConstraint.activate([
             // MARK: citiesTableView constraints
@@ -84,24 +59,7 @@ class SettingsView: UIView {
             citiesTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: .zero),
             citiesTableView.topAnchor.constraint(equalTo: self.topAnchor, constant: .zero),
             citiesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: .zero),
-            
-            // settingsButton constraints
-            //settingsButton.trailingAnchor.constraint(equalTo: citiesTableView.trailingAnchor, constant: -Constant.labelSideOffset),
-            //settingsButton.topAnchor.constraint(equalTo: citiesTableView.topAnchor, constant: 60.0)
-            //settingsButton.heightAnchor.constraint(equalToConstant: Constant.standardButtonHeight)
         ])
     }
-    
-    /*
-    func setupSettingsButton() {
-        
-        if citiesTableView.isEditing {
-            settingsButton.setTitle("Done", for: .normal)
-            settingsButton.setImage(nil, for: .normal)
-        } else {
-            settingsButton.setTitle(nil, for: .normal)
-            settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
-        }
-    }
-     */
+ 
 }
