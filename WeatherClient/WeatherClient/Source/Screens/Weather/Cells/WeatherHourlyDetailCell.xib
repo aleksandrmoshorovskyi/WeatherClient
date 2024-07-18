@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="WeatherHourlyDetailCell" id="iN0-l3-epB" customClass="WeatherHourlyDetailCell" customModule="WeatherClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="119" height="186"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZw-GV-jd5">
+                    <rect key="frame" x="0.0" y="0.0" width="119" height="186"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rom-YU-DzH">
+                            <rect key="frame" x="0.0" y="0.0" width="119" height="186"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UZ-kC-lHX">
+                                    <rect key="frame" x="39" y="0.0" width="41.333333333333343" height="62"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4TP-ZW-aNE">
+                                    <rect key="frame" x="28.666666666666671" y="62" width="62" height="62"/>
+                                    <color key="tintColor" systemColor="systemYellowColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="4TP-ZW-aNE" secondAttribute="height" multiplier="1:1" id="xoG-h6-2Sk"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E05-NI-OUh">
+                                    <rect key="frame" x="39" y="124" width="41.333333333333343" height="62"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Rom-YU-DzH" secondAttribute="bottom" id="Tvo-E0-IMK"/>
+                        <constraint firstItem="Rom-YU-DzH" firstAttribute="leading" secondItem="JZw-GV-jd5" secondAttribute="leading" id="aDF-Kv-w4r"/>
+                        <constraint firstAttribute="trailing" secondItem="Rom-YU-DzH" secondAttribute="trailing" id="h0L-Kg-WuA"/>
+                        <constraint firstItem="Rom-YU-DzH" firstAttribute="top" secondItem="JZw-GV-jd5" secondAttribute="top" id="hxb-w8-HZZ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="JZw-GV-jd5" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="GFH-CL-6pf"/>
+                <constraint firstItem="JZw-GV-jd5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="RBL-JQ-gyX"/>
+                <constraint firstItem="JZw-GV-jd5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Vl4-4h-itn"/>
+                <constraint firstAttribute="bottom" secondItem="JZw-GV-jd5" secondAttribute="bottom" id="YCU-Cx-lAh"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="containerView" destination="JZw-GV-jd5" id="SKx-1X-tTw"/>
+                <outlet property="detailLabel" destination="E05-NI-OUh" id="1AV-DL-uim"/>
+                <outlet property="hourLabel" destination="6UZ-kC-lHX" id="Efs-tM-y7m"/>
+                <outlet property="iconImage" destination="4TP-ZW-aNE" id="sxp-Gg-TTn"/>
+            </connections>
+            <point key="canvasLocation" x="58.778625954198468" y="-168.3098591549296"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
